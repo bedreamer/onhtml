@@ -74,27 +74,84 @@ function js_timer_proc() {
 	setTimeout("js_timer_proc()", 3000);
 }
 
+/*这是主显示区的标题*/
+function body_settitle(title) {
+	document.getElementById('id_title_body').innerHTML = title;
+}
+
+/*设置前置提示信息*/
+function comment_pre_set(str) {
+}
+
+/*设置后置提示信息*/
+function comment_below_set(str) {
+}
+
 function navigate(entry) {
 	switch ( entry ) {
 	case 'auto':
+	vk_hide();
 	document.getElementById('id_manual_setting').style.display = 'none';
 	document.getElementById('id_info_query').style.display = 'none';
 	document.getElementById('id_system_settings').style.display = 'none';
+	body_settitle("自动|自动充电模式");
 	break;
 	case 'manual':
 	document.getElementById('id_manual_setting').style.display = 'block';
 	document.getElementById('id_info_query').style.display = 'none';
 	document.getElementById('id_system_settings').style.display = 'none';
+	body_settitle("手动|手动管理模式");
+	vk_hide();
 	break;
+		case 'charge_param_setting':
+		body_settitle("手动|设置充电参数");
+		vk_show();
+		break;
+		case 'charge_order':
+		body_settitle("手动|预约充电设定");
+		vk_show();
+		break;
+		case 'charge_ontime':
+		body_settitle("手动|定时充电设定");
+		vk_show();
+		break;
 	case 'query':
 	document.getElementById('id_manual_setting').style.display = 'none';
 	document.getElementById('id_info_query').style.display = 'block';
 	document.getElementById('id_system_settings').style.display = 'none';
+	body_settitle("信息查询");
+	vk_hide();
 	break;
+		case 'query_deal':
+		body_settitle("信息查询|交易详情");
+		break;
+		case 'query_status':
+		body_settitle("信息查询|当前充电状态");
+		break;
+		case 'query_battery':
+		body_settitle("信息查询|电池详细信息");
+		break;
+		case 'query_alarm':
+		body_settitle("信息查询|系统故障信息");
+		break;
 	case 'settings':
 	document.getElementById('id_manual_setting').style.display = 'none';
 	document.getElementById('id_info_query').style.display = 'none';
 	document.getElementById('id_system_settings').style.display = 'block';
+	body_settitle("系统设置");
+	vk_hide();
 	break;
+		case 'system_configure':
+		body_settitle("系统设置|配置信息");
+		vk_show();
+		break;
+		case 'system_manufacturer_setting':
+		body_settitle("系统设置|工厂设置");
+		vk_show();
+		break;
+		case 'system_update':
+		body_settitle("系统设置|系统更新");
+		vk_show();
+		break;
 	}
 }

@@ -15,26 +15,26 @@
         <li class="main_navigate"><a href="javascript:navigate('manual');">手动充电</a></li>
         	<div class="class_manual_setting" id="id_manual_setting">
                 <ul>
-                    <li class="sub_navigate"><a href="javascript:void(0);">参数设定</a></li>
-                    <li class="sub_navigate"><a href="javascript:void(0);">充电预约</a></li>
-                    <li class="sub_navigate"><a href="javascript:void(0);">定时充电</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('charge_param_setting');">参数设定</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('charge_order');">充电预约</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('charge_ontime');">定时充电</a></li>
                 </ul>
             </div>
         <li class="main_navigate"><a href="javascript:navigate('query');">信息查询</a></li>        	
         	<div class="class_info_query" id="id_info_query">
                 <ul>
-                    <li class="sub_navigate"><a href="javascript:void(0);">交易信息</a></li>
-                    <li class="sub_navigate"><a href="javascript:void(0);">充电状态</a></li>
-                    <li class="sub_navigate"><a href="javascript:void(0);">电池状态</a></li>
-                    <li class="sub_navigate"><a href="javascript:void(0);">故障信息</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('query_deal');">交易信息</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('query_status');">充电状态</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('query_battery');">电池状态</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('query_alarm');">故障信息</a></li>
             	</ul>
             </div>
         <li class="main_navigate"><a href="javascript:navigate('settings');">系统设置</a></li>
         	<div class="class_system_settings" id="id_system_settings">
                 <ul>
-                    <li class="sub_navigate"><a href="javascript:void(0);">配置数据</a></li>
-                    <li class="sub_navigate"><a href="javascript:void(0);">工厂设置</a></li>
-                    <li class="sub_navigate"><a href="javascript:void(0);">检查更新</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('system_configure');">配置数据</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('system_manufacturer_setting');">工厂设置</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('system_update');">检查更新</a></li>
             	</ul>
             </div>
     </ul>
@@ -46,9 +46,7 @@
 </div>
 <div class="mainbody">
 	<!-- 用于显示body部分的标题元素 -->
-    <div class="title_body" id="id_title_body">
-    	abcdefg
-    </div>
+    <h1 class="title_body" id="id_title_body">自动|自动充电模式</h1>
 	<!-- 用于显示自动充电元素 -->
 	<div class="autocharge_body" id="id_autocharge_body">
     	abcdefg
@@ -59,47 +57,41 @@
     </div>
     <!-- 用于显示信息查询元素 -->
     <div class="information_body" id="id_information_body">
-    	abcdefg
+    	我就是不到中间去
     </div>
     <!-- 用于显系统设置元素 -->
     <div class="system_body" id="id_system_body">
-    	abcdefg
+    	我不到中间去
     </div>
 	<!-- 用于测试元素 -->
 	<p id="txtshi">这是中间主显示区域</p>
     <p>充电电压：<input type="text" id="edit_demo" class="input_edit" onfocus="vk_on_focurs('edit_demo');" value="543.9" maxlength="8"/>V</p>
     <p>充电电流：<input type="password" id="paswd_demo" class="input_edit" onfocus="vk_on_focurs('paswd_demo');" value="70.8" />A</p>
 </div>
-<div class="input_and_comment">
-	<div class="pre_comment">
-    	<p>这是前置提示说明</p>
-    </div>
-    <div class="v_keypad" id="id_keypad">
-        <table width="100%" height="100%" border="1">
-        	<tr align="center">
-            	<td><a href="javascript:vk_pushed(7);"><img src="imgs/vkey/vk_7.png" width="100%" height="100%"/></a></td>
-            	<td><a href="javascript:vk_pushed(8);"><img src="imgs/vkey/vk_8.png" width="100%" height="100%"/></a></td>
-            	<td><a href="javascript:vk_pushed(9);"><img src="imgs/vkey/vk_9.png" width="100%" height="100%"/></a></td>
-            </tr>
-        	<tr align="center">
-            	<td><a href="javascript:vk_pushed(4);"><img src="imgs/vkey/vk_4.png" width="100%" height="100%"/></a></td>
-            	<td><a href="javascript:vk_pushed(5);"><img src="imgs/vkey/vk_5.png" width="100%" height="100%"/></a></td>
-            	<td><a href="javascript:vk_pushed(6);"><img src="imgs/vkey/vk_6.png" width="100%" height="100%"/></a></td>
-            </tr>
-        	<tr align="center">
-            	<td><a href="javascript:vk_pushed(1);"><img src="imgs/vkey/vk_1.png" width="100%" height="100%"/></a></td>
-            	<td><a href="javascript:vk_pushed(2);"><img src="imgs/vkey/vk_2.png" width="100%" height="100%"/></a></td>
-            	<td><a href="javascript:vk_pushed(3);"><img src="imgs/vkey/vk_3.png" width="100%" height="100%"/></a></td>
-            </tr>
-        	<tr align="center">
-            	<td><a href="javascript:vk_pushed(0);"><img src="imgs/vkey/vk_0.png" width="100%" height="100%"/></a></td>
-            	<td><a href="javascript:vk_pushed('dot');"><img src="imgs/vkey/vk_dot.png" width="100%" height="100%"/></a></td>
-            	<td><a href="javascript:vk_pushed('del');"><img src="imgs/vkey/vk_del.png" width="100%" height="100%"/></a></td>
-            </tr>
-        </table>
-    </div>
-    <div class="below_comment">
-    	<p id="below_comment_notify">这是后置提示说明</p>
-    </div>
+<!-- 虚拟键盘放置在浮动层，节省空间 -->
+<div class="v_keypad" id="id_keypad">
+    <table width="94" height="105px" border="0">
+        <tr align="center">
+            <td><a href="javascript:vk_pushed(7);"><img src="imgs/vkey/vk_7.png" width="100%" height="100%"/></a></td>
+            <td><a href="javascript:vk_pushed(8);"><img src="imgs/vkey/vk_8.png" width="100%" height="100%"/></a></td>
+            <td><a href="javascript:vk_pushed(9);"><img src="imgs/vkey/vk_9.png" width="100%" height="100%"/></a></td>
+        </tr>
+        <tr align="center">
+            <td><a href="javascript:vk_pushed(4);"><img src="imgs/vkey/vk_4.png" width="100%" height="100%"/></a></td>
+            <td><a href="javascript:vk_pushed(5);"><img src="imgs/vkey/vk_5.png" width="100%" height="100%"/></a></td>
+            <td><a href="javascript:vk_pushed(6);"><img src="imgs/vkey/vk_6.png" width="100%" height="100%"/></a></td>
+        </tr>
+        <tr align="center">
+            <td><a href="javascript:vk_pushed(1);"><img src="imgs/vkey/vk_1.png" width="100%" height="100%"/></a></td>
+            <td><a href="javascript:vk_pushed(2);"><img src="imgs/vkey/vk_2.png" width="100%" height="100%"/></a></td>
+            <td><a href="javascript:vk_pushed(3);"><img src="imgs/vkey/vk_3.png" width="100%" height="100%"/></a></td>
+        </tr>
+        <tr align="center">
+            <td><a href="javascript:vk_pushed(0);"><img src="imgs/vkey/vk_0.png" width="100%" height="100%"/></a></td>
+            <td><a href="javascript:vk_pushed('dot');"><img src="imgs/vkey/vk_dot.png" width="100%" height="100%"/></a></td>
+            <td><a href="javascript:vk_pushed('del');"><img src="imgs/vkey/vk_del.png" width="100%" height="100%"/></a></td>
+        </tr>
+  </table>
+</div>
 </body>
 </html>

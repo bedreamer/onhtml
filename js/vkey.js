@@ -2,6 +2,15 @@
 var editid = 0;
 var value = "";
 
+function vk_show() {
+	document.getElementById('id_keypad').style.display = 'block';
+	document.getElementById('id_keypad').style.left = '300px';
+}
+
+function vk_hide() {
+	document.getElementById('id_keypad').style.display = 'none';
+}
+
 // 只针对输入编辑框
 function vk_on_focurs(id)
 {
