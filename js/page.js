@@ -134,6 +134,9 @@ function navigate(entry) {
 		case 'query_alarm':
 		body_settitle("信息查询|系统故障信息");
 		break;
+		case 'query_versions':
+		body_settitle("信息查询|系统版本信息");
+		break;
 	case 'settings':
 	document.getElementById('id_manual_setting').style.display = 'none';
 	document.getElementById('id_info_query').style.display = 'none';

@@ -4,47 +4,29 @@
 .navigate{
 	position: absolute;
 	left: 0;
-	width: 20%;
+	width: 25%;
 	top: 0;
-	bottom: 70%;
-	height: 60%;
+	bottom: 79%;
+	height: 79%;
 	background-color: #FFF;
 }
 
-.sysinfo{
+.logo_area{
 	position: absolute;
 	left: 0;
-	width: 20%;
-	top: 60%;
-	height:40%;
+	width: 25%;
+	top: 85%;
+	height: 15%;
 	background-color:#FFF;
 }
 
 .mainbody{
 	position: absolute;
-	left: 20%;
-	width: 78%;
+	left: 25%;
+	width: 73%;
 	top: 0;
 	height: 100%;
 	background-color: #FFF;
-}
-
-.input_and_comment{
-	position: absolute;
-	left: 75%;
-	width: 25%;
-	top: 0;
-	height:100%;
-	/*background-color: #FF0;*/
-}
-
-.pre_comment{
-	position:absolute;
-	left: 0;
-	width: 100%;
-	top: 0;
-	height:30%;
-	/*background-color: #F00;*/
 }
 
 .v_keypad{
@@ -57,25 +39,16 @@
 	/*background-color: #0F0;*/
 }
 
-.below_comment{
-	position:absolute;
-	left: 0;
-	width: 100%;
-	top: 70%;
-	height:30%;
-	/*background-color: #00F;*/
-}
-
 .input_edit{
 	text-align:center;
 }
 
-.main_navigate{
-	color:#000;
+.navigate{
+	font-size:24px;
 }
 
 .sub_navigate{
-	color:#000;
+	font-size:20px;
 }
 
 .class_manual_setting, .class_info_query, .class_system_settings{

@@ -27,6 +27,7 @@
                     <li class="sub_navigate"><a href="javascript:navigate('query_status');">充电状态</a></li>
                     <li class="sub_navigate"><a href="javascript:navigate('query_battery');">电池状态</a></li>
                     <li class="sub_navigate"><a href="javascript:navigate('query_alarm');">故障信息</a></li>
+                    <li class="sub_navigate"><a href="javascript:navigate('query_version');">版本信息</a></li>
             	</ul>
             </div>
         <li class="main_navigate"><a href="javascript:navigate('settings');">系统设置</a></li>
@@ -38,11 +39,6 @@
             	</ul>
             </div>
     </ul>
-</div>
-<div class="sysinfo">
-    <p>系统 版本:<br>&nbsp;&nbsp;V1.01</p>
-    <p>WEB 版本:<br>&nbsp;&nbsp;V1.01</p>
-    <p>HTML版本:<br>&nbsp;&nbsp;V1.01</p>
 </div>
 <div class="mainbody">
 	<!-- 用于显示body部分的标题元素 -->
@@ -67,6 +63,9 @@
 	<p id="txtshi">这是中间主显示区域</p>
     <p>充电电压：<input type="text" id="edit_demo" class="input_edit" onfocus="vk_on_focurs('edit_demo');" value="543.9" maxlength="8"/>V</p>
     <p>充电电流：<input type="password" id="paswd_demo" class="input_edit" onfocus="vk_on_focurs('paswd_demo');" value="70.8" />A</p>
+</div>
+<div class="logo_area">
+	<img src="logo.png" width="100%" style="vertical-align:bottom" />
 </div>
 <!-- 虚拟键盘放置在浮动层，节省空间 -->
 <div class="v_keypad" id="id_keypad">
