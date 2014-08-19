@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script language='javascript'>
+<!--
+function opendb()
+{ 
+ 
+ var myAlert = document.getElementById("alert");
+ 
+  myAlert.style.display = "block";
+  myAlert.style.position = "absolute";
+  myAlert.style.top = "50%";
+  myAlert.style.left = "50%";
+  myAlert.style.marginTop = "-75px";
+  myAlert.style.marginLeft = "-150px"; 
+  mybg = document.createElement("div"); 
+  mybg.setAttribute("id","mybg"); 
+  mybg.style.background = "#000"; 
+  mybg.style.width = "100%"; 
+  mybg.style.height = "100%"; 
+  mybg.style.position = "absolute"; 
+  mybg.style.top = "0"; 
+  mybg.style.left = "0"; 
+  mybg.style.zIndex = "500"; 
+  mybg.style.opacity = "0.3"; 
+  mybg.style.filter = "Alpha(opacity=80)"; 
+  document.body.appendChild(mybg);  
+  document.body.style.overflow = "hidden"; 
+}
+ 
+ function mClose()
+ { 
+  var mybg=document.getElementById("mybg");  
+  var myAlert = document.getElementById("alert");  
+  myAlert.style.display = "none"; 
+  mybg.style.display = "none"; 
+ } 
+ 
+-->
+ 
+</script>
+ 
+<div id="alert"><form name="form1" method="post" action="../re_login.php">
+ 
+ <h4><span id='l'>登录</span><label></label><div id="l"><a href="#"  class="lin" onClick="mClose();">关 闭</a></div></h4>
+ 
+ <p><label>用户名:</label><input type="text" class="input1"  name='uid' onmouseover="this.style.border='1px solid #f60'" onfoucs="this.style.border='1px solid #f60'" onblur="this.style.border='1px solid #ccc'" /></p>
+ 
+ <p><label>密　码:</label><input type="password"  type="password" class="input1"  name="pwd" onmouseover="this.style.border='1px solid #f60'" onfoucs="this.style.border='1px solid #f60'" onblur="this.style.border='1px solid #ccc'" /></p>
+ 
+ <p><input name="Submit" type="submit" class='sub' value="登　录"><input type="reset" value="重置" class="sub" /></p>
+ 
+ </form>
+ 
+</div></head>
+
+<body>
+<button id="dfa" onclick="opendb()" >点我</button>
+</body>
+</html>
