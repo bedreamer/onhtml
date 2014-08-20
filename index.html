@@ -6,9 +6,12 @@
 <link rel="stylesheet" type="text/css" href="css/page.css" />
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/vkey.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
 </head>
 
-<body onload="js_init();" oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()">
+<!--oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"-->
+
+<body onload="js_init();" >
 <div class="navigate">
     <ul>
         <li class="main_navigate"><a href="javascript:navigate('auto');">自动充电</a></li>
@@ -40,33 +43,53 @@
             </div>
     </ul>
 </div>
+<div class="logo_area">
+	<img src="logo.png" width="100%" />
+</div>
 <div class="mainbody">
 	<!-- 用于显示body部分的标题元素 -->
-    <h1 class="title_body" id="id_title_body">自动|自动充电模式</h1>
+    <p class="title_body" id="id_title_body">自动|自动充电模式</p>
 	<!-- 用于显示自动充电元素 -->
 	<div class="autocharge_body" id="id_autocharge_body">
-    	abcdefg
     </div>
     <!-- 用于显示手动充电元素 -->
     <div class="manualcharge_body" id="id_manualcharge_body">
-    	abcdefg
+    	<div class="manualcharge_param_setting_body" id="id_manualcharge_param_setting">
+        </div>
+    	<div class="manualcharge_order_body" id="id_manualcharge_order">
+        </div>
+    	<div class="manualcharge_ontime_body" id="id_manualcharge_ontime">
+        </div>
     </div>
     <!-- 用于显示信息查询元素 -->
     <div class="information_body" id="id_information_body">
-    	我就是不到中间去
+    	<div class="information_deal_body" id="id_information_deal">
+        </div>
+    	<div class="information_charge_body" id="id_information_charge">
+        </div>
+    	<div class="information_battery_body" id="id_information_battery">
+        </div>
+    	<div class="information_alarm_body" id="id_information_alarm">
+        </div>
+    	<div class="information_version_body" id="id_information_version">
+        </div>
     </div>
     <!-- 用于显系统设置元素 -->
     <div class="system_body" id="id_system_body">
-    	我不到中间去
+    	<div class="system_configure_body" id="id_system_configure">
+        </div>
+    	<div class="system_manufacturer_setting_body" id="id_system_manufacturer_setting">
+        </div>
+    	<div class="system_version_update" id="id_system_update">
+        </div>
     </div>
 	<!-- 用于测试元素 -->
+    <!--
 	<p id="txtshi">这是中间主显示区域</p>
     <p>充电电压：<input type="text" id="edit_demo" class="input_edit" onfocus="vk_on_focurs('edit_demo');" value="543.9" maxlength="8"/>V</p>
     <p>充电电流：<input type="password" id="paswd_demo" class="input_edit" onfocus="vk_on_focurs('paswd_demo');" value="70.8" />A</p>
 </div>
-<div class="logo_area">
-	<img src="logo.png" width="100%" style="vertical-align:bottom" />
-</div>
+	-->
 <!-- 虚拟键盘放置在浮动层，节省空间 -->
 <div class="v_keypad" id="id_keypad">
     <table width="94" height="105px" border="0">

@@ -1,11 +1,4 @@
 ﻿// JavaScript Document
-var notifys = [
-	"丽丽的妈妈",
-	"不能这样",
-	"今天天气不错",
-	"今天跟疯了一样",
-	"JS code",
-];
 var shenqu = [
 "说到这里，她沉默不语；她那表情令我感到，",
 "她是把心思转到其他地方，",
@@ -55,23 +48,29 @@ var shenqu = [
 ];
 var index = 0;
 var shiindex = 0;
+var pic = [
+	"1.png",
+	"2.png",
+	"3.png"
+];
+var imgindex = 0;
 function js_init() {
-	setTimeout("js_timer_proc()", 3000);
-	setTimeout("js_shi_proc()", 1500);
+	setTimeout("js_shi_proc()", 2000);
 }
 
 function js_shi_proc() {
-	shiindex ++;
+/*	shiindex ++;
 	if ( shiindex >= shenqu.length ) shiindex = 0;
-	document.getElementById('txtshi').innerHTML = shenqu[shiindex];
-	setTimeout("js_shi_proc()", 1500);
-}
+	document.getElementById('id_autocharge_body').innerHTML = document.getElementById('id_manualcharge_body').innerHTML
+	document.getElementById('id_manualcharge_body').innerHTML = document.getElementById('id_information_body').innerHTML
+	document.getElementById('id_information_body').innerHTML = document.getElementById('id_system_body').innerHTML
+	document.getElementById('id_system_body').innerHTML = "<p>" + shenqu[shiindex] + "</p>";
 
-function js_timer_proc() {
-	index ++;
-	if ( index >= notifys.length ) index = 0;
-	document.getElementById('below_comment_notify').innerHTML = notifys[index];
-	setTimeout("js_timer_proc()", 3000);
+	imgindex ++;
+	if ( imgindex >= pic.length ) imgindex = 0;
+	document.getElementById('demo_img').src = pic[ imgindex ];
+*/	
+	setTimeout("js_shi_proc()", 2000);
 }
 
 /*这是主显示区的标题*/
@@ -134,8 +133,9 @@ function navigate(entry) {
 		case 'query_alarm':
 		body_settitle("信息查询|系统故障信息");
 		break;
-		case 'query_versions':
+		case 'query_version':
 		body_settitle("信息查询|系统版本信息");
+		ajax_request('http://192.168.1.3:8081/version.xml?nr=1900asdffasdddddddddddddddddddddddddddddddd');
 		break;
 	case 'settings':
 	document.getElementById('id_manual_setting').style.display = 'none';

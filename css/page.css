@@ -1,13 +1,16 @@
 @charset "utf-8";
 /* CSS Document */
 
+/*去链接下划线*/
+a{text-decoration:none}
+
 .navigate{
 	position: absolute;
 	left: 0;
 	width: 25%;
 	top: 0;
-	bottom: 79%;
-	height: 79%;
+	bottom: 85%;
+	height: 85%;
 	background-color: #FFF;
 }
 
@@ -61,8 +64,11 @@
 	padding:5px;
 	font-size:24px;
 	background-color:#CCC;
+	/* chrome 2+, safari 4+; multiple color stops */
+	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.32, #F9F9F9), color-stop(0.83, #0E3091));
+	/*background-image: linear-gradient(#063053, #395873, #5c7c99);*/
 }
 
 .autocharge_body, .manualcharge_body, .information_body, .system_body{
-	text-align:center;
+	text-align:left;
 }
