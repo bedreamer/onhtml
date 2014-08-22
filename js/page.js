@@ -57,6 +57,33 @@ var imgindex = 0;
 function js_init() {
 	setTimeout("js_shi_proc()", 2000);
 }
+// 主显示区域的互斥元素ID
+var mainbody_ids = [
+	"id_autocharge_body",
+	"id_manualcharge_body",
+	"id_information_body",
+	"id_system_body"
+];
+
+// 页面ID
+var pages_ids = [
+	"id_page1",
+	"id_page2",
+	"id_page3",
+	"id_page4",
+	"id_page5",
+	"id_page6",
+	"id_page7",
+	"id_page8",
+	"id_page9",
+	"id_page10",
+	"id_page11",
+	"id_page12",
+	"id_page13",
+	"id_page14"
+];
+
+// 
 
 function js_shi_proc() {
 /*	shiindex ++;
@@ -123,19 +150,23 @@ function navigate(entry) {
 	break;
 		case 'query_deal':
 		body_settitle("信息查询|交易详情");
+		ajax_request('http://192.168.1.3:8081/deal.xml',ajax_deal_state_change);
 		break;
 		case 'query_status':
 		body_settitle("信息查询|当前充电状态");
+		ajax_request('http://192.168.1.3:8081/chargestatus.xml',ajax_chargestatus_state_change);
 		break;
 		case 'query_battery':
 		body_settitle("信息查询|电池详细信息");
+		ajax_request('http://192.168.1.3:8081/batterystatus.xml',ajax_batterystatus_state_change);
 		break;
 		case 'query_alarm':
 		body_settitle("信息查询|系统故障信息");
+		ajax_request('http://192.168.1.3:8081/alarm.xml',ajax_alarm_state_change);
 		break;
 		case 'query_version':
 		body_settitle("信息查询|系统版本信息");
-		ajax_request('http://192.168.1.3:8081/version.xml?nr=1900asdffasdddddddddddddddddddddddddddddddd');
+		ajax_request('http://192.168.1.3:8081/version.xml',ajax_version_state_change);
 		break;
 	case 'settings':
 	document.getElementById('id_manual_setting').style.display = 'none';

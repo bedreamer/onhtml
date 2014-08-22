@@ -6,9 +6,9 @@ a{text-decoration:none}
 
 .navigate{
 	position: absolute;
-	left: 0;
+	left: -1px;
 	width: 25%;
-	top: 0;
+	top: 1px;
 	bottom: 85%;
 	height: 85%;
 	background-color: #FFF;
@@ -57,6 +57,37 @@ a{text-decoration:none}
 .class_manual_setting, .class_info_query, .class_system_settings{
 	display:none;
 	/*text-align:left;*/
+}
+
+.page2,.page3,.page4,.page5,.page6,.page7,.page8,.page9,.page10,.page11,.page12,.page13,.page14 {
+	display:none;
+}
+
+.cls_auto, .cls_money, .cls_time, .cls_cap {
+	float:left;
+	text-align:center;
+	height:500%;
+}
+
+.cls_auto {
+	background-color:#99d20c;
+	width:100%;
+}
+
+.cls_money {
+	background-color:#198ae0;
+	width:33%;
+}
+
+
+.cls_time {
+	background-color:#26b1b6;
+	width:34%;
+}
+
+.cls_cap {
+	background-color:#099;
+	width:33%;
 }
 
 .title_body{
