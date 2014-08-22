@@ -2,7 +2,15 @@
 /* CSS Document */
 
 /*去链接下划线*/
-a{text-decoration:none}
+a{text-decoration:none;
+	color:#FFF;
+	font-size:36px;
+	font-weight:bold;
+}
+
+body{
+	background-color:#B359BF;
+}
 
 .navigate{
 	position: absolute;
@@ -11,16 +19,16 @@ a{text-decoration:none}
 	top: 1px;
 	bottom: 85%;
 	height: 85%;
-	background-color: #FFF;
+	color:#FFF;
+	line-height:60px;
 }
 
 .logo_area{
 	position: absolute;
-	left: 0;
-	width: 25%;
-	top: 85%;
+	left: 3%;
+	width: 19%;
+	bottom:2%;
 	height: 15%;
-	background-color:#FFF;
 }
 
 .mainbody{
@@ -29,7 +37,6 @@ a{text-decoration:none}
 	width: 73%;
 	top: 0;
 	height: 100%;
-	background-color: #FFF;
 }
 
 .v_keypad{
@@ -64,39 +71,56 @@ a{text-decoration:none}
 }
 
 .cls_auto, .cls_money, .cls_time, .cls_cap {
-	float:left;
-	text-align:center;
-	height:500%;
+	float: left;
+	position: absolute;
+	text-align: center;
+	font-size: 48px;
+	font-weight: bold;
+	color: #FFF;
+	left: 0px;
+	border-width:medium;
 }
 
 .cls_auto {
 	background-color:#99d20c;
+	height:40%;
 	width:100%;
+	left:0;
+	top:15%;
+}
+
+.cls_money, .cls_time, .cls_cap {
+	top: 60%;
+	height:35%;
 }
 
 .cls_money {
-	background-color:#198ae0;
-	width:33%;
+	background-color: #198ae0;
+	width: 33%;
 }
 
-
 .cls_time {
-	background-color:#26b1b6;
-	width:34%;
+	background-color: #26b1b6;
+	width: 34%;
+	left:33%;
 }
 
 .cls_cap {
-	background-color:#099;
-	width:33%;
+	background-color: #099;
+	width: 33%;
+	left:67%;
 }
 
 .title_body{
-	text-align:center;
+	text-align:right;
 	padding:5px;
+	color:#FFF;
 	font-size:24px;
 	background-color:#CCC;
+	font-style:italic;
+	font-weight:bold;
 	/* chrome 2+, safari 4+; multiple color stops */
-	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.32, #F9F9F9), color-stop(0.83, #0E3091));
+	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.32, #099), color-stop(0.83, #198ae0));
 	/*background-image: linear-gradient(#063053, #395873, #5c7c99);*/
 }
 
