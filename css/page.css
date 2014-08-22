@@ -21,20 +21,21 @@ body{
 	height: 85%;
 	color:#FFF;
 	line-height:60px;
+	display:none;
 }
 
 .logo_area{
 	position: absolute;
 	left: 3%;
 	width: 19%;
-	bottom:2%;
+	top:5%;
 	height: 15%;
 }
 
 .mainbody{
 	position: absolute;
-	left: 25%;
-	width: 73%;
+	left: 5%;
+	width: 90%;
 	top: 0;
 	height: 100%;
 }
@@ -83,10 +84,10 @@ body{
 
 .cls_auto {
 	background-color:#99d20c;
-	height:40%;
+	height:35%;
 	width:100%;
 	left:0;
-	top:15%;
+	top:20%;
 }
 
 .cls_money, .cls_time, .cls_cap {
@@ -114,16 +115,17 @@ body{
 .title_body{
 	position:absolute;
 	top:5%;
-	width:100%;
-	height:7%;
-	text-align:center;
+	width:70%;
+	height:11%;
+	left:25%;
+	text-align:right;
 	color:#FFF;
 	font-size:24px;
 	background-color:#CCC;
 	font-style:italic;
 	font-weight:bold;
 	/* chrome 2+, safari 4+; multiple color stops */
-	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.32, #099), color-stop(0.83, #198ae0));
+	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.32, #B359BF), color-stop(0.83, #198ae0));
 	/*background-image: linear-gradient(#063053, #395873, #5c7c99);*/
 }
 
