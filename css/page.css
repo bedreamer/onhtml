@@ -124,6 +124,7 @@ body{
 	background-color:#CCC;
 	font-style:italic;
 	font-weight:bold;
+	line-height:60px;
 	/* chrome 2+, safari 4+; multiple color stops */
 	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.32, #B359BF), color-stop(0.83, #198ae0));
 	/*background-image: linear-gradient(#063053, #395873, #5c7c99);*/
