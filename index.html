@@ -7,64 +7,100 @@
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/vkey.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
-<script language="JavaScript">
-function myrefresh()
-{
-window.location.reload();
-}
-setTimeout('myrefresh()',5000); //指定5秒刷新一次
-</script>
 </head>
 <!--oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"-->
-<body onload="js_init();" >
-<div class="navigate">
-    <ul>
-        <li class="main_navigate"><a href="javascript:navigate('auto');">自动充电</a></li>
-        <li class="main_navigate"><a href="javascript:navigate('manual');">手动充电</a></li>
-        	<div class="class_manual_setting" id="id_manual_setting">
-                <ul>
-                    <li class="sub_navigate"><a href="javascript:navigate('charge_param_setting');">参数设定</a></li>
-                    <li class="sub_navigate"><a href="javascript:navigate('charge_order');">充电预约</a></li>
-                    <li class="sub_navigate"><a href="javascript:navigate('charge_ontime');">定时充电</a></li>
-                </ul>
-            </div>
-        <li class="main_navigate"><a href="javascript:navigate('query');">信息查询</a></li>        	
-        	<div class="class_info_query" id="id_info_query">
-                <ul>
-                    <li class="sub_navigate"><a href="javascript:navigate('query_deal');">交易信息</a></li>
-                    <li class="sub_navigate"><a href="javascript:navigate('query_status');">充电状态</a></li>
-                    <li class="sub_navigate"><a href="javascript:navigate('query_battery');">电池状态</a></li>
-                    <li class="sub_navigate"><a href="javascript:navigate('query_alarm');">故障信息</a></li>
-                    <li class="sub_navigate"><a href="javascript:navigate('query_version');">版本信息</a></li>
-            	</ul>
-            </div>
-        <li class="main_navigate"><a href="javascript:navigate('settings');">系统设置</a></li>
-        	<div class="class_system_settings" id="id_system_settings">
-                <ul>
-                    <li class="sub_navigate"><a href="javascript:navigate('system_configure');">配置数据</a></li>
-                    <li class="sub_navigate"><a href="javascript:navigate('system_manufacturer_setting');">工厂设置</a></li>
-                    <li class="sub_navigate"><a href="javascript:navigate('system_update');">检查更新</a></li>
-            	</ul>
-            </div>
-    </ul>
-</div>
+<body onload="js_init();" oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()" >
 <div class="logo_area">
 	<img src="logo.png" width="100%" />
 </div>
 	<!-- 用于显示body部分的标题元素 -->
-    <div class="title_body" id="id_title_body">自动|自动充电模式			</div>
+    <div class="title_body" id="id_title_body">直流充电桩监控系统&nbsp;&nbsp;</div>
  <div class="mainbody">
-   <div class="page1", id="id_page1">
-		<div title="as_auto" id="id_auto" class="cls_auto"><br>自动充电</div>
-      <div title="as_money" id="id_money" class="cls_money"><br>定金额<br>充电</div>
-      <div title="as_time" id="id_time" class="cls_time"><br>定时间<br>充电</div>
-        <div title="as_cap" id="id_cap" class="cls_cap"><br>定容量<br>充电</div>
-  </div>
+	<div class="page1", id="id_page1">
+		<div title="as_auto" id="id_auto" class="cls_auto"><br>自动充电<br>请刷卡</div>
+		<div title="as_money" id="id_money" class="cls_money"><a href="javascript:page_show(1);"><br>定金额<br>充电</a></div>
+		<div title="as_time" id="id_time" class="cls_time"><a href="javascript:page_show(2);"><br>定时间<br>充电</a></div>
+        <div title="as_cap" id="id_cap" class="cls_cap"><a href="javascript:page_show(3);"><br>定容量<br>充电</a></div>
+	</div>
+    <!-- 按金额充电确认界面 -->
     <div class="page2", id="id_page2">
+    	<br />
+    	<div class="content">
+        <table align="center">
+		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>       <tr>
+    	<td>充电费率:&nbsp;&nbsp;</td>
+    	<td><input class="input_text" id="ffff"  type="text" value="100.0" onclick="showsize('ffff')"/></td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+    	<td>充电金额:&nbsp;&nbsp;</td>
+    	<td><input class="input_text"  type="text" value="100.0" /></td>
+        </tr>
+        </table>
+        </div>
+        <div class="content_menu">
+            <a href="javascript:page_show(0);" >返&nbsp;&nbsp;回</a>
+            <a href="javascript:page_show(0);" >&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(13);" >高级设置</a>
+        </div>
     </div>
+    <!-- 按时间充电确认界面 -->
     <div class="page3", id="id_page3">
+        <div class="content">
+        <table align="center">
+		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>    <tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>     
+        <tr>
+    	<td>充电时长:&nbsp;&nbsp;</td>
+    	<td><input class="input_text" id="ffff"  type="text" value="100.0" onclick="showsize('ffff')"/>分钟</td>
+        </tr>
+        </table>
+        </div>
+        <div class="content_menu">
+            <a href="javascript:page_show(0);" >返&nbsp;&nbsp;回</a>
+            <a href="javascript:page_show(0);" >&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(13);" >高级设置</a>
+        </div>
     </div>
+    <!-- 按容量充电确认界面 -->
     <div class="page4", id="id_page4">
+        <div class="content">
+        <table align="center">
+		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>       <tr>
+    	<td>充电费率:&nbsp;&nbsp;</td>
+    	<td><input class="input_text" id="ffff"  type="text" value="100.0" onclick="showsize('ffff')"/></td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+    	<td>充电金额:&nbsp;&nbsp;</td>
+    	<td><input class="input_text"  type="text" value="100.0" /></td>
+        </tr>
+        </table>
+        </div>
+        <div class="content_menu">
+            <a href="javascript:page_show(0);" >返&nbsp;&nbsp;回 </a>
+            <a href="javascript:page_show(0);" >&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(13);" >高级设置</a>
+        </div>
     </div>
     <div class="page5", id="id_page5">
     </div>
@@ -85,6 +121,26 @@ setTimeout('myrefresh()',5000); //指定5秒刷新一次
     <div class="page13", id="id_page13">
     </div>
     <div class="page14", id="id_page14">
+        <div class="content">
+        <table align="center">
+		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> <tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>      <tr>
+    	<td>操作密码:&nbsp;&nbsp;</td>
+    	<td><input class="input_text" id="ffff"  type="password" value="" onclick="showsize('ffff')"/></td>
+        </tr>
+        </table>
+        </div>
+        <div class="content_menu">
+            <a href="javascript:page_show(0);" >取&nbsp;&nbsp;消&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(0);" >&nbsp;&nbsp;&nbsp;&nbsp;确&nbsp;&nbsp;定</a>
+        </div>
     </div>
 </div>
 	<!-- 用于显示自动充电元素 -->

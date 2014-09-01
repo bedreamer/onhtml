@@ -2,9 +2,9 @@
 /* CSS Document */
 
 /*去链接下划线*/
-a{text-decoration:none;
+a, table{text-decoration:none;
 	color:#FFF;
-	font-size:36px;
+	font-size:24px;
 	font-weight:bold;
 }
 
@@ -68,6 +68,12 @@ body{
 }
 
 .page2,.page3,.page4,.page5,.page6,.page7,.page8,.page9,.page10,.page11,.page12,.page13,.page14 {
+	position: absolute;
+	top:20%;
+	left:0;
+	width:100%;
+	height:75%;
+	background-color:#99d20c;
 	display:none;
 }
 
@@ -80,6 +86,35 @@ body{
 	color: #FFF;
 	left: 0px;
 	border-width:medium;
+}
+
+.input_text {
+	line-height:70px;
+	height:64px;
+	font-size:36px;
+	font-weight:bold;
+	color:#09F;
+	text-align:center;
+}
+
+.content {
+	top:0;
+	height:85%;
+	float: left;
+	left:0;
+	width:100%;
+	position: absolute;
+	text-align:center;
+}
+
+.content_menu {
+	top:85%;
+	bottom: 95%;
+	float: left;
+	left:40px;
+	width:100%;
+	text-align:center;
+	position: absolute;
 }
 
 .cls_auto {
@@ -126,7 +161,7 @@ body{
 	font-weight:bold;
 	line-height:60px;
 	/* chrome 2+, safari 4+; multiple color stops */
-	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.32, #B359BF), color-stop(0.83, #198ae0));
+	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.00, #B359BF), color-stop(0.83, #198ae0));
 	/*background-image: linear-gradient(#063053, #395873, #5c7c99);*/
 }
 

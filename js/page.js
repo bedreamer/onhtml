@@ -82,6 +82,32 @@ var pages_ids = [
 	"id_page13",
 	"id_page14"
 ];
+// 前一个页面ID
+var pages_pre = 0;
+// 密码输入信息取消跳转
+var page_on_cancel = 0;
+// 密码输入验证成功
+var page_on_ok = 0;
+
+function page_show(page)
+{
+	var page_id = pages_ids[ page ];
+	var page_id_pre = pages_ids[ pages_pre ];
+	document.getElementById(page_id_pre).style.display = 'none';
+	document.getElementById(page_id).style.display = 'block';
+	pages_pre = page;
+}
+
+function page_show_with_passwd(page, onok, oncancel)
+{
+}
+
+function showsize(id)
+{
+	var edit = document.getElementById(id);
+	var str = "位置top:" + edit.style.top + "left:" + edit.style.left;
+	edit.value = str;
+}
 
 // 
 
