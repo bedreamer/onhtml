@@ -67,6 +67,7 @@ var mainbody_ids = [
 
 // 页面ID
 var pages_ids = [
+	"id_page0",
 	"id_page1",
 	"id_page2",
 	"id_page3",
@@ -79,23 +80,51 @@ var pages_ids = [
 	"id_page10",
 	"id_page11",
 	"id_page12",
-	"id_page13",
-	"id_page14"
+	"id_page13"
 ];
 // 前一个页面ID
 var pages_pre = 0;
+// 当前页面序号
+var pages_this = 0;
 // 密码输入信息取消跳转
 var page_on_cancel = 0;
 // 密码输入验证成功
 var page_on_ok = 0;
+// 超时计时
+var page_op_ttl = 60;
+// 超时
+var page_timer;
+
+// 充电选择界面超时
+function page_op_timeout()
+{
+	var id = "page_" + pages_this + "_ttl_return";
+	page_op_ttl --;
+	if ( pages_this >= 1 && pages_this <= 4 ) {
+		if ( page_op_ttl > 0 ) {
+			document.getElementById(id).innerHTML = "返&nbsp;&nbsp;回(" + page_op_ttl + "秒) ";
+			page_timer = setTimeout("page_op_timeout()", 1000);
+		} else {
+			clearTimeout(page_timer);
+			page_show(pages_pre);
+		}
+	}
+}
 
 function page_show(page)
 {
 	var page_id = pages_ids[ page ];
-	var page_id_pre = pages_ids[ pages_pre ];
+	var page_id_pre = pages_ids[ pages_this ];
 	document.getElementById(page_id_pre).style.display = 'none';
 	document.getElementById(page_id).style.display = 'block';
-	pages_pre = page;
+	pages_pre = pages_this;
+	pages_this = page;
+
+	clearTimeout(page_timer);
+	if ( page >= 1 && page <= 4 ) {
+		page_op_ttl = 10;
+		page_timer = setTimeout("page_op_timeout()", 1000);
+	}
 }
 
 function page_show_with_passwd(page, onok, oncancel)

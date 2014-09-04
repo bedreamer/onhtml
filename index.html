@@ -16,14 +16,14 @@
 	<!-- 用于显示body部分的标题元素 -->
     <div class="title_body" id="id_title_body">直流充电桩监控系统&nbsp;&nbsp;</div>
  <div class="mainbody">
-	<div class="page1", id="id_page1">
-		<div title="as_auto" id="id_auto" class="cls_auto"><br>自动充电<br>请刷卡</div>
+	<div class="page0", id="id_page0">
+		<div title="as_auto" id="id_auto" class="cls_auto"><br><a href="javascript:page_show(4);">自动充电<br>请刷卡</a></div>
 		<div title="as_money" id="id_money" class="cls_money"><a href="javascript:page_show(1);"><br>定金额<br>充电</a></div>
 		<div title="as_time" id="id_time" class="cls_time"><a href="javascript:page_show(2);"><br>定时间<br>充电</a></div>
         <div title="as_cap" id="id_cap" class="cls_cap"><a href="javascript:page_show(3);"><br>定容量<br>充电</a></div>
 	</div>
     <!-- 按金额充电确认界面 -->
-    <div class="page2", id="id_page2">
+    <div class="page1", id="id_page1">
     	<br />
     	<div class="content">
         <table align="center">
@@ -45,13 +45,12 @@
         </table>
         </div>
         <div class="content_menu">
-            <a href="javascript:page_show(0);" >返&nbsp;&nbsp;回</a>
-            <a href="javascript:page_show(0);" >&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:page_show(13);" >高级设置</a>
+            <a href="javascript:page_show(4);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(0);" id="page_1_ttl_return" >返&nbsp;&nbsp;回(60秒)</a>
         </div>
     </div>
     <!-- 按时间充电确认界面 -->
-    <div class="page3", id="id_page3">
+    <div class="page2", id="id_page2">
         <div class="content">
         <table align="center">
 		<tr>
@@ -70,13 +69,12 @@
         </table>
         </div>
         <div class="content_menu">
-            <a href="javascript:page_show(0);" >返&nbsp;&nbsp;回</a>
-            <a href="javascript:page_show(0);" >&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:page_show(13);" >高级设置</a>
+            <a href="javascript:page_show(4);" >刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(0);"  id="page_2_ttl_return">返&nbsp;&nbsp;回(60秒)</a>
         </div>
     </div>
     <!-- 按容量充电确认界面 -->
-    <div class="page4", id="id_page4">
+    <div class="page3", id="id_page3">
         <div class="content">
         <table align="center">
 		<tr>
@@ -97,14 +95,96 @@
         </table>
         </div>
         <div class="content_menu">
-            <a href="javascript:page_show(0);" >返&nbsp;&nbsp;回 </a>
-            <a href="javascript:page_show(0);" >&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;</a>
-            <a href="javascript:page_show(13);" >高级设置</a>
+            <a href="javascript:page_show(4);" >刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(0);"  id="page_3_ttl_return">返&nbsp;&nbsp;回(60秒) </a>
         </div>
     </div>
-    <div class="page5", id="id_page5">
+    <!--充电确认界面-->
+    <div class="page4", id="id_page4">
+    	<div class="content">
+    	<table  align="center">
+           	<tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            </tr>
+        	<tr>
+            <td>卡&nbsp;&nbsp;&nbsp;&nbsp;号：</td>
+            <td>895461348633</td>
+            </tr>
+        	<tr>
+            <td>余&nbsp;&nbsp;&nbsp;&nbsp;额：</td>
+            <td>5682.9</td>
+            </tr>
+        	<tr>
+            <td>预计耗时：</td>
+            <td>0.69</td>
+            </tr>
+        	<tr>
+            <td>费&nbsp;&nbsp;&nbsp;&nbsp;率：</td>
+            <td>0.56</td>
+            </tr>
+            <tr>
+            <td>模&nbsp;&nbsp;&nbsp;&nbsp;式：</td>
+            <td>自动</td>
+            </tr>
+        	<tr>
+        </table>
+        </div>
+        <div class="content_menu">
+        	<a href="javascript:page_show(6);" >设&nbsp;&nbsp;置</a>
+			<a href="javascript:page_show(4);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再次刷卡开始充电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(0);"  id="page_4_ttl_return" >返&nbsp;&nbsp;回(60秒)</a>
+        </div>
     </div>
+    <!-- 手动设置页面 -->
+    <div class="page5", id="id_page5">
+        	<div class="content">
+        <table align="center">
+		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>       <tr>
+    	<td>充电限压:&nbsp;&nbsp;</td>
+    	<td><input class="input_text" type="text" value="750.5"/></td>
+        </tr>
+        <tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>
+        <tr>
+    	<td>充电限流:&nbsp;&nbsp;</td>
+    	<td><input class="input_text"  type="text" value="100.0" /></td>
+        </tr>
+        </table>
+        </div>
+        <div class="content_menu">
+            <a href="javascript:page_show(4);" >确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(0);">取&nbsp;&nbsp;消</a>
+        </div>
+    </div>
+    <!-- 密码输入界面 -->
     <div class="page6", id="id_page6">
+    	<div class="content">
+        <table align="center">
+		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>    <tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr> 		<tr>
+        <td>&nbsp;</td><td>&nbsp;</td>
+        </tr>     
+        <tr>
+    	<td>授权密码:&nbsp;&nbsp;</td>
+    	<td><input class="input_text" type="password" value="" /></td>
+        </tr>
+        </table>
+        </div>
+        <div class="content_menu">
+            <a href="javascript:page_show(0);" >取&nbsp;&nbsp;消</a>
+            <a href="javascript:page_show(5);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确&nbsp;&nbsp;认</a>
+        </div>
     </div>
     <div class="page7", id="id_page7">
     </div>
@@ -119,28 +199,6 @@
     <div class="page12", id="id_page12">
     </div>
     <div class="page13", id="id_page13">
-    </div>
-    <div class="page14", id="id_page14">
-        <div class="content">
-        <table align="center">
-		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>      <tr>
-    	<td>操作密码:&nbsp;&nbsp;</td>
-    	<td><input class="input_text" id="ffff"  type="password" value="" onclick="showsize('ffff')"/></td>
-        </tr>
-        </table>
-        </div>
-        <div class="content_menu">
-            <a href="javascript:page_show(0);" >取&nbsp;&nbsp;消&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:page_show(0);" >&nbsp;&nbsp;&nbsp;&nbsp;确&nbsp;&nbsp;定</a>
-        </div>
     </div>
 </div>
 	<!-- 用于显示自动充电元素 -->
