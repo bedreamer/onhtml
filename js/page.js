@@ -41,7 +41,7 @@ var page_op_ttl = 60;
 var page_timer;
 
 // 充电任务状态机
-var charge_task_stat = "triger_pending";
+var charge_task_stat = "triger_pendding"; // confirm_pendding, settle_pendding
 // 充电任务计费方式
 var billing_mode="auto";
 function js_init() {	
