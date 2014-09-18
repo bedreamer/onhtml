@@ -44,14 +44,32 @@ var page_need_keypad = [
 	"no"
 ];
 
+// 页面所需要键盘垂直位置
+var page_need_keypad_top = [
+	"245px", // 首页
+	"245px", // 按金额充电设定页面
+	"245px", // 按时间充电设定页面
+	"245px", // 按容量充电设定页面
+	"245px", // 充电确认页面
+	"285px", // 充电限压，限流手动设置页面
+	"245px", // 密码输入页面
+	"245px", // 充电实时信息页面
+	"245px",
+	"245px",
+	"245px",
+	"245px",
+	"245px",
+	"245px"
+];
+
 // 页面默认输入框ID
 var page_default_input_id = [
 	"N/A",  // 首页
 	"charge_money_value", // 按金额充电设定页面
 	"charge_time_value", // 按时间充电设定页面
 	"charge_cap_value", // 按容量充电设定页面
-	"N/A",  // 充电确认页面
-	"N/A", // 充电限压，限流手动设置页面
+	"N/A",       // 充电确认页面
+	"MANUAL_SET_LIMIT_V", // 充电限压，限流手动设置页面
 	"PASSWS_ID", // 密码输入页面
 	"N/A",  // 充电实时信息页面
 	"N/A",
@@ -239,9 +257,11 @@ function page_show(page)
 		if ( page_default_input_id[page] != "N/A" ) {
 			vk_focurs(page_default_input_id[page]);
 			document.getElementById('id_keypad').style.display = 'block';
+			document.getElementById('id_keypad').style.top = page_need_keypad_top[page];
 		} 
 	} else {
 		document.getElementById('id_keypad').style.display = 'none';
+		vk_focurs(null);
 	}
 }
 
