@@ -14,10 +14,10 @@
 	<img src="logo.png" width="100%" />
 </div>
 	<!-- 用于显示body部分的标题元素 -->
-    <div class="title_body" id="id_title_body">直流充电桩监控系统&nbsp;&nbsp;</div>
+    <div class="title_body" id="id_title_body">直流充电桩监控系统-V2.08.r34&nbsp;&nbsp;</div>
  <div class="mainbody">
 	<div class="page0", id="id_page0">
-		<div title="as_auto" id="id_auto" class="cls_auto"><br><a href="javascript:page_show(4);">自动充电<br>请刷卡</a></div>
+		<div title="as_auto" id="id_auto" class="cls_auto"><br><a href="javascript:page_show(4);"><br><br>自动充电请刷卡</a></div>
 		<div title="as_money" id="id_money" class="cls_money"><a href="javascript:charge_as_money();"><br>定金额<br>充电</a></div>
 		<div title="as_time" id="id_time" class="cls_time"><a href="javascript:charge_as_time();"><br>定时间<br>充电</a></div>
         <div title="as_cap" id="id_cap" class="cls_cap"><a href="javascript:charge_as_cap();"><br>定容量<br>充电</a></div>
@@ -27,13 +27,8 @@
     	<br />
     	<div class="content">
         <table align="center">
-		<tr>
+ 		<tr>
         <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>       <tr>
-    	<td>充电费率:&nbsp;&nbsp;</td>
-    	<td><input class="input_text" id="ffff"  type="text" value="100.0" onclick="showsize('ffff')"/></td>
         </tr>
         <tr>
         <td>&nbsp;</td><td>&nbsp;</td>
@@ -55,11 +50,8 @@
         <table align="center">
 		<tr>
         <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>    <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		<tr>
+        </tr> 		
+        <tr>
         <td>&nbsp;</td><td>&nbsp;</td>
         </tr>     
         <tr>
@@ -76,13 +68,7 @@
     <!-- 按容量充电确认界面 -->
     <div class="page3", id="id_page3">
         <div class="content">
-        <table align="center">
-		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		
-        <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>    
+        <table align="center">	  
         <tr>
         <td>&nbsp;</td><td>&nbsp;</td>
         </tr> 		
@@ -91,7 +77,7 @@
         </tr>  	
         <tr>
     	<td>终止容量:&nbsp;&nbsp;</td>
-    	<td><input class="input_text" id="charge_cap_value"  type="text" value="100.0"/></td>
+    	<td><input class="input_text" id="charge_cap_value"  type="text" value="100"/></td>
         </tr>
         <tr>
         <td>&nbsp;</td><td>&nbsp;</td>
@@ -99,7 +85,7 @@
         </table>
         </div>
         <div class="content_menu">
-            <a href="javascript:page_show(4);"  id="blink_2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp刷卡确认设置;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:page_show(4);"  id="blink_2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
             <a href="javascript:charge_as_auto();"  id="page_3_ttl_return" class="button big gray">&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
         </div>
     </div>
@@ -174,19 +160,15 @@
         <td>&nbsp;</td><td>&nbsp;</td>
         </tr> 		<tr>
         <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>    <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
         </tr>     
         <tr>
     	<td>授权密码:&nbsp;&nbsp;</td>
-    	<td><input id="PASSWS_ID" class="input_text" type="password" value="" /></td>
+    	<td><input id="PASSWS_ID" class="input_text" type="password" value="" onfocus="vk_show();" /></td>
         </tr>
         </table>
         </div>
         <div class="content_menu">
-            <a href="javascript:do_cancel_autheticate();" id="AUTH_CANCEL" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
+            <a href="javascript:do_cancel_autheticate();" id="AUTH_CANCEL" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="javascript:do_autheticate('user');" class="button big blue" >&nbsp;&nbsp;确&nbsp;&nbsp;认&nbsp;&nbsp;</a>
         </div>
     </div>
@@ -253,6 +235,24 @@
 	-->
 <!-- 虚拟键盘放置在浮动层，节省空间 -->
 <div class="v_keypad" id="id_keypad">
+	<table >
+    <tr>
+	<td><a href="javascript:vk_pushed(0);" class="button blue">0</a></td>
+	<td><a href="javascript:vk_pushed(1);" class="button blue">1</a></td>
+	<td><a href="javascript:vk_pushed(2);" class="button blue">2</a></td>
+	<td><a href="javascript:vk_pushed(3);" class="button blue">3</a></td>
+	<td><a href="javascript:vk_pushed(4);" class="button blue">4</a></td>
+	<td><a href="javascript:vk_pushed(5);" class="button blue">5</a></td>
+    </tr>
+    </tr>
+	<td><a href="javascript:vk_pushed(6);" class="button blue">6</a></td>
+	<td><a href="javascript:vk_pushed(7);" class="button blue">7</a></td>
+	<td><a href="javascript:vk_pushed(8);" class="button blue">8</a></td>
+	<td><a href="javascript:vk_pushed(9);" class="button blue">9</a></td>
+	<td><a href="javascript:vk_pushed('dot');" class="button blue">.</a></td>
+	<td><a href="javascript:vk_pushed('del');" class="button blue">C</a></td>
+    </tr></table>
+<!--
     <table width="94" height="105px" border="0">
         <tr align="center">
             <td><a href="javascript:vk_pushed(7);"><img src="imgs/vkey/vk_7.png" width="100%" height="100%"/></a></td>
@@ -275,6 +275,7 @@
             <td><a href="javascript:vk_pushed('del');"><img src="imgs/vkey/vk_del.png" width="100%" height="100%"/></a></td>
         </tr>
   </table>
+  -->
 </div>
 </body>
 </html>

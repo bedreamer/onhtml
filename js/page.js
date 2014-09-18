@@ -26,6 +26,41 @@ var pages_ids = [
 	"id_page12",
 	"id_page13"
 ];
+// 页面是否需要键盘
+var page_need_keypad = [
+	"no",  // 首页
+	"yes", // 按金额充电设定页面
+	"yes", // 按时间充电设定页面
+	"yes", // 按容量充电设定页面
+	"no",  // 充电确认页面
+	"yes", // 充电限压，限流手动设置页面
+	"yes", // 密码输入页面
+	"no",  // 充电实时信息页面
+	"no",
+	"no",
+	"no",
+	"no",
+	"no",
+	"no"
+];
+
+// 页面默认输入框ID
+var page_default_input_id = [
+	"N/A",  // 首页
+	"charge_money_value", // 按金额充电设定页面
+	"charge_time_value", // 按时间充电设定页面
+	"charge_cap_value", // 按容量充电设定页面
+	"N/A",  // 充电确认页面
+	"N/A", // 充电限压，限流手动设置页面
+	"PASSWS_ID", // 密码输入页面
+	"N/A",  // 充电实时信息页面
+	"N/A",
+	"N/A",
+	"N/A",
+	"N/A",
+	"N/A",
+	"N/A"
+];
 
 // 前一个页面ID
 var pages_pre = 0;
@@ -160,7 +195,7 @@ function js_shi_proc() {
 	case "ascap": // 按容量充电任务触发阻塞
 	url = "http://192.168.1.37:8081/querycard.xml?mode=ascap";
 	param = document.getElementById('charge_cap_value').value;
-	if ( param > 0 & param <= 10 ) {
+	if ( param > 0 & param <= 100 ) {
 		url = url + "&cap=" + param;
 	}
 	url = gen_card_valid_or_not(url);
@@ -198,6 +233,16 @@ function page_show(page)
 	
 	// 清除密码内容
 	document.getElementById('PASSWS_ID').value = null;
+	
+	// 虚拟键盘显示和隐藏处理
+	if ( page_need_keypad[page] == "yes" ) {
+		if ( page_default_input_id[page] != "N/A" ) {
+			vk_focurs(page_default_input_id[page]);
+			document.getElementById('id_keypad').style.display = 'block';
+		} 
+	} else {
+		document.getElementById('id_keypad').style.display = 'none';
+	}
 }
 
 // 自动充电

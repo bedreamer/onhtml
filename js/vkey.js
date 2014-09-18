@@ -2,31 +2,14 @@
 var editid = 0;
 var value = "";
 
-function vk_show() {
-	document.getElementById('id_keypad').style.display = 'block';
-	document.getElementById('id_keypad').style.left = '300px';
-}
-
-function vk_hide() {
-	document.getElementById('id_keypad').style.display = 'none';
-}
-
-// 只针对输入编辑框
-function vk_on_focurs(id)
+// 只针对输入编辑框, 对于多个编辑框时有效
+function vk_focurs(id)
 {
 	if ( id != editid  ) {
 		value = document.getElementById(id).value;
 		editid = id;
 	}
 	//document.getElementById('id_keypad').style.display = 'block';
-}
-
-// 只针对输入编辑框
-function vk_on_blur()
-{
-	editid = 0;
-	value = "";
-	//document.getElementById('id_keypad').style.display = 'none';
 }
 
 function vk_pushed(vkey)

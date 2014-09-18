@@ -45,9 +45,10 @@ body{
 	position:absolute;
 	left: 300px;
 	width: 94px;
-	top: 300px;
+	top: 245px;
 	height: 105px;
 	display: none;
+	text-align:center;
 	/*background-color: #0F0;*/
 }
 
@@ -201,11 +202,13 @@ body{
 .button {
 	display: inline-block;
     position: relative;
-    margin: 10px;
+   /* margin: 10px;*/
     padding: 0 20px;
     text-align: center;
     text-decoration: none;
-    font: bold 12px/25px Arial, sans-serif;
+    font: bold 22px/25px Arial, sans-serif;
+	font-style:italic;
+	line-height:46px;
  
     text-shadow: 1px 1px 1px rgba(255,255,255, .22);
  
