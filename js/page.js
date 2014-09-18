@@ -39,6 +39,8 @@ var page_on_ok = 0;
 var page_op_ttl = 60;
 // 超时
 var page_timer;
+// 奇偶判定
+var ev_or_ol = 0;
 
 // querycard.xml 返回信息
 var id_triger = "N/A", valid_triger = "N/A", remain_triger = "N/A";
@@ -165,6 +167,23 @@ function js_shi_proc() {
 	ajax_card_request(url, ajax_querycard_xml);
 	break;
 	}
+	
+	if ( ev_or_ol == 0 ) {
+		document.getElementById('blink_0').style.color = "#FFF";
+		document.getElementById('blink_1').style.color = "#FFF";
+		document.getElementById('blink_2').style.color = "#FFF";
+		document.getElementById('blink_3').style.color = "#FFF";
+		document.getElementById('blink_4').style.color = "#FFF";
+		ev_or_ol = 1;
+	} else if ( ev_or_ol == 1 ) {
+		document.getElementById('blink_0').style.color = "#69E20c";
+		document.getElementById('blink_1').style.color = "#69E20c";
+		document.getElementById('blink_2').style.color = "#69E20c";
+		document.getElementById('blink_3').style.color = "#69E20c";
+		document.getElementById('blink_4').style.color = "#69E20c";
+		ev_or_ol = 0;
+	}
+	
 	setTimeout("js_shi_proc()", 500);
 }
 
