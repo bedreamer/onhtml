@@ -245,12 +245,12 @@ var percent = 0;
 function style_of_charge_process_bar() {
 	//var wd = document.getElementById('processbar_border').style.width;
 	if ( percent <= 100 ) {
-		document.getElementById('PROCESS_BAR_ID').style.width = percent * 600 / 100 + "px";
+		document.getElementById('PROCESS_BAR_ID').style.width = percent * 600.0 / 100.0 + "px";
 		document.getElementById('PROCESS_BAR_RATE').innerHTML = percent + "%&nbsp;";
 	}
-	setTimeout("style_of_charge_process_bar()", 500 + 430 * Math.sin(percent * 10) );
+	setTimeout("style_of_charge_process_bar()", 500 + 430 * Math.sin(percent * 10.0) );
 	if ( percent < 115 ) {
-		percent ++;
+		percent = percent + 0.5;
 	}
 	if ( percent >= 115 ) {
 		percent = 0;
