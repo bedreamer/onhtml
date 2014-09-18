@@ -231,13 +231,26 @@ function body_settitle(title) {
 	document.getElementById('id_title_body').innerHTML = title;
 }
 
+// 显示认证页面
+var auth_pre_page = 0;
+function show_auth_page(from, reason)
+{
+	auth_pre_page = from;
+	page_show(6);
+}
+
 /*进行认证*/
-function do_autheticate(reason, cancel_page) {
+function do_autheticate(reason) {
 	ajax_auth_request(reason);
 }
 
 /*取消认证*/
 function do_cancel_autheticate() {
+	page_show(auth_pre_page);
+}
+
+/*手动设定充电限流值，充电限压值, 设置成功返回充电确认页面，失败停留在该页面.*/
+function do_manual_setting() {
 }
 
 /*充电进度条*/
@@ -248,7 +261,7 @@ function style_of_charge_process_bar() {
 		document.getElementById('PROCESS_BAR_ID').style.width = percent * 600.0 / 100.0 + "px";
 		document.getElementById('PROCESS_BAR_RATE').innerHTML = percent + "%&nbsp;";
 	}
-	setTimeout("style_of_charge_process_bar()", 500 + 430 * Math.sin(percent * 10.0) );
+	setTimeout("style_of_charge_process_bar()", 500 + 430 * Math.sin(percent * 5.0) );
 	if ( percent < 115 ) {
 		percent = percent + 0.5;
 	}

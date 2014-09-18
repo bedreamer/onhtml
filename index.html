@@ -46,7 +46,7 @@
         </div>
         <div class="content_menu">
             <a href="javascript:page_show(4);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();" id="page_1_ttl_return" >取&nbsp;&nbsp;消</a>
+            <a href="javascript:charge_as_auto();" id="page_1_ttl_return" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
         </div>
     </div>
     <!-- 按时间充电确认界面 -->
@@ -70,7 +70,7 @@
         </div>
         <div class="content_menu">
             <a href="javascript:page_show(4);" >刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();"  id="page_2_ttl_return">取&nbsp;&nbsp;消</a>
+            <a href="javascript:charge_as_auto();"  id="page_2_ttl_return" class="button big gray">&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
         </div>
     </div>
     <!-- 按容量充电确认界面 -->
@@ -100,7 +100,7 @@
         </div>
         <div class="content_menu">
             <a href="javascript:page_show(4);" >刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();"  id="page_3_ttl_return">取&nbsp;&nbsp;消</a>
+            <a href="javascript:charge_as_auto();"  id="page_3_ttl_return" class="button big gray">&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
         </div>
     </div>
     <!--充电确认界面-->
@@ -135,9 +135,9 @@
         </table>
         </div>
         <div class="content_menu">
-        	<a href="javascript:page_show(6);" >设&nbsp;&nbsp;置</a>
+        	<a href="javascript:show_auth_page(4, 'user');" class="button big blue" >&nbsp;&nbsp;设&nbsp;&nbsp;置&nbsp;&nbsp;</a>
 			<a href="javascript:page_show(7);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再次刷卡开始充电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();"  id="page_4_ttl_return" >取&nbsp;&nbsp;消</a>
+            <a href="javascript:charge_as_auto();" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
         </div>
     </div>
     <!-- 手动设置页面 -->
@@ -162,8 +162,8 @@
         </table>
         </div>
         <div class="content_menu">
-            <a href="javascript:page_show(4);" >确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();">取&nbsp;&nbsp;消</a>
+            <a href="javascript:do_manual_setting();" class="button big blue" >&nbsp;&nbsp;确认设置&nbsp;&nbsp;</a>
+            <a href="javascript:do_cancel_autheticate();" class="button big gray">&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
         </div>
     </div>
     <!-- 密码输入界面 -->
@@ -186,8 +186,8 @@
         </table>
         </div>
         <div class="content_menu">
-            <a href="javascript:charge_as_auto();" id="AUTH_CANCEL" >取&nbsp;&nbsp;消</a>
-            <a href="javascript:do_autheticate('user');" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确&nbsp;&nbsp;认</a>
+            <a href="javascript:do_cancel_autheticate();" id="AUTH_CANCEL" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
+            <a href="javascript:do_autheticate('user');" class="button big blue" >&nbsp;&nbsp;确&nbsp;&nbsp;认&nbsp;&nbsp;</a>
         </div>
     </div>
     <!-- 充电页面 -->
@@ -224,8 +224,8 @@
         </table>
         </div>
         <div class="content_menu">
-        <a href="javascript:style_of_charge_process_bar();" >充电信息查询</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="javascript:void(0);" >刷卡停止充电</a>
+        <a href="javascript:style_of_charge_process_bar();" class="button big blue" >充电信息查询</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="javascript:page_show(0);" class="button big blue" >刷卡停止充电</a>
         </div>
     </div>
     <div class="page8", id="id_page8">
