@@ -2,7 +2,8 @@
 /* CSS Document */
 
 /*去链接下划线*/
-a, div, table{text-decoration:none;
+a, div, table{
+	text-decoration:none;
 	color:#FFF;
 	font-size:24px;
 	font-weight:bold;
@@ -71,10 +72,12 @@ body{
 	position: absolute;
 	top:20%;
 	left:0;
-	width:100%;
+	width:99%;
 	height:75%;
-	background-color:#99d20c;
+	background-color:#69E20c;
 	display:none;
+	border-style: solid;
+	border-width: thin;
 }
 
 .cls_auto, .cls_money, .cls_time, .cls_cap {
@@ -172,9 +175,23 @@ body{
 	text-align:left;
 }
 
+.processbar_border{
+	width:600px;
+	height:30px;
+	background-color:#69E20c;
+	border-style: solid;
+	border-width: thin;
+}
+
 .processbar{
-	padding-left:30px;
-	width:400px;
-	height:5px;
-	background-color:#F00;
+	float:left;
+	height:30px;
+	width:50px;
+	background-color:#C0C;
+}
+
+.processbar_data{
+	position:absolute;
+	float:left;
+	left:50%;
 }

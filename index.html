@@ -196,34 +196,36 @@
         <table align="center">
         	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
         	<tr>
-            	<td>充电桩状态&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            	<td align="left">充电桩状态</td>
                 <td id="CHARGER_STATUS">N/A</td>
             </tr>
         	<tr>
-            	<td>充电枪连接状态</td>
+            	<td align="left">充电枪连接状态</td>
                 <td id="CHARGE_GUN_CONN_STATUS">N/A</td>
             </tr>
             <tr>
-            	<td>充电任务状态&nbsp;&nbsp;</td>
+            	<td align="left">充电任务状态</td>
                 <td id="CHARGE_TASK_STATUS">N/A</td>
             </tr>
             <tr>
-            	<td>充电计费模式&nbsp;&nbsp;</td>
+            	<td align="left">充电计费模式</td>
                 <td id="CHARGE_BILLONG_MODE">N/A</td>
             </tr>
             <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
-            <tr>
+            <tr bordercolor="#FFF">
                 <td colspan="2">
-                	<div class="processbar" id="PROCESS_BAR_ID">
-                    <a id="PROCESS_BAR_RATE">0%</a>
+                	<div class="processbar_border">
+                        <a id="PROCESS_BAR_RATE" class="processbar_data">0%</a>
+                        <div class="processbar" id="PROCESS_BAR_ID">
+                        </div>
                     </div>
                 </td>
             </tr>
         </table>
         </div>
         <div class="content_menu">
-        <a href="javascript:void(0);" >充电信息查询</a>
-        <a href="javascript:void(0);" >刷卡计费终止计费</a>
+        <a href="javascript:style_of_charge_process_bar();" >充电信息查询</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="javascript:void(0);" >刷卡停止充电</a>
         </div>
     </div>
     <div class="page8", id="id_page8">

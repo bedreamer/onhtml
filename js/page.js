@@ -239,3 +239,20 @@ function do_autheticate(reason, cancel_page) {
 /*取消认证*/
 function do_cancel_autheticate() {
 }
+
+/*充电进度条*/
+var percent = 0;
+function style_of_charge_process_bar() {
+	//var wd = document.getElementById('processbar_border').style.width;
+	if ( percent <= 100 ) {
+		document.getElementById('PROCESS_BAR_ID').style.width = percent * 600 / 100 + "px";
+		document.getElementById('PROCESS_BAR_RATE').innerHTML = percent + "%&nbsp;";
+	}
+	setTimeout("style_of_charge_process_bar()", 500 + 430 * Math.sin(percent * 10) );
+	if ( percent < 115 ) {
+		percent ++;
+	}
+	if ( percent >= 115 ) {
+		percent = 0;
+	}
+}
