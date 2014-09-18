@@ -43,7 +43,7 @@ body{
 
 .v_keypad{
 	position:absolute;
-	left: 300px;
+	left: 210px;
 	width: 94px;
 	top: 245px;
 	height: 105px;
@@ -91,9 +91,9 @@ body{
 }
 
 .input_text {
-	line-height:70px;
-	height:64px;
-	font-size:36px;
+	line-height:48px;
+	height:48px;
+	font-size:32px;
 	font-weight:bold;
 	color:#09F;
 	text-align:center;
@@ -206,7 +206,7 @@ body{
     padding: 0 20px;
     text-align: center;
     text-decoration: none;
-    font: bold 22px/25px Arial, sans-serif;
+    font: bold 28px/25px Arial, sans-serif;
 	font-style:italic;
 	line-height:46px;
  
