@@ -100,6 +100,10 @@ var id_triger = "N/A", valid_triger = "N/A", remain_triger = "N/A";
 var id_confirm = "N/A", valid_confirm = "N/A", remain_confirm = "N/A";
 var id_settle = "N/A", valid_settle = "N/A", remain_settle = "N/A", supercard = "N/A";
 var paramok = "N/A";
+// 以下变量用来进行UI界面和ontom之间的状态机同步，
+// 若ontom的状态机切换到预设的状态机则对应<status_confirm>被设为copy
+var triger_valid_echo = "N/A", confirm_valid_echo = "N/A", settle_valid_echo = "N/A";
+
 // 刷卡有效记录，处理可能会有的时间延迟，重复发送相同的url
 var card_valid = "no";
 
@@ -111,6 +115,16 @@ function js_init() {
 	setTimeout("js_shi_proc()", 800);
 }
 
+// 在错误的输入框中显示红色背景
+function show_wrong_input(id, result) {
+	if ( result == 'false' ) {
+		document.getElementById(id).style.backgroundColor = "#F00";
+	} else {
+		document.getElementById(id).style.backgroundColor = "#FFF";
+	}
+}
+
+// 根据返回参数，生成下一次请求的URL
 function gen_card_valid_or_not(url)
 {
 	switch ( charge_task_stat ) {
@@ -145,6 +159,9 @@ function gen_card_valid_or_not(url)
 				card_valid = "N/A";
 			}
 		break;
+		// 当触发充电任务后，进行状态机转移时需要同时由ontom做出回应
+		case 'triger_valid_echo':
+		break;
 		case 'confirm_pendding':
 			// 确认条件，必须满足触发条件，并且满足，传入参数被接受，触发ID和确认ID相同条件
 			if ( valid_confirm == "yes" && id_confirm != "N/A" && id_confirm != null &&
@@ -152,13 +169,17 @@ function gen_card_valid_or_not(url)
 				charge_task_stat = 'settle_pendding';
 				card_valid = "yes";
 				url = url + "&confirm=valid";
-				page_show(0); // 跳转到充电界面
-			} else if ( valid_triger == "no" || (id_confirm != id_triger && id_confirm != "N/A") ) {
+				page_show(7); // 跳转到充电界面
+			} else if ( valid_triger == "no" || 
+						(id_confirm != id_triger && id_confirm != "N/A") ) {
 				card_valid = "no";
 				url = url + "&confirm=invalid";
 			} else {
 				card_valid = "N/A";
 			}
+		break;
+		// 当触发充电任务后，进行状态机转移时需要同时由ontom做出回应
+		case 'confirm_valid_echo':
 		break;
 		case 'settle_pendding':
 			// 结账条件必须满足，和触发一样的条件外，卡是超级卡也可以
@@ -167,13 +188,15 @@ function gen_card_valid_or_not(url)
 				charge_task_stat = 'exit_pendding';
 				card_valid = "yes";
 				url = url + "&settle=valid";
-				page_show(0); // 跳转到账单界面
 			} else if ( valid_triger == "no") {
 				card_valid = "no";
 				url = url + "&settle=invalid";
 			} else {
 				card_valid = "N/A";
 			}
+		break;
+		// 当触发充电任务后，进行状态机转移时需要同时由ontom做出回应
+		case 'exit_valid_echo':
 		break;
 		case 'exit_pendding': // 退出充电任务
 			charge_task_stat = 'triger_pendding';
@@ -197,6 +220,9 @@ function js_shi_proc() {
 	param = document.getElementById('charge_money_value').value;
 	if ( param > 0.0 & param < 1000.0 ) {
 		url = url + "&money=" + param;
+		show_wrong_input('charge_money_value', 'true');
+	} else {
+		show_wrong_input('charge_money_value', 'false');
 	}
 	url = gen_card_valid_or_not(url);
 	ajax_card_request(url, ajax_querycard_xml);
@@ -206,6 +232,9 @@ function js_shi_proc() {
 	param = document.getElementById('charge_time_value').value;
 	if ( param > 10 & param < 600 ) {
 		url = url + "&time=" + param;
+		show_wrong_input('charge_time_value', 'true');
+	} else {
+		show_wrong_input('charge_time_value', 'false');
 	}	
 	url = gen_card_valid_or_not(url);
 	ajax_card_request(url, ajax_querycard_xml);
@@ -215,6 +244,9 @@ function js_shi_proc() {
 	param = document.getElementById('charge_cap_value').value;
 	if ( param > 0 & param <= 100 ) {
 		url = url + "&cap=" + param;
+		show_wrong_input('charge_cap_value', 'true');
+	} else {
+		show_wrong_input('charge_cap_value', 'false');
 	}
 	url = gen_card_valid_or_not(url);
 	ajax_card_request(url, ajax_querycard_xml);

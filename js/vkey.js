@@ -5,10 +5,11 @@ var value = "";
 // 只针对输入编辑框, 对于多个编辑框时有效
 function vk_focurs(id)
 {
-	if ( id != editid  ) {
+	if ( id != editid && id != null  ) {
 		value = document.getElementById(id).value;
 		editid = id;
 	}
+	editid = id;
 	//document.getElementById('id_keypad').style.display = 'block';
 }
 
