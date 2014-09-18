@@ -102,7 +102,7 @@ var id_settle = "N/A", valid_settle = "N/A", remain_settle = "N/A", supercard = 
 var paramok = "N/A";
 // 以下变量用来进行UI界面和ontom之间的状态机同步，
 // 若ontom的状态机切换到预设的状态机则对应<status_confirm>被设为copy
-var triger_valid_echo = "N/A", confirm_valid_echo = "N/A", settle_valid_echo = "N/A";
+var confirm_echo = "N/A";
 
 // 刷卡有效记录，处理可能会有的时间延迟，重复发送相同的url
 var card_valid = "no";
@@ -157,7 +157,7 @@ function gen_card_valid_or_not(url)
 				url = url + "&triger=invalid";
 			} else {
 				card_valid = "N/A";
-			}
+			} 
 		break;
 		// 当触发充电任务后，进行状态机转移时需要同时由ontom做出回应
 		case 'triger_valid_echo':
