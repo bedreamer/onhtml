@@ -145,6 +145,11 @@ body{
 	left:67%;
 }
 
+.mainbody {
+	font-size:24px;
+	font-style:italic;
+}
+
 .title_body{
 	position:absolute;
 	top:5%;
@@ -153,7 +158,7 @@ body{
 	left:25%;
 	text-align:right;
 	color:#FFF;
-	font-size:24px;
+	font-size:28px;
 	background-color:#CCC;
 	font-style:italic;
 	font-weight:bold;
@@ -165,4 +170,11 @@ body{
 
 .autocharge_body, .manualcharge_body, .information_body, .system_body{
 	text-align:left;
+}
+
+.processbar{
+	padding-left:30px;
+	width:400px;
+	height:5px;
+	background-color:#F00;
 }

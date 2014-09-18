@@ -46,7 +46,7 @@
         </div>
         <div class="content_menu">
             <a href="javascript:page_show(4);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();" id="page_1_ttl_return" >返&nbsp;&nbsp;回</a>
+            <a href="javascript:charge_as_auto();" id="page_1_ttl_return" >取&nbsp;&nbsp;消</a>
         </div>
     </div>
     <!-- 按时间充电确认界面 -->
@@ -70,7 +70,7 @@
         </div>
         <div class="content_menu">
             <a href="javascript:page_show(4);" >刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();"  id="page_2_ttl_return">返&nbsp;&nbsp;回</a>
+            <a href="javascript:charge_as_auto();"  id="page_2_ttl_return">取&nbsp;&nbsp;消</a>
         </div>
     </div>
     <!-- 按容量充电确认界面 -->
@@ -100,7 +100,7 @@
         </div>
         <div class="content_menu">
             <a href="javascript:page_show(4);" >刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();"  id="page_3_ttl_return">返&nbsp;&nbsp;回</a>
+            <a href="javascript:charge_as_auto();"  id="page_3_ttl_return">取&nbsp;&nbsp;消</a>
         </div>
     </div>
     <!--充电确认界面-->
@@ -113,31 +113,31 @@
             </tr>
         	<tr>
             <td>卡&nbsp;&nbsp;&nbsp;&nbsp;号：</td>
-            <td>895461348633</td>
+            <td id="CARD_ID">895461348633</td>
             </tr>
         	<tr>
             <td>余&nbsp;&nbsp;&nbsp;&nbsp;额：</td>
-            <td>5682.9</td>
+            <td id="CARD_REMAIND">5682.9</td>
             </tr>
         	<tr>
             <td>预计耗时：</td>
-            <td>0.69</td>
+            <td>N/A</td>
             </tr>
         	<tr>
             <td>费&nbsp;&nbsp;&nbsp;&nbsp;率：</td>
-            <td>0.56</td>
+            <td>N/A</td>
             </tr>
             <tr>
             <td>模&nbsp;&nbsp;&nbsp;&nbsp;式：</td>
-            <td>自动</td>
+            <td id="CHARGE_MODE">自动模式</td>
             </tr>
         	<tr>
         </table>
         </div>
         <div class="content_menu">
         	<a href="javascript:page_show(6);" >设&nbsp;&nbsp;置</a>
-			<a href="javascript:page_show(4);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再次刷卡开始充电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();"  id="page_4_ttl_return" >返&nbsp;&nbsp;回</a>
+			<a href="javascript:page_show(7);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再次刷卡开始充电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a href="javascript:charge_as_auto();"  id="page_4_ttl_return" >取&nbsp;&nbsp;消</a>
         </div>
     </div>
     <!-- 手动设置页面 -->
@@ -181,16 +181,50 @@
         </tr>     
         <tr>
     	<td>授权密码:&nbsp;&nbsp;</td>
-    	<td><input class="input_text" type="password" value="" /></td>
+    	<td><input id="PASSWS_ID" class="input_text" type="password" value="" /></td>
         </tr>
         </table>
         </div>
         <div class="content_menu">
-            <a href="javascript:charge_as_auto();" >取&nbsp;&nbsp;消</a>
-            <a href="javascript:page_show(5);" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确&nbsp;&nbsp;认</a>
+            <a href="javascript:charge_as_auto();" id="AUTH_CANCEL" >取&nbsp;&nbsp;消</a>
+            <a href="javascript:do_autheticate('user');" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确&nbsp;&nbsp;认</a>
         </div>
     </div>
+    <!-- 充电页面 -->
     <div class="page7", id="id_page7">
+    	<div class="content">
+        <table align="center">
+        	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+        	<tr>
+            	<td>充电桩状态&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td id="CHARGER_STATUS">N/A</td>
+            </tr>
+        	<tr>
+            	<td>充电枪连接状态</td>
+                <td id="CHARGE_GUN_CONN_STATUS">N/A</td>
+            </tr>
+            <tr>
+            	<td>充电任务状态&nbsp;&nbsp;</td>
+                <td id="CHARGE_TASK_STATUS">N/A</td>
+            </tr>
+            <tr>
+            	<td>充电计费模式&nbsp;&nbsp;</td>
+                <td id="CHARGE_BILLONG_MODE">N/A</td>
+            </tr>
+            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr>
+                <td colspan="2">
+                	<div class="processbar" id="PROCESS_BAR_ID">
+                    <a id="PROCESS_BAR_RATE">0%</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div class="content_menu">
+        <a href="javascript:void(0);" >充电信息查询</a>
+        <a href="javascript:void(0);" >刷卡计费终止计费</a>
+        </div>
     </div>
     <div class="page8", id="id_page8">
     </div>

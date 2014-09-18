@@ -11,14 +11,14 @@ var mainbody_ids = [
 
 // 页面ID
 var pages_ids = [
-	"id_page0",
-	"id_page1",
-	"id_page2",
-	"id_page3",
-	"id_page4",
-	"id_page5",
-	"id_page6",
-	"id_page7",
+	"id_page0", // 首页
+	"id_page1", // 按金额充电设定页面
+	"id_page2", // 按时间充电设定页面
+	"id_page3", // 按容量充电设定页面
+	"id_page4", // 充电确认页面
+	"id_page5", // 充电限压，限流手动设置页面
+	"id_page6", // 密码输入页面
+	"id_page7", // 充电实时信息页面
 	"id_page8",
 	"id_page9",
 	"id_page10",
@@ -40,12 +40,92 @@ var page_op_ttl = 60;
 // 超时
 var page_timer;
 
+// querycard.xml 返回信息
+var id_triger = "N/A", valid_triger = "N/A", remain_triger = "N/A";
+var id_confirm = "N/A", valid_confirm = "N/A", remain_confirm = "N/A";
+var id_settle = "N/A", valid_settle = "N/A", remain_settle = "N/A", supercard = "N/A";
+var paramok = "N/A";
+// 刷卡有效记录，处理可能会有的时间延迟，重复发送相同的url
+var card_valid = "no";
+
 // 充电任务状态机
 var charge_task_stat = "triger_pendding"; // confirm_pendding, settle_pendding
 // 充电任务计费方式
 var billing_mode="auto";
 function js_init() {	
-	setTimeout("js_shi_proc()", 2000);
+	setTimeout("js_shi_proc()", 800);
+}
+
+function gen_card_valid_or_not(url)
+{
+	switch ( charge_task_stat ) {
+		case 'triger_pendding':
+			// 触发条件只需要保证，ID有效，非空，不为非法值即可
+			if ( valid_triger == "yes" && id_triger != "N/A" && 
+				 id_triger != null && paramok != "no" ) {
+				charge_task_stat = 'confirm_pendding';
+				card_valid = "yes";
+				url = url + "&triger=valid";
+				document.getElementById('CARD_ID').innerHTML = id_triger;
+				document.getElementById('CARD_REMAIND').innerHTML = remain_triger;
+				switch (billing_mode) {
+					case 'auto':
+					document.getElementById('CHARGE_MODE').innerHTML = "自动模式";
+					break;
+					case 'asmoney':
+					document.getElementById('CHARGE_MODE').innerHTML = "定额模式";
+					break;
+					case 'astime':
+					document.getElementById('CHARGE_MODE').innerHTML = "定时模式";
+					break;
+					case 'ascap':
+					document.getElementById('CHARGE_MODE').innerHTML = "定量模式";
+					break;
+				}
+				page_show(4); // 跳转到充电确认界面
+			} else if ( valid_triger == "no") {
+				card_valid = "no";
+				url = url + "&triger=invalid";
+			} else {
+				card_valid = "N/A";
+			}
+		break;
+		case 'confirm_pendding':
+			// 确认条件，必须满足触发条件，并且满足，传入参数被接受，触发ID和确认ID相同条件
+			if ( valid_confirm == "yes" && id_confirm != "N/A" && id_confirm != null &&
+			     id_confirm == id_triger && paramok != "no" ) {
+				charge_task_stat = 'settle_pendding';
+				card_valid = "yes";
+				url = url + "&confirm=valid";
+				page_show(0); // 跳转到充电界面
+			} else if ( valid_triger == "no" || (id_confirm != id_triger && id_confirm != "N/A") ) {
+				card_valid = "no";
+				url = url + "&confirm=invalid";
+			} else {
+				card_valid = "N/A";
+			}
+		break;
+		case 'settle_pendding':
+			// 结账条件必须满足，和触发一样的条件外，卡是超级卡也可以
+			if ( valid_settle == "yes" && id_settle != "N/A" && id_settle != null && 
+				 (id_settle == id_confirm || (supercard=="yes") ) ) {
+				charge_task_stat = 'exit_pendding';
+				card_valid = "yes";
+				url = url + "&settle=valid";
+				page_show(0); // 跳转到账单界面
+			} else if ( valid_triger == "no") {
+				card_valid = "no";
+				url = url + "&settle=invalid";
+			} else {
+				card_valid = "N/A";
+			}
+		break;
+		case 'exit_pendding': // 退出充电任务
+			charge_task_stat = 'triger_pendding';
+			charge_as_auto();
+		break;
+	}
+	return url;
 }
 
 // 定时器处理过程
@@ -54,7 +134,8 @@ function js_shi_proc() {
 	switch ( billing_mode ) {
 	case "auto": // 充电任务触发阻塞
 	url = "http://192.168.1.37:8081/querycard.xml?mode=auto";
-	ajax_request(url, ajax_querycard_xml);
+	url = gen_card_valid_or_not(url);
+	ajax_card_request(url, ajax_querycard_xml);
 	break;
 	case "asmoney": // 按金额充电任务触发阻塞
 	url = "http://192.168.1.37:8081/querycard.xml?mode=asmoney";
@@ -62,7 +143,8 @@ function js_shi_proc() {
 	if ( param > 0.0 & param < 1000.0 ) {
 		url = url + "&money=" + param;
 	}
-	ajax_request(url, ajax_querycard_xml);
+	url = gen_card_valid_or_not(url);
+	ajax_card_request(url, ajax_querycard_xml);
 	break;	
 	case "astime": // 按时间充电任务触发阻塞
 	url = "http://192.168.1.37:8081/querycard.xml?mode=astime";
@@ -70,7 +152,8 @@ function js_shi_proc() {
 	if ( param > 10 & param < 600 ) {
 		url = url + "&time=" + param;
 	}	
-	ajax_request(url, ajax_querycard_xml);
+	url = gen_card_valid_or_not(url);
+	ajax_card_request(url, ajax_querycard_xml);
 	break;
 	case "ascap": // 按容量充电任务触发阻塞
 	url = "http://192.168.1.37:8081/querycard.xml?mode=ascap";
@@ -78,26 +161,11 @@ function js_shi_proc() {
 	if ( param > 0 & param <= 10 ) {
 		url = url + "&cap=" + param;
 	}
-	ajax_request(url, ajax_querycard_xml);
+	url = gen_card_valid_or_not(url);
+	ajax_card_request(url, ajax_querycard_xml);
 	break;
 	}
-	setTimeout("js_shi_proc()", 2000);
-}
-
-// 充电选择界面超时
-function page_op_timeout()
-{
-	var id = "page_" + pages_this + "_ttl_return";
-	page_op_ttl --;
-	if ( pages_this >= 1 && pages_this <= 4 ) {
-		if ( page_op_ttl > 0 ) {
-			document.getElementById(id).innerHTML = "返&nbsp;&nbsp;回(" + page_op_ttl + "秒) ";
-			page_timer = setTimeout("page_op_timeout()", 1000);
-		} else {
-			clearTimeout(page_timer);
-			page_show(pages_pre);
-		}
-	}
+	setTimeout("js_shi_proc()", 500);
 }
 
 function page_show(page)
@@ -108,12 +176,16 @@ function page_show(page)
 	document.getElementById(page_id).style.display = 'block';
 	pages_pre = pages_this;
 	pages_this = page;
+	
+	// 清除密码内容
+	document.getElementById('PASSWS_ID').value = null;
 }
 
 // 自动充电
 function charge_as_auto()
 {
 	billing_mode = "auto";
+	charge_task_stat = "triger_pendding";
 	page_show(0);
 }
 
@@ -157,4 +229,13 @@ function showsize(id)
 /*这是主显示区的标题*/
 function body_settitle(title) {
 	document.getElementById('id_title_body').innerHTML = title;
+}
+
+/*进行认证*/
+function do_autheticate(reason, cancel_page) {
+	ajax_auth_request(reason);
+}
+
+/*取消认证*/
+function do_cancel_autheticate() {
 }
