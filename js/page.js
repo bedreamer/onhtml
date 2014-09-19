@@ -303,7 +303,7 @@ function js_shi_proc() {
 	}
 	
 	if ( ev_or_ol == 0 ) {
-		//document.getElementById('id_auto').style.color = "#FFF";
+		document.getElementById('id_auto').style.color = "#FFF";
 		document.getElementById('blink_0').style.color = "#FFF";
 		document.getElementById('blink_1').style.color = "#FFF";
 		document.getElementById('blink_2').style.color = "#FFF";
@@ -428,11 +428,11 @@ function style_of_charge_process_bar() {
 		document.getElementById('PROCESS_BAR_ID').style.width = percent * 600.0 / 100.0 + "px";
 		document.getElementById('PROCESS_BAR_RATE').innerHTML = percent + "%&nbsp;";
 	}
-	setTimeout("style_of_charge_process_bar()", 6 + 5 * Math.sin(percent * 5.0) );
-	if ( percent < 225 ) {
+	setTimeout("style_of_charge_process_bar()", 50 + percent );
+	if ( percent < 115 ) {
 		percent = percent + 1;
 	}
-	if ( percent >= 225 ) {
+	if ( percent >= 115 ) {
 		percent = 0;
 	}
 }
