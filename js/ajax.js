@@ -42,7 +42,7 @@ function ajax_querycard_xml()
 				paramok = "N/A";
 			}
 			// 状态转移时该字段为copy
-			card_valid = xml_handle.getElementsByTagName('echo')[0].childNodes[0].nodeValue;
+			confirm_echo = xml_handle.getElementsByTagName('echo')[0].childNodes[0].nodeValue;
 			if ( charge_task_stat == "settle_pendding" ) {
 				supercard = 
 					xml_handle.getElementsByTagName('super')[0].childNodes[0].nodeValue;

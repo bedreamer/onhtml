@@ -132,10 +132,10 @@ function gen_card_valid_or_not(url)
 			// 触发条件只需要保证，ID有效，非空，不为非法值即可
 			if ( valid_triger == "yes" && id_triger != "N/A" && 
 				 id_triger != null && paramok != "no" ) {
-				charge_task_stat = 'confirm_pendding';
+				charge_task_stat = 'triger_valid_echo';
 				card_valid = "yes";
 				url = url + "&triger=valid";
-				document.getElementById('CARD_ID').innerHTML = id_triger;
+/*				document.getElementById('CARD_ID').innerHTML = id_triger;
 				document.getElementById('CARD_REMAIND').innerHTML = remain_triger;
 				switch (billing_mode) {
 					case 'auto':
@@ -152,7 +152,7 @@ function gen_card_valid_or_not(url)
 					break;
 				}
 				page_show(4); // 跳转到充电确认界面
-			} else if ( valid_triger == "no") {
+*/			} else if ( valid_triger == "no") {
 				card_valid = "no";
 				url = url + "&triger=invalid";
 			} else {
@@ -161,6 +161,29 @@ function gen_card_valid_or_not(url)
 		break;
 		// 当触发充电任务后，进行状态机转移时需要同时由ontom做出回应
 		case 'triger_valid_echo':
+			if ( confirm_echo != 'copy' ) {
+				card_valid = "yes";
+				url = url + "&triger=valid";
+			} else {
+				charge_task_stat = 'confirm_pendding';
+				document.getElementById('CARD_ID').innerHTML = id_triger;
+				document.getElementById('CARD_REMAIND').innerHTML = remain_triger;
+				switch (billing_mode) {
+					case 'auto':
+					document.getElementById('CHARGE_MODE').innerHTML = "自动模式";
+					break;
+					case 'asmoney':
+					document.getElementById('CHARGE_MODE').innerHTML = "定额模式";
+					break;
+					case 'astime':
+					document.getElementById('CHARGE_MODE').innerHTML = "定时模式";
+					break;
+					case 'ascap':
+					document.getElementById('CHARGE_MODE').innerHTML = "定量模式";
+					break;
+				}
+				page_show(4); // 跳转到充电确认界
+			}
 		break;
 		case 'confirm_pendding':
 			// 确认条件，必须满足触发条件，并且满足，传入参数被接受，触发ID和确认ID相同条件
