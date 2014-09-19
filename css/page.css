@@ -41,6 +41,16 @@ body{
 	height: 100%;
 }
 
+.debug {
+	position:absolute;
+	left: 50;
+	width: 400px;
+	top: 50px;
+	height: 300px;
+	display: none;
+	font-size:14px;
+}
+
 .v_keypad{
 	position:absolute;
 	left: 210px;

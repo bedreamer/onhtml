@@ -122,7 +122,7 @@
         </div>
         <div class="content_menu">
         	<a href="javascript:show_auth_page(4, 'user');" class="button big blue" >&nbsp;&nbsp;设&nbsp;&nbsp;置&nbsp;&nbsp;</a>
-			<a href="javascript:page_show(7);" class="blink_text" id="blink_3" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再次刷卡开始充电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+			<a href="javascript:page_show(7);" class="blink_text" id="blink_3" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再次刷卡开始充电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
             <a href="javascript:charge_as_auto();" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
         </div>
     </div>
@@ -249,5 +249,35 @@
 	<td><a href="javascript:vk_pushed('del');" class="button blue">C</a></td>
     </tr></table>
 </div>
+<!--调试信息显示层-->
+<div class="debug" id="DEBUG_ID">
+<table width="100%" align="left">
+  <tr>
+    <td>id_triger</td>
+    <td id="debug1">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>id_confirm</td>
+    <td id="debug2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>id_settle</td>
+    <td id="debug3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>charge_task_stat</td>
+    <td id="debug4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>confirm_echo</td>
+    <td id="debug5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>billing_mode</td>
+    <td id="debug6">&nbsp;</td>
+  </tr>
+</table>
+</div>
+
 </body>
 </html>

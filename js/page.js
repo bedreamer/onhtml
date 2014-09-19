@@ -124,6 +124,16 @@ function show_wrong_input(id, result) {
 	}
 }
 
+function debug_refresh() {
+	document.getElementById('DEBUG_ID').style.display = 'block';
+	document.getElementById('debug1').innerHTML = id_triger;
+	document.getElementById('debug2').innerHTML = id_confirm;
+	document.getElementById('debug3').innerHTML = id_settle;
+	document.getElementById('debug4').innerHTML = charge_task_stat;
+	document.getElementById('debug5').innerHTML = confirm_echo;
+	document.getElementById('debug6').innerHTML = billing_mode;
+}
+
 // 根据返回参数，生成下一次请求的URL
 function gen_card_valid_or_not(url)
 {
@@ -165,6 +175,7 @@ function gen_card_valid_or_not(url)
 				card_valid = "yes";
 				url = url + "&triger=valid";
 			} else {
+				confirm_echo = 'N/A';
 				charge_task_stat = 'confirm_pendding';
 				document.getElementById('CARD_ID').innerHTML = id_triger;
 				document.getElementById('CARD_REMAIND').innerHTML = remain_triger;
@@ -189,11 +200,10 @@ function gen_card_valid_or_not(url)
 			// 确认条件，必须满足触发条件，并且满足，传入参数被接受，触发ID和确认ID相同条件
 			if ( valid_confirm == "yes" && id_confirm != "N/A" && id_confirm != null &&
 			     id_confirm == id_triger && paramok != "no" ) {
-				charge_task_stat = 'settle_pendding';
+				charge_task_stat = 'confirm_valid_echo';
 				card_valid = "yes";
 				url = url + "&confirm=valid";
-				page_show(7); // 跳转到充电界面
-			} else if ( valid_triger == "no" || 
+			} else if ( valid_confirm == "no" || 
 						(id_confirm != id_triger && id_confirm != "N/A") ) {
 				card_valid = "no";
 				url = url + "&confirm=invalid";
@@ -203,15 +213,24 @@ function gen_card_valid_or_not(url)
 		break;
 		// 当触发充电任务后，进行状态机转移时需要同时由ontom做出回应
 		case 'confirm_valid_echo':
+			if ( confirm_echo != 'copy' ) {
+				card_valid = "yes";
+				url = url + "&confirm=valid";
+			} else {
+				charge_task_stat = 'settle_pendding';
+				confirm_echo = 'N/A';
+				page_show(7); // 跳转到充电界面
+			}
 		break;
 		case 'settle_pendding':
 			// 结账条件必须满足，和触发一样的条件外，卡是超级卡也可以
 			if ( valid_settle == "yes" && id_settle != "N/A" && id_settle != null && 
 				 (id_settle == id_confirm || (supercard=="yes") ) ) {
-				charge_task_stat = 'exit_pendding';
+				charge_task_stat = 'exit_valid_echo';
 				card_valid = "yes";
+				confirm_echo = "N/A";
 				url = url + "&settle=valid";
-			} else if ( valid_triger == "no") {
+			} else if ( valid_settle == "no") {
 				card_valid = "no";
 				url = url + "&settle=invalid";
 			} else {
@@ -220,6 +239,13 @@ function gen_card_valid_or_not(url)
 		break;
 		// 当触发充电任务后，进行状态机转移时需要同时由ontom做出回应
 		case 'exit_valid_echo':
+			if ( confirm_echo != 'copy' ) {
+				card_valid = "yes";
+				url = url + "&settle=valid";
+			} else {
+				charge_task_stat = 'exit_pendding';
+				confirm_echo = 'N/A';
+			}
 		break;
 		case 'exit_pendding': // 退出充电任务
 			charge_task_stat = 'triger_pendding';
@@ -291,7 +317,7 @@ function js_shi_proc() {
 		document.getElementById('blink_4').style.color = "#69E20c";
 		ev_or_ol = 0;
 	}
-	
+	debug_refresh();
 	setTimeout("js_shi_proc()", 500);
 }
 
