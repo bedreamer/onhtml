@@ -428,11 +428,11 @@ function style_of_charge_process_bar() {
 		document.getElementById('PROCESS_BAR_ID').style.width = percent * 600.0 / 100.0 + "px";
 		document.getElementById('PROCESS_BAR_RATE').innerHTML = percent + "%&nbsp;";
 	}
-	setTimeout("style_of_charge_process_bar()", 500 + 430 * Math.sin(percent * 5.0) );
-	if ( percent < 115 ) {
-		percent = percent + 0.5;
+	setTimeout("style_of_charge_process_bar()", 6 + 5 * Math.sin(percent * 5.0) );
+	if ( percent < 225 ) {
+		percent = percent + 1;
 	}
-	if ( percent >= 115 ) {
+	if ( percent >= 225 ) {
 		percent = 0;
 	}
 }

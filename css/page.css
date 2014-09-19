@@ -218,7 +218,7 @@ body{
 }
 
 .processbar_border{
-	width:600px;
+	width:604px;
 	height:30px;
 	background-color:#69E20c;
 	border-style: solid;
@@ -226,11 +226,13 @@ body{
 }
 
 .processbar{
+	position:relative;
 	float:left;
-	height:30px;
+	top:2px;
+	left:2px;
+	height:26px;
 	width:50px;
-	background-color:#C0C;
-	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.00, #198ae0), color-stop(0.83, #F00000));
+	background-color:#DDD;
 }
 
 .processbar_data{
