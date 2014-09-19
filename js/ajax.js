@@ -140,7 +140,7 @@ function ajax_auth_request(reason) {
 	} else {
 		return;
 	}
-	url = "http://192.168.1.37:8081/autheticate.xml?passwd=PzsWmAPT3G" + 
+	url = "http://192.168.1.15:8081/autheticate.xml?passwd=PzsWmAPT3G" + 
 		passwd + "a7BY5tzfdX&reason=" + reason;
 	ajax_card.onreadystatechange=ajax_autheticate_xml;
 	ajax_card.open("GET", url, true);

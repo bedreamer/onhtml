@@ -260,12 +260,12 @@ function js_shi_proc() {
 	var url, param;
 	switch ( billing_mode ) {
 	case "auto": // 充电任务触发阻塞
-	url = "http://192.168.1.37:8081/query.xml?mode=auto";
+	url = "http://192.168.1.15:8081/query.xml?mode=auto";
 	url = gen_card_valid_or_not(url);
 	ajax_card_request(url, ajax_querycard_xml);
 	break;
 	case "asmoney": // 按金额充电任务触发阻塞
-	url = "http://192.168.1.37:8081/query.xml?mode=asmoney";
+	url = "http://192.168.1.15:8081/query.xml?mode=asmoney";
 	param = document.getElementById('charge_money_value').value;
 	if ( param > 0.0 & param < 1000.0 ) {
 		url = url + "&money=" + param;
@@ -277,7 +277,7 @@ function js_shi_proc() {
 	ajax_card_request(url, ajax_querycard_xml);
 	break;	
 	case "astime": // 按时间充电任务触发阻塞
-	url = "http://192.168.1.37:8081/query.xml?mode=astime";
+	url = "http://192.168.1.15:8081/query.xml?mode=astime";
 	param = document.getElementById('charge_time_value').value;
 	if ( param > 10 & param < 600 ) {
 		url = url + "&time=" + param;
@@ -289,7 +289,7 @@ function js_shi_proc() {
 	ajax_card_request(url, ajax_querycard_xml);
 	break;
 	case "ascap": // 按容量充电任务触发阻塞
-	url = "http://192.168.1.37:8081/query.xml?mode=ascap";
+	url = "http://192.168.1.15:8081/query.xml?mode=ascap";
 	param = document.getElementById('charge_cap_value').value;
 	if ( param > 0 & param <= 100 ) {
 		url = url + "&cap=" + param;

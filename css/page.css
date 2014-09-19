@@ -167,7 +167,7 @@ body{
     margin: 1px;
     text-align: center;
     text-decoration: none;
-    font: bold 30px/25px Arial, sans-serif;
+    font: 30px/25px Arial, sans-serif;
 	/*font-style:italic;*/
 	line-height:160px;
  
@@ -190,7 +190,7 @@ body{
 
 .mainbody {
 	font-size:24px;
-	font-style:italic;
+	/*font-style:italic;*/
 }
 
 .title_body{
@@ -203,7 +203,7 @@ body{
 	color:#FFF;
 	font-size:28px;
 	background-color:#CCC;
-	font-style:italic;
+	/*font-style:italic;*/
 	font-weight:bold;
 	line-height:60px;
 	/* chrome 2+, safari 4+; multiple color stops */
@@ -245,7 +245,7 @@ body{
     text-align: center;
     text-decoration: none;
     font: bold 28px/25px Arial, sans-serif;
-	font-style:italic;
+	/*font-style:italic;*/
 	line-height:46px;
  
     text-shadow: 1px 1px 1px rgba(255,255,255, .22);
@@ -310,7 +310,7 @@ body{
     text-transform: uppercase;
 	padding:10px;
     font: bold 24px/24px Arial, sans-serif;
-	font-style:italic;
+	/*font-style:italic;*/
 }
  
 .big span {
@@ -318,4 +318,8 @@ body{
     text-transform: none;
     font: italic normal 12px/18px Georgia, sans-serif;
     text-shadow: 1px 1px 1px rgba(255,255,255, .12);
+}
+
+.TABLE_LIST td{
+	text-align:left;
 }
