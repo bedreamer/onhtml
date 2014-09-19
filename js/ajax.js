@@ -4,7 +4,7 @@ var ajax_card;
 // 用于autheticate.xml
 var ajax_auth;
 
-// 处理 querycard.xml 文件回调函数
+// 处理 query.xml 文件回调函数
 function ajax_querycard_xml()
 {
 	if (ajax_card.readyState==4)
@@ -41,6 +41,8 @@ function ajax_querycard_xml()
 			} else {
 				paramok = "N/A";
 			}
+			// 状态转移时该字段为copy
+			card_valid = xml_handle.getElementsByTagName('echo')[0].childNodes[0].nodeValue;
 			if ( charge_task_stat == "settle_pendding" ) {
 				supercard = 
 					xml_handle.getElementsByTagName('super')[0].childNodes[0].nodeValue;
@@ -54,7 +56,7 @@ function ajax_querycard_xml()
 	}
 }
 
-// 获取querycard.xml文件函数
+// 获取query.xml文件函数
 function ajax_card_request(url, ajax_state_change) {
 	ajax_card = new XMLHttpRequest();
 	if ('withCredentials' in ajax_card ) {
