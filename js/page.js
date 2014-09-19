@@ -317,7 +317,7 @@ function js_shi_proc() {
 		document.getElementById('blink_4').style.color = "#69E20c";
 		ev_or_ol = 0;
 	}
-	debug_refresh();
+	//debug_refresh();
 	setTimeout("js_shi_proc()", 500);
 }
 

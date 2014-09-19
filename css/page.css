@@ -89,6 +89,9 @@ body{
 	display:none;
 	border-style: solid;
 	border-width: thin;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 
 .cls_auto, .cls_money, .cls_time, .cls_cap {
@@ -150,14 +153,39 @@ body{
 
 .cls_time {
 	background-color: #26b1b6;
-	width: 34%;
-	left:33%;
+	width: 33%;
+	left:34%;
 }
 
 .cls_cap {
 	background-color: #099;
-	width: 33%;
-	left:67%;
+	width: 32%;
+	left:68%;
+}
+
+.zues {
+    margin: 1px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 30px/25px Arial, sans-serif;
+	/*font-style:italic;*/
+	line-height:160px;
+ 
+    text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+ 
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+ 
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+ 
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    transition: all 0.15s ease;
 }
 
 .mainbody {
