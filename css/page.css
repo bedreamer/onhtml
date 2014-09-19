@@ -171,8 +171,8 @@ body{
 	/*font-style:italic;*/
 	font-weight: normal;
 	line-height:160px;
- 
-    text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+
+    text-shadow: 1px 1px 1px rgba(0,0,0, .22);
  
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -180,13 +180,14 @@ body{
  
     -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
     -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+
     box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
  
-    -webkit-transition: all 0.15s ease;
+/*    -webkit-transition: all 0.15s ease;
     -moz-transition: all 0.15s ease;
     -o-transition: all 0.15s ease;
     -ms-transition: all 0.15s ease;
-    transition: all 0.15s ease;
+    transition: all 0.15s ease;*/
 }
 
 .mainbody {

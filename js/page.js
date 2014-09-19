@@ -303,6 +303,7 @@ function js_shi_proc() {
 	}
 	
 	if ( ev_or_ol == 0 ) {
+		//document.getElementById('id_auto').style.color = "#FFF";
 		document.getElementById('blink_0').style.color = "#FFF";
 		document.getElementById('blink_1').style.color = "#FFF";
 		document.getElementById('blink_2').style.color = "#FFF";
@@ -310,6 +311,7 @@ function js_shi_proc() {
 		document.getElementById('blink_4').style.color = "#FFF";
 		ev_or_ol = 1;
 	} else if ( ev_or_ol == 1 ) {
+		//document.getElementById('id_auto').style.color = "#99d20c";
 		document.getElementById('blink_0').style.color = "#69E20c";
 		document.getElementById('blink_1').style.color = "#69E20c";
 		document.getElementById('blink_2').style.color = "#69E20c";
