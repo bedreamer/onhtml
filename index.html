@@ -3,42 +3,64 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>直流充电桩监控系统</title>
-<!--link href="css/bootstrap.min.css" rel="stylesheet"-->
 <link rel="stylesheet" type="text/css" href="css/page.css" />
-<!--script src="js/jquery.min.js"></script-->
-<!--script src="js/bootstrap.min.js"></script-->
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/vkey.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 </head>
 <!--oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"-->
 <body onload="js_init();" oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()" >
 <div class="logo_area">
-	<img src="logo.png" width="100%" />
+	<img src="imgs/only.png" width="100%" />
 </div>
 	<!-- 用于显示body部分的标题元素 -->
-    <div class="zues title_body" id="id_title_body">直流充电桩监控系统-V2.08.r34&nbsp;&nbsp;</div>
+    <div class="title_body" id="id_title_body">直流充电桩监控&nbsp;&nbsp;</div>
  <div class="mainbody">
 	<div class="page0", id="id_page0">
 		<a href="javascript:void(0);">
         <div title="as_auto" id="id_auto" class="zues cls_auto">自动充电请刷卡</div>
         </a>
-		<a href="javascript:charge_as_money();">
+        <div class="cls_status">
+        <table style="font-size:16px; text-align:right" align="center">
+            <tr>
+            	<td>&nbsp;</td><td><img width="35px" height="35px" src="imgs/settings.png"/>&nbsp;<img width="35px" height="35px" src="imgs/info.png"/></td>
+            </tr>
+            <tr>
+            	<td>系统状态:&nbsp;</td><td style="color:#0F0">正常</td>
+            </tr>
+            <tr>
+            	<td>充电机组:&nbsp;</td><td style="color:#0F0">正常</td>
+            </tr>
+            <tr>
+            	<td>绝缘检测:&nbsp;</td><td style="color:#0F0">正常</td>
+            </tr>
+            <tr>
+            	<td>母线电压:&nbsp;</td><td>598.3V</td>
+            </tr>
+            <tr>
+            	<td>作业状态:&nbsp;</td><td>正在执行[查看]</td>
+            </tr>
+
+
+        </table>
+        </div>
+        <a href="javascript:charge_as_money();">
         <div title="as_money" id="id_money" class="zues cls_money">
         	<table align="center">
             <tr>
         	<td><img src="imgs/asmoney.png" width="50px" height="50px" /></td>
-            <td>定金额充电</td>
+            <td>定金额</td>
             </tr>
             </table>
         </div>
         </a>
 		<a href="javascript:charge_as_time();">
         <div title="as_time" id="id_time" class="zues cls_time">
-        	<table align="center">
+            <table align="center">
             <tr>
-        	<td><img src="imgs/astime.png" width="50px" height="50px" /></td>
-            <td>定时间充电</td>
+            <td><img src="imgs/astime.png" width="50px" height="50px" /></td>
+            <td>定时间</td>
             </tr>
             </table>
         </div>
@@ -48,7 +70,7 @@
         	<table align="center">
             <tr>
         	<td><img src="imgs/ascap.png" width="50px" height="50px" /></td>
-            <td>定容量充电</td>
+            <td>定电量</td>
             </tr>
             </table>
         </div>
@@ -108,8 +130,8 @@
         <td>&nbsp;</td><td>&nbsp;</td>
         </tr>  	
         <tr>
-    	<td>终止容量:&nbsp;&nbsp;</td>
-    	<td><input class="input_text" id="charge_cap_value"  type="text" value="100"/>%</td>
+    	<td>终止电量:&nbsp;&nbsp;</td>
+    	<td><input class="input_text" id="charge_cap_value"  type="text" value="100"/>KW.H</td>
         </tr>
         <tr>
         <td>&nbsp;</td><td>&nbsp;</td>

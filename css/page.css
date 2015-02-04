@@ -11,6 +11,7 @@ a, div, table{
 
 body{
 	background-color:#B359BF;
+	background-image:url(../imgs/mainbackground.png);
 }
 
 .navigate{
@@ -27,10 +28,12 @@ body{
 
 .logo_area{
 	position: absolute;
-	left: 3%;
+	left: 33px;
+	float: left;
 	width: 19%;
-	top:5%;
-	height: 15%;
+	top: 5%;
+	height: 11%;
+	/*background-color: rgba(255, 255, 255, 0.1);*/
 }
 
 .mainbody{
@@ -86,15 +89,17 @@ body{
 	width:99%;
 	height:75%;
 	background-color:#69E20c;
+	background-color:rgba(255, 255, 255, 0.2);
 	display:none;
+	/*background-image:url(../imgs/mainbackground.png);
 	border-style: solid;
-	border-width: thin;
+	border-width: thin;*/
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
 
-.cls_auto, .cls_money, .cls_time, .cls_cap {
+.cls_auto, .cls_status, .cls_money, .cls_time, .cls_cap {
 	float: left;
 	position: absolute;
 	text-align: center;
@@ -135,10 +140,24 @@ body{
 
 .cls_auto {
 	background-color:#99d20c;
+	background-color:rgba(153, 210, 12, 0.6);
 	height:35%;
-	width:100%;
+	width:67%;
 	left:0;
 	top:20%;
+	background-color:rgba(255, 255, 255, 0.1);
+}
+
+.cls_status {
+	height:35%;
+	width:32%;
+	left:68%;
+	top:20%;
+	//background-color:rgba(255, 255, 255, 0.1);
+	font-size:16px;
+	-webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 
 .cls_money, .cls_time, .cls_cap {
@@ -148,19 +167,25 @@ body{
 
 .cls_money {
 	background-color: #198ae0;
+	background-color:rgba(25, 118, 224, 0.6);
 	width: 33%;
+	background-color:rgba(255, 255, 255, 0.1);
 }
 
 .cls_time {
 	background-color: #26b1b6;
+	background-color:rgba(38, 177, 182, 0.6);
 	width: 33%;
 	left:34%;
+	background-color:rgba(255, 255, 255, 0.1);
 }
 
 .cls_cap {
 	background-color: #099;
+	background-color:rgba(2, 89, 89, 0.6);
 	width: 32%;
 	left:68%;
+	background-color:rgba(255, 255, 255, 0.1);
 }
 
 .zues {
@@ -204,13 +229,13 @@ body{
 	text-align:right;
 	color:#FFF;
 	font-size:28px;
-	background-color:#CCC;
-	/*font-style:italic;*/
+	/*background-color:#CCC;
+	font-style:italic;*/
 	font-weight:bold;
 	line-height:60px;
 	/* chrome 2+, safari 4+; multiple color stops */
-	background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.00, #B359BF), color-stop(0.83, #198ae0));
-	/*background-image: linear-gradient(#063053, #395873, #5c7c99);*/
+	/*background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.00, #B359BF), color-stop(0.83, #198ae0));
+	background-color: rgba(255, 255, 255, 0.1);*/
 }
 
 .autocharge_body, .manualcharge_body, .information_body, .system_body{
