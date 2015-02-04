@@ -38,8 +38,8 @@ body{
 
 .mainbody{
 	position: absolute;
-	left: 5%;
-	width: 90%;
+	left: 1%;
+	width: 99%;
 	top: 0;
 	height: 100%;
 }
@@ -142,16 +142,16 @@ body{
 	background-color:#99d20c;
 	background-color:rgba(153, 210, 12, 0.6);
 	height:74%;
-	width:67%;
-	left:0;
+	width:58%;
+	left:1%;
 	top:20%;
 	background-color:rgba(255, 255, 255, 0.1);
 }
 
 .cls_status {
-	height:35%;
-	width:32%;
-	left:68%;
+	height:74%;
+	width:38%;
+	left:60%;
 	top:20%;
 	//background-color:rgba(255, 255, 255, 0.1);
 	font-size:16px;
