@@ -18,9 +18,7 @@
     <div class="title_body" id="id_title_body">直流充电桩监控&nbsp;&nbsp;</div>
  <div class="mainbody">
 	<div class="page0", id="id_page0">
-		<a href="javascript:void(0);">
-        <div title="as_auto" id="id_auto" class="zues cls_auto">自动充电请刷卡</div>
-        </a>
+        <div title="as_auto" id="id_auto" class="zues cls_auto">充电请刷卡</div>
         <div class="cls_status">
         <table style="font-size:16px; text-align:right" align="center">
             <tr>
@@ -39,249 +37,14 @@
             	<td>母线电压:&nbsp;</td><td>598.3V</td>
             </tr>
             <tr>
-            	<td>作业状态:&nbsp;</td><td>正在执行[查看]</td>
+            	<td>作业状态:&nbsp;</td><td>执行&nbsp;[查看]</td>
             </tr>
 
 
         </table>
         </div>
-        <a href="javascript:charge_as_money();">
-        <div title="as_money" id="id_money" class="zues cls_money">
-        	<table align="center">
-            <tr>
-        	<td><img src="imgs/asmoney.png" width="50px" height="50px" /></td>
-            <td>定金额</td>
-            </tr>
-            </table>
-        </div>
-        </a>
-		<a href="javascript:charge_as_time();">
-        <div title="as_time" id="id_time" class="zues cls_time">
-            <table align="center">
-            <tr>
-            <td><img src="imgs/astime.png" width="50px" height="50px" /></td>
-            <td>定时间</td>
-            </tr>
-            </table>
-        </div>
-        </a>
-        <a href="javascript:charge_as_cap();">
-        <div title="as_cap" id="id_cap" class="zues cls_cap">
-        	<table align="center">
-            <tr>
-        	<td><img src="imgs/ascap.png" width="50px" height="50px" /></td>
-            <td>定电量</td>
-            </tr>
-            </table>
-        </div>
-        </a>
 	</div>
-    <!-- 按金额充电确认界面 -->
-    <div class="page1", id="id_page1">
-    	<br />
-    	<div class="content">
-        <table align="center">
- 		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>
-        <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>
-        <tr>
-    	<td>充电金额:&nbsp;&nbsp;</td>
-    	<td><input class="input_text" id="charge_money_value"  type="text" value="100.0" />元</td>
-        </tr>
-        </table>
-        </div>
-        <div class="content_menu">
-            <a href="javascript:void(0);"  id="blink_0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();" id="page_1_ttl_return" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
-        </div>
-    </div>
-    <!-- 按时间充电确认界面 -->
-    <div class="page2", id="id_page2">
-        <div class="content">
-        <table align="center">
-		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		
-        <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>     
-        <tr>
-    	<td>充电时长:&nbsp;&nbsp;</td>
-    	<td><input class="input_text" id="charge_time_value"  type="text" value="100"/>分钟</td>
-        </tr>
-        </table>
-        </div>
-        <div class="content_menu">
-            <a href="javascript:void(0);" id="blink_1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();"  id="page_2_ttl_return" class="button big gray">&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
-        </div>
-    </div>
-    <!-- 按容量充电确认界面 -->
-    <div class="page3", id="id_page3">
-        <div class="content">
-        <table align="center">	  
-        <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		
-        <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>  	
-        <tr>
-    	<td>终止电量:&nbsp;&nbsp;</td>
-    	<td><input class="input_text" id="charge_cap_value"  type="text" value="100"/>KW.H</td>
-        </tr>
-        <tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>
-        </table>
-        </div>
-        <div class="content_menu">
-            <a href="javascript:void(0);"  id="blink_2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;刷卡确认设置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();"  id="page_3_ttl_return" class="button big gray">&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
-        </div>
-    </div>
-    <!--充电确认界面-->
-    <div class="page4", id="id_page4">
-    	<div class="content">
-    	<table  align="center" class="TABLE_LIST">
-           	<tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            </tr>
-        	<tr>
-            <td>卡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</td>
-            <td id="CARD_ID">895461348633</td>
-            </tr>
-        	<tr>
-            <td>余&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额：</td>
-            <td id="CARD_REMAIND">5682.9</td>
-            </tr>
-        	<tr>
-            <td>预计耗时：</td>
-            <td>N/A</td>
-            </tr>
-        	<tr>
-            <td>费&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;率：</td>
-            <td>N/A</td>
-            </tr>
-            <tr>
-            <td>模&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;式：</td>
-            <td id="CHARGE_MODE">自动模式</td>
-            </tr>
-        	<tr>
-        </table>
-        </div>
-        <div class="content_menu">
-        	<a href="javascript:show_auth_page(4, 'user');" class="button big blue" >&nbsp;&nbsp;设&nbsp;&nbsp;置&nbsp;&nbsp;</a>
-			<a href="javascript:void(0);" class="blink_text" id="blink_3" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再次刷卡确认充电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a href="javascript:charge_as_auto();" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
-        </div>
-    </div>
-    <!-- 手动设置页面 -->
-    <div class="page5", id="id_page5">
-        	<div class="content">
-        <table align="center">
-		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>       
-        <tr>
-    	<td>充电限压:&nbsp;&nbsp;</td>
-    	<td><input id="MANUAL_SET_LIMIT_V" class="input_text" onfocus="vk_focurs('MANUAL_SET_LIMIT_V');" type="text" value="750.5"/></td>
-        </tr>
-        <tr>
-    	<td>充电限流:&nbsp;&nbsp;</td>
-    	<td><input id="MANUAL_SET_LIMIT_I" class="input_text"  type="text" value="100.0" onfocus="vk_focurs('MANUAL_SET_LIMIT_I');" /></td>
-        </tr>
-        </table>
-        </div>
-        <div class="content_menu">
-            <a href="javascript:do_manual_setting();" class="button big blue" >&nbsp;&nbsp;确认设置&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="javascript:do_cancel_autheticate();" class="button big gray">&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>
-        </div>
-    </div>
-    <!-- 密码输入界面 -->
-    <div class="page6", id="id_page6">
-    	<div class="content">
-        <table align="center">
-		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr> 		<tr>
-        <td>&nbsp;</td><td>&nbsp;</td>
-        </tr>     
-        <tr>
-    	<td>授权密码:&nbsp;&nbsp;</td>
-    	<td><input id="PASSWS_ID" class="input_text" type="password" value="" onfocus="vk_show();" /></td>
-        </tr>
-        </table>
-        </div>
-        <div class="content_menu">
-            <a href="javascript:do_cancel_autheticate();" id="AUTH_CANCEL" class="button big gray" >&nbsp;&nbsp;取&nbsp;&nbsp;消&nbsp;&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="javascript:do_autheticate('user');" class="button big blue" >&nbsp;&nbsp;确&nbsp;&nbsp;认&nbsp;&nbsp;</a>
-        </div>
-    </div>
-    <!-- 充电页面 -->
-    <div class="page7", id="id_page7">
-    	<div class="content">
-        <table align="center">
-        	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
-        	<tr>
-            	<td align="left">充电桩状态</td>
-                <td id="CHARGER_STATUS">N/A</td>
-            </tr>
-        	<tr>
-            	<td align="left">充电枪连接状态</td>
-                <td id="CHARGE_GUN_CONN_STATUS">N/A</td>
-            </tr>
-            <tr>
-            	<td align="left">充电任务状态</td>
-                <td id="CHARGE_TASK_STATUS">N/A</td>
-            </tr>
-            <tr>
-            	<td align="left">充电计费模式</td>
-                <td id="CHARGE_BILLONG_MODE">N/A</td>
-            </tr>
-            <tr bordercolor="#FFF">
-                <td colspan="2" height="70px" valign="middle">
-                	<div class="processbar_border">
-                        <div class="processbar" id="PROCESS_BAR_ID">
-                        </div>
-                        <a id="PROCESS_BAR_RATE" class="processbar_data">0%</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        </div>
-        <div class="content_menu">
-        <a href="javascript:style_of_charge_process_bar();" class="button big blue" >充电信息查询</a>
-        <a href="javascript:void(0);"  class="blink_text" id="blink_4" >&nbsp;&nbsp;&nbsp;&nbsp;刷卡停止充电&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a href="javascript:void(0);" class="button big blue" >交易信息查询</a>
-        </div>
-    </div>
-    <div class="page8", id="id_page8">
-    </div>
-    <div class="page9", id="id_page9">
-    </div>
-    <div class="page10", id="id_page10">
-    </div>
-    <div class="page11", id="id_page11">
-    </div>
-    <div class="page12", id="id_page12">
-    </div>
-    <div class="page13", id="id_page13">
-    </div>
 </div>
-	<!-- 用于显示自动充电元素 -->
-
-	<!-- 用于测试元素 -->
-    <!--
-	<p id="txtshi">这是中间主显示区域</p>
-    <p>充电电压：<input type="text" id="edit_demo" class="input_edit" onfocus="vk_on_focurs('edit_demo');" value="543.9" maxlength="8"/>V</p>
-    <p>充电电流：<input type="password" id="paswd_demo" class="input_edit" onfocus="vk_on_focurs('paswd_demo');" value="70.8" />A</p>
-</div>
-	-->
 <!-- 虚拟键盘放置在浮动层，节省空间 -->
 <div class="v_keypad" id="id_keypad">
 	<table >
@@ -302,35 +65,8 @@
 	<td><a href="javascript:vk_pushed('del');" class="button blue">C</a></td>
     </tr></table>
 </div>
-<!--调试信息显示层-->
-<div class="debug" id="DEBUG_ID">
-<table width="100%" align="left">
-  <tr>
-    <td>id_triger</td>
-    <td id="debug1">&nbsp;</td>
-  </tr>
-  <tr>
-    <td>id_confirm</td>
-    <td id="debug2">&nbsp;</td>
-  </tr>
-  <tr>
-    <td>id_settle</td>
-    <td id="debug3">&nbsp;</td>
-  </tr>
-  <tr>
-    <td>charge_task_stat</td>
-    <td id="debug4">&nbsp;</td>
-  </tr>
-  <tr>
-    <td>confirm_echo</td>
-    <td id="debug5">&nbsp;</td>
-  </tr>
-  <tr>
-    <td>billing_mode</td>
-    <td id="debug6">&nbsp;</td>
-  </tr>
-</table>
+<div style="position:absolute; float:left; top:96%; left:5%; font-size:10px;">
+Copyright © 2014 杭州奥能电源设备股份有限公司版权所有
 </div>
-
 </body>
 </html>
