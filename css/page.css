@@ -2,7 +2,7 @@
 /* CSS Document */
 
 /*去链接下划线*/
-a, div, table{
+a, div{
 	text-decoration:none;
 	color:#FFF;
 	font-size:30px;
@@ -14,18 +14,6 @@ body{
 	background-image:url(../imgs/mainbackground.png);
 }
 
-.navigate{
-	position: absolute;
-	left: -1px;
-	width: 25%;
-	top: 1px;
-	bottom: 85%;
-	height: 85%;
-	color:#FFF;
-	line-height:60px;
-	display:none;
-}
-
 .logo_area{
 	position: absolute;
 	left: 33px;
@@ -33,7 +21,6 @@ body{
 	width: 19%;
 	top: 5%;
 	height: 11%;
-	/*background-color: rgba(255, 255, 255, 0.1);*/
 }
 
 .mainbody{
@@ -44,45 +31,11 @@ body{
 	height: 100%;
 }
 
-.debug {
-	position:absolute;
-	left: 50;
-	width: 400px;
-	top: 50px;
-	height: 300px;
-	display: none;
-	font-size:14px;
-}
-
-.v_keypad{
-	position:absolute;
-	left: 210px;
-	width: 94px;
-	top: 245px;
-	height: 105px;
-	display: none;
-	text-align:center;
-	/*background-color: #0F0;*/
-}
-
 .input_edit{
 	text-align:center;
 }
 
-.navigate{
-	font-size:24px;
-}
-
-.sub_navigate{
-	font-size:20px;
-}
-
-.class_manual_setting, .class_info_query, .class_system_settings{
-	display:none;
-	/*text-align:left;*/
-}
-
-.page1,.page2,.page3,.page4,.page5,.page6,.page7,.page8,.page9,.page10,.page11,.page12,.page13,.page14 {
+.as_auto {
 	position: absolute;
 	top:20%;
 	left:0;
@@ -91,15 +44,40 @@ body{
 	background-color:#69E20c;
 	background-color:rgba(255, 255, 255, 0.2);
 	display:none;
-	/*background-image:url(../imgs/mainbackground.png);
-	border-style: solid;
-	border-width: thin;*/
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
 
-.cls_auto, .cls_status, .cls_money, .cls_time, .cls_cap {
+.mainpage {
+	display:none;
+}
+
+/*单页显示框架*/
+.page_frame {
+	float: left;
+	position: absolute;
+	text-align: center;
+	color: #FFF;
+	left: 0px;
+	top: 18%;
+	left: 1.5%;
+	width: 96%;
+	height: 76%;
+	border-width: medium;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.job_create {
+	display:block;
+}
+
+.job_create_table {
+	text-align:center;
+	line-height:normal;
+}
+
+.cls_auto, .cls_status {
 	float: left;
 	position: absolute;
 	text-align: center;
@@ -117,27 +95,6 @@ body{
 	text-align:center;
 }
 
-.content {
-	top:0;
-	height:80%;
-	float: left;
-	left:0;
-	width:100%;
-	position: absolute;
-	text-align:center;
-}
-
-.content_menu {
-	top:80%;
-	bottom: 95%;
-	float: left;
-	left:0;
-	width:100%;
-	text-align:center;
-	position: absolute;
-	background-color:#36C;
-}
-
 .cls_auto {
 	background-color:#99d20c;
 	background-color:rgba(153, 210, 12, 0.6);
@@ -153,39 +110,8 @@ body{
 	width:38%;
 	left:60%;
 	top:20%;
-	//background-color:rgba(255, 255, 255, 0.1);
 	font-size:16px;
-	-webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-}
-
-.cls_money, .cls_time, .cls_cap {
-	top: 60%;
-	height:35%;
-}
-
-.cls_money {
-	background-color: #198ae0;
-	background-color:rgba(25, 118, 224, 0.6);
-	width: 33%;
-	background-color:rgba(255, 255, 255, 0.1);
-}
-
-.cls_time {
-	background-color: #26b1b6;
-	background-color:rgba(38, 177, 182, 0.6);
-	width: 33%;
-	left:34%;
-	background-color:rgba(255, 255, 255, 0.1);
-}
-
-.cls_cap {
-	background-color: #099;
-	background-color:rgba(2, 89, 89, 0.6);
-	width: 32%;
-	left:68%;
-	background-color:rgba(255, 255, 255, 0.1);
+	//background-color:rgba(255, 255, 255, 0.1);
 }
 
 .zues {
@@ -193,7 +119,6 @@ body{
     text-align: center;
     text-decoration: none;
     font: 30px/25px Arial, sans-serif;
-	/*font-style:italic;*/
 	font-weight: normal;
 	line-height:160px;
 
@@ -205,14 +130,7 @@ body{
  
     -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
     -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
-
     box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
- 
-/*    -webkit-transition: all 0.15s ease;
-    -moz-transition: all 0.15s ease;
-    -o-transition: all 0.15s ease;
-    -ms-transition: all 0.15s ease;
-    transition: all 0.15s ease;*/
 }
 
 .mainbody {
@@ -229,17 +147,22 @@ body{
 	text-align:right;
 	color:#FFF;
 	font-size:28px;
-	/*background-color:#CCC;
-	font-style:italic;*/
 	font-weight:bold;
-	line-height:60px;
-	/* chrome 2+, safari 4+; multiple color stops */
-	/*background-image:-webkit-gradient(linear, left bottom, right top, color-stop(0.00, #B359BF), color-stop(0.83, #198ae0));
-	background-color: rgba(255, 255, 255, 0.1);*/
 }
 
 .autocharge_body, .manualcharge_body, .information_body, .system_body{
 	text-align:left;
+}
+
+.v_keypad{
+	position:absolute;
+	left: 210px;
+	width: 94px;
+	top: 245px;
+	height: 105px;
+	display: none;
+	text-align:center;
+	/*background-color: #0F0;*/
 }
 
 .processbar_border{
