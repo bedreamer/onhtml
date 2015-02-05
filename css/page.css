@@ -61,11 +61,11 @@ body{
 	color: #FFF;
 	left: 0px;
 	top: 18%;
-	left: 1.5%;
+	left: 8px;
 	width: 96%;
 	height: 76%;
-	border-width: medium;
 	background-color: rgba(255, 255, 255, 0.2);
+	overflow: auto;
 }
 
 .job_create {
@@ -73,8 +73,16 @@ body{
 }
 
 .job_create_table {
-	text-align:center;
+	font-size:27px;
+	text-align:left;
 	line-height:normal;
+	border:1px solid #FFF;
+	border-bottom-style:solid;
+	border-bottom:1px solid #FFF;
+}
+
+.cls_job_preview {
+	font-size:16px;
 }
 
 .cls_auto, .cls_status {
