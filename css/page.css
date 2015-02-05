@@ -51,7 +51,7 @@ body{
 }
 
 .mainpage {
-	display:none;
+	display:block;
 }
 
 /*单页显示框架*/
@@ -70,7 +70,11 @@ body{
 }
 
 .job_create {
-	display:block;
+	display:none;
+}
+
+.job_working {
+	display:none;
 }
 
 .job_create_table {
@@ -172,6 +176,39 @@ body{
 	display: none;
 	text-align:center;
 	/*background-color: #0F0;*/
+}
+
+.v_input_pages {
+	position:absolute;
+	align:center;
+	text-align:center;
+	left:15%;
+	width:70%;
+	top: 19.9%;
+	height: 70%;
+	background-color:rgba(255,255,255,0.9);
+	background-image:url(../imgs/mainbackground.png);
+	border-style: solid;
+	border-width: thin;
+	-webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+}
+
+.v_bm_kwh_param_page {
+	display:none;
+}
+
+.v_bm_time_param_page {
+	display:none;
+}
+
+.v_bm_money_param_page {
+	display:none;
+}
+
+.v_bm_maual_param_page {
+	display:none;
 }
 
 .processbar_border{

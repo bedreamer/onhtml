@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>直流充电桩监控系统</title>
-<link rel="stylesheet" type="text/css" href="css/page.css" /><style type="text/css">.mainbody #id_job_create .job_create_table #id_bm_param_input .job_create_table {
-}
-</style>
+<link rel="stylesheet" type="text/css" href="css/page.css" />
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/vkey.js"></script>
 <script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 </head>
 <!--oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"-->
@@ -27,24 +27,24 @@
             	<td>&nbsp;</td><td><img width="35px" height="35px" src="imgs/settings.png"/>&nbsp;<img width="35px" height="35px" src="imgs/info.png"/></td>
             </tr>
             <tr>
-            	<td>系统状态:</td><td style="color:#0F0">正常</td>
+            	<td>系统状态:</td><td id="id_mainpage_sys_status">N/A</td>
             </tr>
             <tr>
-            	<td>充电机组:</td><td style="color:#0F0">正常</td>
+            	<td>充电机组:</td><td id="id_mainpage_chargers_status">N/A</td>
             </tr>
             <tr>
-            	<td>绝缘检测:</td><td style="color:#0F0">正常</td>
+            	<td>绝缘检测:</td><td id="id_mainpage_bus0_institude">N/A</td>
             </tr>
             <tr>
-            	<td>母线电压:</td><td>598.3V</td>
+            	<td>母线电压:</td><td id="id_mainpage_bus0_voltage">N/A</td>
             </tr>
             <tr>
-            	<td>作业状态:</td><td>执行&nbsp;[查看]</td>
+            	<td>作业状态:</td><td id="id_mainpage_job_status">N/A</td>
             </tr>
         </table>
         </div>
 
-    </div>
+    </div><!--mainpage-->
     <div class="zues page_frame job_create", id="id_job_create">
     <table class="job_create_table" align="center" width="96%" height="54%">
   <caption>
@@ -94,16 +94,102 @@
       自动充电</label></td>
     <td colspan="2"><label>
       <input type="radio" name="cm" id="id_cm_manual" value="cm_manual" />
-      手动充电</label></td>
+      手动充电;</label></td>
   </tr>
   <tr>
     <td height="34">参数汇总:</td>
     <td colspan="4" id="id_job_commit_preview">1# 枪, 10.1 kw.h,恒流,76A,560V</td>
   </tr>
   </table>
-  <div><p><a>再次刷卡提交作业</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>取消作业</a></p></div>
-</div>
+  <div>
+    <p><a>再次刷卡提交作业</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>取消作业</a></p></div></div>
     </div>
+    <!--job_create_page-->
+    <div class="zues page_frame job_working", id="id_job_working">
+    <table width="96%" align="center" class="job_create_table">
+  <caption>
+    充电作业
+  </caption>
+  <tr>
+    <td scope="col">作业ID</td>
+    <td scope="col">J2015023454</td>
+    <td scope="col">卡片序号</td>
+    <td scope="col">ON20122236989</td>
+  </tr>
+  <tr>
+    <td>充电电流</td>
+    <td>78.9 A</td>
+    <td>充电电压</td>
+    <td>682.6 V</td>
+  </tr>
+  <tr>
+    <td>已充电量</td>
+    <td>89.8 %</td>
+    <td>钱包余额</td>
+    <td>569.56 元</td>
+  </tr>
+  <tr>
+    <td>系统状态</td>
+    <td>正常</td>
+    <td>绝缘检测</td>
+    <td>正常</td>
+  </tr>
+  <tr>
+    <td>充电枪</td>
+    <td>已连接</td>
+    <td>作业状态</td>
+    <td>等待</td>
+  </tr>
+</table>
+
+    </div> <!--job_working_page-->
+</div>
+<!-- 按电量充电输入框 -->
+<div class="v_input_pages v_bm_kwh_param_page">
+	<p>充电量配置<p>
+    <input align="absmiddle" type="text" height="30px" width="200px" value="1.0" />KW.H
+    <br><br><br><br><a><div class="button">确定</div></a>
+    <a><div class="button">取消</div></a>
+</div>
+<!-- 按时间充电输入框 -->
+<div class="v_input_pages v_bm_time_param_page">
+	<p>充电时间配置<p>
+    <input align="absmiddle" type="text" height="30px" width="200px" value="5" />分钟
+    <br><br><br><br><a><div class="button">确定</div></a>
+    <a><div class="button">取消</div></a>
+</div>
+<!-- 按金额充电输入框 -->
+<div class="v_input_pages v_bm_money_param_page">
+	<p>充电金额配置<p>
+    <input align="absmiddle" type="text" height="30px" width="200px" value="1.0" />元
+    <br><br><br><br><a><div class="button">确定</div></a>
+    <a><div class="button">取消</div></a>
+</div>
+<!-- 按手动充电输入框 -->
+<div class="v_input_pages v_bm_maual_param_page">
+<a>手动充电配置<a>
+    <table align="center">
+        <tr>
+          <td><label><input type="radio" name="mc_mode" checked="checked" value="BI"/>
+          恒流</label></td>
+          <td>&nbsp;</td>
+          <td><label><input type="radio" name="mc_mode" value="BV"/>
+          恒压</label></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>限流</td>
+          <td><input type="text" value="65.5" size="9" maxlength="9"/>
+          A</td>
+          <td>限压</td>
+          <td><input type="text" value="480.0" size="9" maxlength="9"/>
+          V</td>
+        <tr>
+          <td>授权</td>
+          <td colspan="3"><input type="password" /></td>
+    </table>
+    <br><br><br><a><div class="button">确定</div></a>
+    <a><div class="button">取消</div></a>
 </div>
 <!-- 虚拟键盘放置在浮动层，节省空间 -->
 <div class="v_keypad" id="id_keypad">

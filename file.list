@@ -2,6 +2,7 @@ index.html
 js/page.js
 js/vkey.js
 js/ajax.js
+js/jquery-1.11.2.min.js
 css/page.css
 imgs/ascap.png
 imgs/asmoney.png
