@@ -145,12 +145,19 @@ function page_show_jobs_preview(from) {
 							var left = 55 + (i % 5) * 120 + 15 * (i%5);
 							var top = 120 * Math.floor(i/5) + 15 + 15 * Math.floor(i/5);
 							codes = codes + 
-							"<a href=\"javascript:page_show_job_detail('jobs_preview_page', '";
-							codes = codes + d[i].id;
-							codes = codes +"');\"><div class=\"job_preview_box\"";
-							codes = codes +"  style=\"left:" + left.toString() + "px";
+							"<a href=\"javascript:page_show_job_detail('jobs_preview_page','";
+							codes = codes + d[i].id + "');\">";
+							codes = codes +"<div align=\"center\" class=\"job_preview_box\"";
+							codes = codes +" style=\"left:" + left.toString() + "px";
 							codes = codes +";top:" + top.toString() + "px\" ";
-							codes = codes + "id=\"id_jobpreview_"+i.toString() + "\"></div></a>";
+							codes = codes + "id=\"id_jobpreview_"+i.toString() + "\">";
+							codes = codes + "<table align=\"center\">";
+							codes = codes + "<tr><td>状态</td><td>等待</td></tr>";
+							codes = codes + "<tr><td>端口</td><td>1#枪</td></tr>";
+							codes = codes + "<td colspan=\"2\" scope=\"col\">" + d[i].id;											
+							codes = codes + "</td><td scope=\"col\">&nbsp;</td>"
+    						codes = codes + "<td scope=\"col\">&nbsp;</td>"
+							codes = codes + "</table></div></a>";
 						}
 						$('#jobs_preview').html(codes);
 						});
