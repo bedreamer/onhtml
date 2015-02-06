@@ -106,7 +106,7 @@
     <p><a>再次刷卡提交作业</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>取消作业</a></p></div></div>
     </div>
     <!--job_create_page-->
-    <div class="zues page_frame job_working", id="id_job_working">
+    <div class="zues page_frame job_working", id="id_job_working"><div>
     <table width="96%" align="center" class="job_create_table">
   <caption>
     充电作业
@@ -141,8 +141,11 @@
     <td>作业状态</td>
     <td>等待</td>
   </tr>
-</table>
-
+</table></div>
+	<div class="job_working_toolbox" id="job_working_toolbox_id">
+        <a href="javascript:page_show_main_page('id_job_working');"><div class="button">返回主页</div></a>
+        <a href="javascript:page_show_jobs_preview('id_job_working')"><div class="button">返回作业池</div></a>
+    </div>
     </div> <!--job_working_page-->
     <div class="zeus page_frame job_preview_page" id="jobs_preview_page">
     	<div class="jobs_preview_title">作业预览</div>
