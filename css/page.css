@@ -50,10 +50,6 @@ body{
     border-radius: 8px;
 }
 
-.mainpage {
-	display:block;
-}
-
 /*单页显示框架*/
 .page_frame {
 	float: left;
@@ -62,11 +58,18 @@ body{
 	color: #FFF;
 	left: 0px;
 	top: 18%;
-	left: 8px;
+	left: 2%;
 	width: 96%;
 	height: 76%;
 	background-color: rgba(255, 255, 255, 0.2);
 	overflow: auto;
+	-webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.mainpage {
+	display:block;
 }
 
 .job_create {
@@ -74,6 +77,10 @@ body{
 }
 
 .job_working {
+	display:none;
+}
+
+.job_preview_page {
 	display:none;
 }
 
@@ -90,13 +97,13 @@ body{
 	font-size:16px;
 }
 
-.cls_auto, .cls_status {
+.cls_auto, .cls_status, .cls_main_toolbox {
 	float: left;
 	position: absolute;
 	text-align: center;
 	color: #FFF;
-	left: 0px;
 	border-width:medium;
+	//background-color:rgba(204,204,102,1);
 }
 
 .input_text {
@@ -119,12 +126,35 @@ body{
 }
 
 .cls_status {
-	height:74%;
+	height:50%;
 	width:38%;
 	left:60%;
 	top:20%;
 	font-size:16px;
 	//background-color:rgba(255, 255, 255, 0.1);
+}
+
+.cls_main_toolbox {
+	height:23%;
+	width:38%;
+	left:60%;
+	top:71%;
+	font-size:16px;
+}
+
+.main_tool_box {
+	position:absolute;
+	top:5px;
+	height:100px;
+	width:100px;
+	line-height:50px;
+	background-color:rgba(255, 255, 255, 0.2);
+	-webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+	-webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
 }
 
 .zues {
