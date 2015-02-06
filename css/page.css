@@ -122,7 +122,21 @@ body{
 	width:58%;
 	left:1%;
 	top:20%;
+	line-height:normal;
 	background-color:rgba(255, 255, 255, 0.1);
+}
+
+.cls_stat_grid_img {
+	position:absolute;
+	float:left;
+	top:110px;
+	width:458px;
+	height:240px;
+	//background-color:rgba(255, 255, 255, 0.9);
+	background-image:url(../imgs/statgrid.png);
+	width:100%;
+	height::100%;
+	opacity:0.90;
 }
 
 .cls_status {

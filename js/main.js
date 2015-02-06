@@ -9,6 +9,8 @@ var g_cfg = {
 	query_period:800
 };
 var g_sys = {
+	// 当前显示的页面ID
+	page_id_curr:'id_mainpage',
 	// 系统状态
 	sys_status:'N/A',
 	// 充电机状态
@@ -126,6 +128,7 @@ function page_show_jobs_preview(from) {
 
 	$('#'+from).hide();
 	$('#jobs_preview_page').show();
+	g_sys.page_id_curr = 'jobs_preview_page';
 
 	for ( var i = 0; i < nr; i ++ ) {
 		codes = codes + "<a href=\"javascript:void(0);\"><div class=\"job_preview_box\"";
@@ -151,4 +154,5 @@ function page_show_main_page(from) {
 
 	$('#'+from).hide();
 	$('#id_mainpage').show();
+	g_sys.page_id_curr = 'id_mainpage';
 }
