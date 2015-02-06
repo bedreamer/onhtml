@@ -131,9 +131,11 @@ function page_show_jobs_preview(from) {
 	g_sys.page_id_curr = 'jobs_preview_page';
 
 	for ( var i = 0; i < nr; i ++ ) {
-		codes = codes + "<a href=\"javascript:page_show_job_detail('jobs_preview_page', '0');\"><div class=\"job_preview_box\"";
+		codes = codes + "<a href=\"javascript:page_show_job_detail('jobs_preview_page', '";
+		codes = codes + "id_jobpreview_" + i.toString();
+		codes = codes +"');\"><div class=\"job_preview_box\"";
 		codes = codes + "id=\"id_jobpreview_" + i.toString() + "\">";
-		codes = codes + "<table>";
+		codes = codes + "<table align=\"center\">";
 		codes = codes + "<tr><td>状态</td><td>等待</td></tr>";
 		codes = codes + "<tr><td>端口</td><td>1#枪</td></tr>";
 		codes = codes + "</table></div></a>";
@@ -162,5 +164,7 @@ function page_show_main_page(from) {
 function page_show_job_detail(from, job) {
 	$('#'+from).hide();
 	$('#id_job_working').show();
+	g_sys.page_id_curr = 'id_job_working';
+	$('#id_job_working_jid').html(job);
 }
 
