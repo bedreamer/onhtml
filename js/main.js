@@ -131,7 +131,7 @@ function page_show_jobs_preview(from) {
 	g_sys.page_id_curr = 'jobs_preview_page';
 
 	for ( var i = 0; i < nr; i ++ ) {
-		codes = codes + "<a href=\"javascript:void(0);\"><div class=\"job_preview_box\"";
+		codes = codes + "<a href=\"javascript:page_show_job_detail('jobs_preview_page', '0');\"><div class=\"job_preview_box\"";
 		codes = codes + "id=\"id_jobpreview_" + i.toString() + "\">";
 		codes = codes + "<table>";
 		codes = codes + "<tr><td>状态</td><td>等待</td></tr>";
@@ -141,13 +141,14 @@ function page_show_jobs_preview(from) {
 	$('#jobs_preview').html(codes);
 	for ( var i = 0; i < nr; i ++ ) {
 		var id = "#id_jobpreview_" + i.toString();
-		var left = 45 + (i % 5) * 120 + 15 * (i%5);
+		var left = 55 + (i % 5) * 120 + 15 * (i%5);
 		var top = 120 * Math.floor(i/5) + 15 + 15 * Math.floor(i/5);
 		$(id).css('left', left);
 		$(id).css('top', top);
 	}
 }
 
+// 显示主页
 function page_show_main_page(from) {
 	var codes = '';
 	var nr = 10;
@@ -156,3 +157,10 @@ function page_show_main_page(from) {
 	$('#id_mainpage').show();
 	g_sys.page_id_curr = 'id_mainpage';
 }
+
+// 显示作业的详细信息
+function page_show_job_detail(from, job) {
+	$('#'+from).hide();
+	$('#id_job_working').show();
+}
+
