@@ -6,7 +6,9 @@ var g_cfg = {
 	ontom_host:'192.168.1.14:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
-	query_period:800
+	query_period:800,
+	// 作业查询接口
+	ontom_query_job:'/job/query.json'
 };
 var g_sys = {
 	// 当前显示的页面ID
@@ -47,6 +49,7 @@ var g_sys = {
 // JS 初始化调用
 function js_init() {
 	g_cfg.ontom_query = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query;
+	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
 	setTimeout(js_main_loop, 800);
 }
 
@@ -54,7 +57,6 @@ function js_init() {
 function js_main_loop() {
 	$.getJSON(g_cfg.ontom_query, '', function (data, status, xhr){
 		if ( status == "success" ) {
-			//var ontom = $.parseJSON(data);
 			if ( data.version == 'V1.0' ) {
 				switch ( data.system_status ) {
 				case 'N/A':
@@ -122,14 +124,43 @@ function card_sn_valid(sn, remain) {
 function job_commit_startup(sn, remain) {
 }
 
+// 充电作业池预览
 function page_show_jobs_preview(from) {
-	var codes = '';
-	var nr = 10;
-
 	$('#'+from).hide();
 	$('#jobs_preview_page').show();
 	g_sys.page_id_curr = 'jobs_preview_page';
 
+	$('#jobs_preview').html("<b>没有充电作业!</b>");
+	function refresh_jobs_list() {
+		if ( g_sys.page_id_curr != 'jobs_preview_page' ) return;
+		$.getJSON(g_cfg.ontom_query_job, '', function (data, status, xhr){
+				if ( status == 'success' ) {
+					$('#jobs_preview').html("fasdfadf");
+					$.each(data, function (index, d) {
+						if ( index != 'jobs' ) return;
+						if ( d.length <= 0 ) return;
+
+						var codes='';
+						for ( var i = 0; i < d.length; i ++ ) {
+							var left = 55 + (i % 5) * 120 + 15 * (i%5);
+							var top = 120 * Math.floor(i/5) + 15 + 15 * Math.floor(i/5);
+							codes = codes + 
+							"<a href=\"javascript:page_show_job_detail('jobs_preview_page', '";
+							codes = codes + d[i].id;
+							codes = codes +"');\"><div class=\"job_preview_box\"";
+							codes = codes +"  style=\"left:" + left.toString() + "px";
+							codes = codes +";top:" + top.toString() + "px\" ";
+							codes = codes + "id=\"id_jobpreview_"+i.toString() + "\"></div></a>";
+						}
+						$('#jobs_preview').html(codes);
+						});
+	
+				}
+		});
+		setTimeout(refresh_jobs_list, g_cfg.query_period);
+	}
+	refresh_jobs_list();
+/*
 	for ( var i = 0; i < nr; i ++ ) {
 		codes = codes + "<a href=\"javascript:page_show_job_detail('jobs_preview_page', '";
 		codes = codes + "id_jobpreview_" + i.toString();
@@ -148,6 +179,7 @@ function page_show_jobs_preview(from) {
 		$(id).css('left', left);
 		$(id).css('top', top);
 	}
+*/
 }
 
 // 显示主页
