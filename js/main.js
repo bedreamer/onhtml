@@ -8,7 +8,9 @@ var g_cfg = {
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
 	// 作业查询接口
-	ontom_query_job:'/job/query.json'
+	ontom_query_job:'/job/query.json',
+	// 作业创建接口
+	ontom_create_job:'/job/create.json'
 };
 var g_sys = {
 	// 当前显示的页面ID
@@ -45,11 +47,35 @@ var g_sys = {
 	// 执行祖业数量
 	job_working_count:0
 };
+// 作业提交参数
+var g_commit = {
+	// 提交的时间戳
+	c_timestamp:'0',
+	// 提交的卡片ID
+	c_cid: 'N/A',
+	// 计费模式[自动|电量|时间|金额]
+	b_mode: 'auto',
+	// 按电量计费参数
+	b_kwh: '0.0',
+	// 按时间计费参数
+	b_time: '0',
+	// 按金额计费参数
+	b_money: '0',
+	// 充电模式[自动|手动]
+	c_mode: 'auto',
+	// 手动充电模式[恒压|恒流]
+	cm_set_mode: 'BV',
+	// 手动充电限压值
+	cm_set_V: '0.0',
+	// 手动充电限流值
+	cm_set_I: '0.0'
+};
 
 // JS 初始化调用
 function js_init() {
 	g_cfg.ontom_query = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query;
 	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
+	g_cfg.ontom_create_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_create_job;
 	setTimeout(js_main_loop, 800);
 }
 
@@ -119,6 +145,22 @@ function card_sn_valid(sn, remain) {
 	if ( g_sys.page_id_curr == 'id_mainpage' ) { // 创建充电作业
 		page_show_job_create('id_mainpage', sn, remain);
 	} else if (g_sys.page_id_curr=='id_job_create') { // 提交作业
+		function do_job_commit(sn) {
+			var pa = 't=' + Date.parse(new Date()).toString() + '&gun=1';
+			$.getJSON(g_cfg.ontom_create_job, pa, function (data, status, xhr) {
+				if ( status == 'success' ) {
+					if ( data.status == "REJECTED" ) {
+						alert('无效的作业');
+					} else if ( data.status=='PENDING') {
+						page_show_main_page('id_job_create');
+					} else if (data.status == 'OK' ) {
+						page_show_main_page('id_job_create');
+					} else;
+					return;	
+				}
+				});
+		}
+		do_job_commit(sn);
 	} else if (g_sys.page_id_curr=='id_job_working') { // 终止充电作业
 	} else { // 无效刷卡
 	}
