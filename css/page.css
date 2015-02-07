@@ -1,6 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
 
+/*
+* {cursor: none;}
+*/
 /*去链接下划线*/
 a, div{
 	text-decoration:none;

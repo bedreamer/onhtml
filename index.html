@@ -76,16 +76,16 @@
   <tr>
     <td height="34">计费模式:</td>
     <td><label>
-      <input type="radio" name="bm" id="id_bm_auto" value="bm_auto"  checked="checked" />
+      <input type="radio" name="bm" id="id_bm_auto" value="0"  checked='true' />
       全自动</label></td>
     <td><label>
-      <input type="radio" name="bm" id="id_bm_kwh" value="bm_kwh" />
+      <input type="radio" name="bm" id="id_bm_kwh" value="1" onclick="javascript:page_show_bm_set_kwh('kwh');" />
       按电量</label></td>
     <td><label>
-      <input type="radio" name="bm" id="id_bm_time" value="bm_time" />
+      <input type="radio" name="bm" id="id_bm_time" value="2" onclick="javascript:page_show_bm_set_time('time');" />
       按时间</label></td>
     <td><label>
-      <input type="radio" name="bm" id="id_bm_money" value="bm_money" />
+      <input type="radio" name="bm" id="id_bm_money" value="3" onclick="javascript:page_show_bm_set_money('money');" />
       按金额</label></td>
   </tr>
   <tr>
@@ -94,7 +94,7 @@
       <input type="radio" name="cm" id="id_cm_auto" value="cm_auto"  checked="checked" />
       自动充电</label></td>
     <td colspan="2"><label>
-      <input type="radio" name="cm" id="id_cm_manual" value="cm_manual" />
+      <input type="radio" name="cm" id="id_cm_manual" value="cm_manual" onclick="javascript:page_show_cm_set('manual');"/>
       手动充电;</label></td>
   </tr>
   <tr>
@@ -102,8 +102,7 @@
     <td colspan="4" id="id_job_commit_preview">1# 枪, 10.1 kw.h,恒流,76A,560V</td>
   </tr>
   </table>
-  <div>
-    <p><a>再次刷卡提交作业</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>取消作业</a></p></div></div>
+  	<div align="center"><a>再次刷卡提交作业</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:page_job_create_cancel('id_job_create');"><div class="button">取消作业</div></a></div></div>
     </div>
     <!--job_create_page-->
     <div class="zues page_frame job_working", id="id_job_working"><div>
@@ -154,28 +153,28 @@
     </div> <!--jobs_preview-->
 </div>
 <!-- 按电量充电输入框 -->
-<div class="v_input_pages v_bm_kwh_param_page">
+<div class="v_input_pages v_bm_kwh_param_page" id="id_bm_set_kwh_page">
 	<p>充电量配置<p>
     <input align="absmiddle" type="text" height="30px" width="200px" value="1.0" />KW.H
     <br><br><br><br><a><div class="button">确定</div></a>
-    <a><div class="button">取消</div></a>
+    <a href="javascript:page_bm_set_cancel('id_bm_set_kwh_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按时间充电输入框 -->
-<div class="v_input_pages v_bm_time_param_page">
+<div class="v_input_pages v_bm_time_param_page" id="id_bm_set_time_page">
 	<p>充电时间配置<p>
     <input align="absmiddle" type="text" height="30px" width="200px" value="5" />分钟
     <br><br><br><br><a><div class="button">确定</div></a>
-    <a><div class="button">取消</div></a>
+    <a href="javascript:page_bm_set_cancel('id_bm_set_time_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按金额充电输入框 -->
-<div class="v_input_pages v_bm_money_param_page">
+<div class="v_input_pages v_bm_money_param_page" id="id_bm_set_money_page">
 	<p>充电金额配置<p>
     <input align="absmiddle" type="text" height="30px" width="200px" value="1.0" />元
     <br><br><br><br><a><div class="button">确定</div></a>
-    <a><div class="button">取消</div></a>
+    <a href="javascript:page_bm_set_cancel('id_bm_set_money_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按手动充电输入框 -->
-<div class="v_input_pages v_bm_maual_param_page">
+<div class="v_input_pages v_bm_maual_param_page" id="id_cm_set_page">
 <a>手动充电配置<a>
     <table align="center">
         <tr>
@@ -198,7 +197,7 @@
           <td colspan="3"><input type="password" /></td>
     </table>
     <br><br><br><a><div class="button">确定</div></a>
-    <a><div class="button">取消</div></a>
+    <a href="javascript:page_cm_set_cancel('id_cm_set_page');"><div class="button">取消</div></a>
 </div>
 <!-- 虚拟键盘放置在浮动层，节省空间 -->
 <div class="v_keypad" id="id_keypad">

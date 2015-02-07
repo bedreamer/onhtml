@@ -116,8 +116,11 @@ function js_main_loop() {
 // 处理刷卡事件
 function card_sn_valid(sn, remain) {
 	// 创建作业
-	if ( g_sys.job_working_count == 0 ) {
-	} else {
+	if ( g_sys.page_id_curr == 'id_mainpage' ) { // 创建充电作业
+		page_show_job_create('id_mainpage', sn, remain);
+	} else if (g_sys.page_id_curr=='id_job_create') { // 提交作业
+	} else if (g_sys.page_id_curr=='id_job_working') { // 终止充电作业
+	} else { // 无效刷卡
 	}
 }
 
@@ -135,10 +138,12 @@ function page_show_jobs_preview(from) {
 		if ( g_sys.page_id_curr != 'jobs_preview_page' ) return;
 		$.getJSON(g_cfg.ontom_query_job, '', function (data, status, xhr){
 				if ( status == 'success' ) {
-					$('#jobs_preview').html("fasdfadf");
 					$.each(data, function (index, d) {
 						if ( index != 'jobs' ) return;
-						if ( d.length <= 0 ) return;
+						if ( d.length <= 0 ) {
+							$('#jobs_preview').html("<b>没有充电作业!</b>");
+							 return;
+						}
 
 						var codes='';
 						for ( var i = 0; i < d.length; i ++ ) {
@@ -167,33 +172,10 @@ function page_show_jobs_preview(from) {
 		setTimeout(refresh_jobs_list, g_cfg.query_period);
 	}
 	refresh_jobs_list();
-/*
-	for ( var i = 0; i < nr; i ++ ) {
-		codes = codes + "<a href=\"javascript:page_show_job_detail('jobs_preview_page', '";
-		codes = codes + "id_jobpreview_" + i.toString();
-		codes = codes +"');\"><div class=\"job_preview_box\"";
-		codes = codes + "id=\"id_jobpreview_" + i.toString() + "\">";
-		codes = codes + "<table align=\"center\">";
-		codes = codes + "<tr><td>状态</td><td>等待</td></tr>";
-		codes = codes + "<tr><td>端口</td><td>1#枪</td></tr>";
-		codes = codes + "</table></div></a>";
-	}
-	$('#jobs_preview').html(codes);
-	for ( var i = 0; i < nr; i ++ ) {
-		var id = "#id_jobpreview_" + i.toString();
-		var left = 55 + (i % 5) * 120 + 15 * (i%5);
-		var top = 120 * Math.floor(i/5) + 15 + 15 * Math.floor(i/5);
-		$(id).css('left', left);
-		$(id).css('top', top);
-	}
-*/
 }
 
 // 显示主页
 function page_show_main_page(from) {
-	var codes = '';
-	var nr = 10;
-
 	$('#'+from).hide();
 	$('#id_mainpage').show();
 	g_sys.page_id_curr = 'id_mainpage';
@@ -207,3 +189,71 @@ function page_show_job_detail(from, job) {
 	$('#id_job_working_jid').html(job);
 }
 
+// 显示作业创建页面
+function page_show_job_create(from, cid, remain) {
+	$('#'+from).hide();
+	$('#id_job_create').show();
+	g_sys.page_id_curr = 'id_job_create';
+	$('#id_job_commit_card_sn').html(cid);
+	$('#id_job_commit_acount_remain').html(remain);
+}
+
+// 显示按电量充电设置页面
+function page_show_bm_set_kwh() {
+	$('#id_bm_set_kwh_page').show();
+	g_sys.page_id_curr = 'id_bm_set_kwh_page';
+	$('#id_keypad').show();
+}
+
+// 显示按时间充电设置页面
+function page_show_bm_set_time() {
+	$('#id_bm_set_time_page').show();
+	g_sys.page_id_curr = 'id_bm_set_time_page';
+	$('#id_keypad').show();
+}
+
+// 显示按金额充电设置页面
+function page_show_bm_set_money() {
+	$('#id_bm_set_money_page').show();
+	g_sys.page_id_curr = 'id_bm_set_money_page';
+	$('#id_keypad').show();
+}
+
+// 计费方式设置取消
+function page_bm_set_cancel(from) {
+	$('#'+from).hide();
+	$('#id_keypad').hide();
+	//$('#id_bm_auto').attr("checked","checked");
+	if ( from == 'id_bm_set_kwh_page' ) {
+		//$('#id_bm_kwh').removeAttr('checked');
+		$("input[type='radio'][name='bm'][value='1']").attr("checked",false);
+	} else if ( from == 'id_bm_set_time_page') {
+		//$('#id_bm_time').removeAttr('checked');
+		$("input[type='radio'][name='bm'][value='2']").attr("checked",false);
+	} else if ( from == 'id_bm_set_money_page') {
+		//$('#id_bm_money').removeAttr('checked');
+		$("input[type='radio'][name='bm'][value='3']").attr("checked",false);
+	} else ;
+	$("input[type='radio'][name='bm'][value='0']").attr("checked",true);
+	//$("input[@type=radio][name=sex][@value=1]").attr("checked",true);  
+	g_sys.page_id_curr = 'id_job_create';
+}
+
+// 手动充电设置页面取消
+function page_cm_set_cancel(from) {
+	$('#'+from).hide();
+	$('#id_keypad').hide();
+	g_sys.page_id_curr = 'id_job_create';
+}
+
+// 显示手动充电设置页面
+function page_show_cm_set() {
+	$('#id_cm_set_page').show();
+	g_sys.page_id_curr = 'id_cm_set_page';
+	$('#id_keypad').show();
+}
+
+// 作业创建取消
+function page_job_create_cancel(from) {
+	page_show_main_page(from);
+}
