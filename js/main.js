@@ -173,9 +173,9 @@ function card_sn_valid(sn, remain) {
 					if ( data.status == "REJECTED" ) {
 						alert('无效的作业');
 					} else if ( data.status=='PENDING') {
-						page_show_main_page('id_job_create');
+						page_show_job_detail('id_job_create', data.id);
 					} else if (data.status == 'OK' ) {
-						page_show_main_page('id_job_create');
+						page_show_job_detail('id_job_create', data.id);
 					} else;
 					return;	
 				}
