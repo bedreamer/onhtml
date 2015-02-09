@@ -121,6 +121,7 @@ function js_main_loop() {
 				$('#id_mainpage_chargers_status').html(data.charger_status);
 				$('#id_mainpage_bus0_institude').html(data.bus0_institude);
 				$('#id_mainpage_bus0_voltage').html(data.bus0_V);
+				$('#id_mainpage_bus0_current').html(data.bus0_I);
 				if ( data.query_period > 0 ) {
 					g_cfg.query_period = data.query_period;
 				}
@@ -150,18 +151,20 @@ function card_sn_valid(sn, remain) {
 			pa = pa + '&cid=' + sn;
 			pa = pa + '&gun=' + $("input[name='gun']:checked").val();
 			if ( g_commit.b_mode == 'kwh' ) {
-				pa = pa + '&b_mode=kwh&b_kwh=' + '0.1';
+				pa = pa + '&b_mode=kwh&b_kwh=' + g_commit.b_kwh;
 			} else if ( g_commit.b_mode == 'time') {
-				pa = pa + '&b_mode=time&b_time=' + '15';
+				pa = pa + '&b_mode=time&b_time=' + g_commit.b_time;
 			} else if ( g_commit.b_mode == 'money') {
-				pa = pa + '&b_mode=money&b_money=' + '1.5';
+				pa = pa + '&b_mode=money&b_money=' + g_commit.b_money;
 			} else {
 				pa = pa + '&b_mode=auto';
 			}
 			if ( g_commit.c_mode == 'BI' ) {
-				pa = pa + '&c_mode=BI&set_I=45.0&set_V=489.5';
+				pa = pa + '&c_mode=BI&set_I=' + g_commit.cm_set_I;
+				pa = pa + '&set_V=' + g_commit.cm_set_V;
 			} else if ( g_commit.c_mode == 'BV') {
-				pa = pa + '&c_mode=BV&set_V=530.5&set_I=34.8';
+				pa = pa + '&c_mode=BV&set_V=' + g_commit.cm_set_V;
+				pa = pa + '&set_I=' + g_commit.cm_set_I;
 			} else {
 				pa = pa + '&c_mode=auto';
 			}
@@ -217,13 +220,11 @@ function page_show_jobs_preview(from) {
 							codes = codes +";top:" + top + "px\" ";
 							codes = codes + "id=\"id_jobpreview_"+i + "\">";
 							codes = codes + "<table align=\"center\" class=\"job_preview_box_table\">";
-							codes = codes + "<tr><td>状态</td><td>";
-							codes = codes + d[i].status + "</td></tr>";
-							codes = codes + "<tr><td>端口</td><td>";
-							codes = codes + d[i].port + "枪</td></tr>";
-							codes = codes + "<tr><td colspan=\"2\" scope=\"col\">" + d[i].id;											
-							codes = codes + "</td><td scope=\"col\">&nbsp;</td>"
-    						codes = codes + "<td scope=\"col\">&nbsp;</td></tr>"
+							codes = codes + "<tr><td>状态</td><td>" + d[i].status + "</td></tr>";
+							codes = codes + "<tr><td>端口</td><td>" + d[i].port + "枪</td></tr>";
+							codes = codes + "<tr><td>连接</td><td>" + d[i].gun_stat + "</td></tr>";		
+							codes = codes + "<tr><td>JID:</td><td>" + d[i].id  + "</td></tr>";											
+							codes = codes + "<tr><td>CID:</td><td>" + d[i].cid + "</td></tr>";											
 							codes = codes + "</table></div></a>";
 						}
 						$('#jobs_preview').html(codes);
@@ -290,6 +291,13 @@ function page_show_job_create(from, cid, remain) {
 	$('#'+from).hide();
 	$('#id_job_create').show();
 	g_sys.page_id_curr = 'id_job_create';
+
+	var $radios = $('input:radio[name=bm]');
+    $radios.filter('[value=0]').prop('checked', true);
+
+	var $radios = $('input:radio[name=cm]');
+    $radios.filter('[value=cm_auto]').prop('checked', true);
+
 	$('#id_job_commit_card_sn').html(cid);
 	$('#id_job_commit_acount_remain').html(remain);
 }
@@ -321,10 +329,13 @@ function page_bm_set_ok(from) {
 	$('#id_keypad').hide();
 	if ( from == 'id_bm_set_kwh_page' ) {
 		g_commit.b_mode = 'kwh';
+		g_commit.b_kwh = $('#id_bm_set_kwh').val();
 	} else if ( from == 'id_bm_set_time_page') {
 		g_commit.b_mode = 'time';
+		g_commit.b_time = $('#id_bm_set_time').val();
 	} else if ( from == 'id_bm_set_money_page') {
 		g_commit.b_mode = 'money';
+		g_commit.b_money = $('#id_bm_set_money').val();
 	} else ;
 	g_sys.page_id_curr = 'id_job_create';
 }
@@ -333,19 +344,18 @@ function page_bm_set_ok(from) {
 function page_bm_set_cancel(from) {
 	$('#'+from).hide();
 	$('#id_keypad').hide();
-	//$('#id_bm_auto').attr("checked","checked");
 	if ( from == 'id_bm_set_kwh_page' ) {
-		//$('#id_bm_kwh').removeAttr('checked');
 		$("input[type='radio'][name='bm'][value='1']").attr("checked",false);
 	} else if ( from == 'id_bm_set_time_page') {
-		//$('#id_bm_time').removeAttr('checked');
 		$("input[type='radio'][name='bm'][value='2']").attr("checked",false);
 	} else if ( from == 'id_bm_set_money_page') {
-		//$('#id_bm_money').removeAttr('checked');
 		$("input[type='radio'][name='bm'][value='3']").attr("checked",false);
 	} else ;
-	$("input[type='radio'][name='bm'][value='0']").attr("checked",true);
-	//$("input[@type=radio][name=sex][@value=1]").attr("checked",true); 
+
+	var $radios = $('input:radio[name=bm]');
+    if($radios.is(':checked') === false) {
+        $radios.filter('[value=0]').prop('checked', true);
+    } 
 	g_commit.b_mode = 'auto'; 
 	g_sys.page_id_curr = 'id_job_create';
 }
@@ -354,7 +364,9 @@ function page_bm_set_cancel(from) {
 function page_cm_set_ok(from) {
 	$('#'+from).hide();
 	$('#id_keypad').hide();
-	g_commit.c_mode = 'auto';
+	g_commit.c_mode = $("input[name='mc_mode']:checked").val();
+	g_commit.cm_set_I = $('#id_cm_set_lI').val();
+	g_commit.cm_set_V = $('#id_cm_set_lV').val();
 	g_sys.page_id_curr = 'id_job_create';
 }
 
