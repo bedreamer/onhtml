@@ -37,13 +37,13 @@
             	<td>母线电压:</td><td id="id_mainpage_bus0_voltage">N/A</td>
             </tr>
             <tr>
-            	<td>作业状态:</td><td id="id_mainpage_job_status">N/A</td>
+            	<td>作业数量:</td><td id="id_mainpage_job_nr">N/A</td>
             </tr>
         </table>
         </div>
         <div class="cls_main_toolbox">
         <a href="javascript:page_show_jobs_preview('id_mainpage');"><div class="zeus main_tool_box" style="left:35px">作业<br>查询</div></a>
-        <a href="javascript:page_show_jobs_preview('id_mainpage');"><div class="zeus main_tool_box" style="left:165px">历史<br>故障</div></a>
+        <a href="javascript:page_show_jobs_preview('id_mainpage');"><div class="zeus main_tool_box" style="left:165px">系统<br>操作</div></a>
         </div>
     </div><!--mainpage-->
     <div class="zues page_frame job_create", id="id_job_create">
@@ -66,7 +66,7 @@
   </tr>
   <tr>
     <td width="18%" height="34" scope="col">充电端口:</td>
-    <td width="19%" scope="col"><label  onblur="alert('id_gun_0')"><input type="radio" name="gun" id="id_gun_0" value="0"  checked="checked"/>
+    <td width="19%" scope="col"><label><input type="radio" name="gun" id="id_gun_0" value="0"  checked="checked"/>
 1#&nbsp;&nbsp;&nbsp;枪</label></td>
     <td width="23%" scope="col"><label><input type="radio" name="gun" id="id_gun_1" value="1" />
 2#&nbsp;&nbsp;&nbsp;枪</label></td>
@@ -156,21 +156,21 @@
 <div class="v_input_pages v_bm_kwh_param_page" id="id_bm_set_kwh_page">
 	<p>充电量配置<p>
     <input align="absmiddle" type="text" height="30px" width="200px" value="1.0" />KW.H
-    <br><br><br><br><a><div class="button">确定</div></a>
+    <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_kwh_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_kwh_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按时间充电输入框 -->
 <div class="v_input_pages v_bm_time_param_page" id="id_bm_set_time_page">
 	<p>充电时间配置<p>
     <input align="absmiddle" type="text" height="30px" width="200px" value="5" />分钟
-    <br><br><br><br><a><div class="button">确定</div></a>
+    <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_time_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_time_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按金额充电输入框 -->
 <div class="v_input_pages v_bm_money_param_page" id="id_bm_set_money_page">
 	<p>充电金额配置<p>
     <input align="absmiddle" type="text" height="30px" width="200px" value="1.0" />元
-    <br><br><br><br><a><div class="button">确定</div></a>
+    <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_money_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_money_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按手动充电输入框 -->
@@ -194,9 +194,9 @@
           V</td>
         <tr>
           <td>授权</td>
-          <td colspan="3"><input type="password" /></td>
+          <td colspan="3"><input type="password" id="cm_set_auth_passwd" /></td>
     </table>
-    <br><br><br><a><div class="button">确定</div></a>
+    <br><br><br><a href="javascript:page_cm_set_ok('id_cm_set_page');"><div class="button">确定</div></a>
     <a href="javascript:page_cm_set_cancel('id_cm_set_page');"><div class="button">取消</div></a>
 </div>
 <!-- 虚拟键盘放置在浮动层，节省空间 -->

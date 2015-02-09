@@ -146,7 +146,25 @@ function card_sn_valid(sn, remain) {
 		page_show_job_create('id_mainpage', sn, remain);
 	} else if (g_sys.page_id_curr=='id_job_create') { // 提交作业
 		function do_job_commit(sn) {
-			var pa = 't=' + Date.parse(new Date()).toString() + '&gun=1';
+			var pa = 't=' + Date.parse(new Date()).toString();
+			pa = pa + '&cid=' + sn;
+			pa = pa + '&gun=' + $("input[name='gun']:checked").val();
+			if ( g_commit.b_mode == 'kwh' ) {
+				pa = pa + '&b_mode=kwh&b_kwh=' + '0.1';
+			} else if ( g_commit.b_mode == 'time') {
+				pa = pa + '&b_mode=time&b_time=' + '15';
+			} else if ( g_commit.b_mode == 'money') {
+				pa = pa + '&b_mode=money&b_money=' + '1.5';
+			} else {
+				pa = pa + '&b_mode=auto';
+			}
+			if ( g_commit.c_mode == 'BI' ) {
+				pa = pa + '&c_mode=BI&set_I=45.0&set_V=489.5';
+			} else if ( g_commit.c_mode == 'BV') {
+				pa = pa + '&c_mode=BV&set_V=530.5&set_I=34.8';
+			} else {
+				pa = pa + '&c_mode=auto';
+			}
 			$.getJSON(g_cfg.ontom_create_job, pa, function (data, status, xhr) {
 				if ( status == 'success' ) {
 					if ( data.status == "REJECTED" ) {
@@ -195,15 +213,17 @@ function page_show_jobs_preview(from) {
 							"<a href=\"javascript:page_show_job_detail('jobs_preview_page','";
 							codes = codes + d[i].id + "');\">";
 							codes = codes +"<div align=\"center\" class=\"job_preview_box\"";
-							codes = codes +" style=\"left:" + left.toString() + "px";
-							codes = codes +";top:" + top.toString() + "px\" ";
-							codes = codes + "id=\"id_jobpreview_"+i.toString() + "\">";
-							codes = codes + "<table align=\"center\">";
-							codes = codes + "<tr><td>状态</td><td>等待</td></tr>";
-							codes = codes + "<tr><td>端口</td><td>1#枪</td></tr>";
-							codes = codes + "<td colspan=\"2\" scope=\"col\">" + d[i].id;											
+							codes = codes +" style=\"left:" + left + "px";
+							codes = codes +";top:" + top + "px\" ";
+							codes = codes + "id=\"id_jobpreview_"+i + "\">";
+							codes = codes + "<table align=\"center\" class=\"job_preview_box_table\">";
+							codes = codes + "<tr><td>状态</td><td>";
+							codes = codes + d[i].status + "</td></tr>";
+							codes = codes + "<tr><td>端口</td><td>";
+							codes = codes + d[i].port + "枪</td></tr>";
+							codes = codes + "<tr><td colspan=\"2\" scope=\"col\">" + d[i].id;											
 							codes = codes + "</td><td scope=\"col\">&nbsp;</td>"
-    						codes = codes + "<td scope=\"col\">&nbsp;</td>"
+    						codes = codes + "<td scope=\"col\">&nbsp;</td></tr>"
 							codes = codes + "</table></div></a>";
 						}
 						$('#jobs_preview').html(codes);
@@ -228,7 +248,41 @@ function page_show_job_detail(from, job) {
 	$('#'+from).hide();
 	$('#id_job_working').show();
 	g_sys.page_id_curr = 'id_job_working';
-	$('#id_job_working_jid').html(job);
+
+	function refresh_job_detail() {
+		if ( g_sys.page_id_curr != 'id_job_working' ) return;
+		$.getJSON(g_cfg.ontom_query_job, '', function (data, status, xhr){
+			if ( status == 'success' ) {
+				var ok = 0;
+				$.each(data, function (index, d) {
+					if ( index != 'jobs' ) return;
+					if ( d.length <= 0 ) {
+						 $('#id_job_working_jid').html('<a color="#F00">无效ID</a>');
+						 return;
+					}
+					for ( var i = 0; i < d.length; i ++ ) {
+						if ( d[i].id != job ) continue;
+						ok = 1;
+						$('#id_job_working_jid').html(d[i].id);
+						$('#id_job_working_cid').html(d[i].cid);
+						$('#id_job_working_I').html(d[i].CI);
+						$('#id_job_working_V').html(d[i].CV);
+						$('#id_job_working_yichongdianliang').html(d[i].ycdl);
+						$('#id_job_working_remain_money').html(d[i].cremain);
+						$('#id_job_working_sys_status').html('正常');
+						$('#id_job_working_institude_status').html('正常');
+						$('#id_job_working_gun_status').html(d[i].gun_stat);
+						$('#id_job_working_job_status').html(d[i].status);
+					}
+					});
+				if ( ok == 0 ) {
+					$('#id_job_working_jid').html('<a color="#F00">无效ID</a>');
+				}
+			}
+		});
+		setTimeout(refresh_job_detail, g_cfg.query_period);
+	}
+	refresh_job_detail();
 }
 
 // 显示作业创建页面
@@ -261,6 +315,20 @@ function page_show_bm_set_money() {
 	$('#id_keypad').show();
 }
 
+// 计费方式确定
+function page_bm_set_ok(from) {
+	$('#'+from).hide();
+	$('#id_keypad').hide();
+	if ( from == 'id_bm_set_kwh_page' ) {
+		g_commit.b_mode = 'kwh';
+	} else if ( from == 'id_bm_set_time_page') {
+		g_commit.b_mode = 'time';
+	} else if ( from == 'id_bm_set_money_page') {
+		g_commit.b_mode = 'money';
+	} else ;
+	g_sys.page_id_curr = 'id_job_create';
+}
+
 // 计费方式设置取消
 function page_bm_set_cancel(from) {
 	$('#'+from).hide();
@@ -277,7 +345,16 @@ function page_bm_set_cancel(from) {
 		$("input[type='radio'][name='bm'][value='3']").attr("checked",false);
 	} else ;
 	$("input[type='radio'][name='bm'][value='0']").attr("checked",true);
-	//$("input[@type=radio][name=sex][@value=1]").attr("checked",true);  
+	//$("input[@type=radio][name=sex][@value=1]").attr("checked",true); 
+	g_commit.b_mode = 'auto'; 
+	g_sys.page_id_curr = 'id_job_create';
+}
+
+// 手动充电设置页面确定
+function page_cm_set_ok(from) {
+	$('#'+from).hide();
+	$('#id_keypad').hide();
+	g_commit.c_mode = 'auto';
 	g_sys.page_id_curr = 'id_job_create';
 }
 
@@ -285,6 +362,7 @@ function page_bm_set_cancel(from) {
 function page_cm_set_cancel(from) {
 	$('#'+from).hide();
 	$('#id_keypad').hide();
+	g_commit.c_mode = 'auto';
 	g_sys.page_id_curr = 'id_job_create';
 }
 
