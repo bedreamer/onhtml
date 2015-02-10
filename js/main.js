@@ -10,7 +10,9 @@ var g_cfg = {
 	// 作业查询接口
 	ontom_query_job:'/job/query.json',
 	// 作业创建接口
-	ontom_create_job:'/job/create.json'
+	ontom_create_job:'/job/create.json',
+	// 作业中止接口
+	ontom_abort_job:'/job/abort.json'
 };
 var g_sys = {
 	// 当前显示的页面ID
@@ -76,6 +78,7 @@ function js_init() {
 	g_cfg.ontom_query = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query;
 	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
 	g_cfg.ontom_create_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_create_job;
+	g_cfg.ontom_abort_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_abort_job;
 	setTimeout(js_main_loop, 800);
 }
 
@@ -83,6 +86,9 @@ function js_init() {
 function js_main_loop() {
 	$.getJSON(g_cfg.ontom_query, '', function (data, status, xhr){
 		if ( status == "success" ) {
+			if ( data.doreset == true ) {
+				page_show_main_page(g_sys.page_id_curr);
+			}
 			if ( data.version == 'V1.0' ) {
 				switch ( data.system_status ) {
 				case 'N/A':
@@ -179,10 +185,21 @@ function card_sn_valid(sn, remain) {
 					} else;
 					return;	
 				}
-				});
+			});
 		}
 		do_job_commit(sn);
 	} else if (g_sys.page_id_curr=='id_job_working') { // 终止充电作业
+		var pa = 'id=' + $('#id_job_working_jid').html();
+		$.getJSON(g_cfg.ontom_abort_job, pa, function (data, status, xhr) {
+		if ( status == 'success' ) {
+			if ( data.status == "REJECTED" ) {
+				alert('无效的作业');
+			} else {
+				page_show_main_page('id_job_working');
+			}
+			return;	
+		}
+		});
 	} else { // 无效刷卡
 	}
 }
@@ -294,9 +311,11 @@ function page_show_job_create(from, cid, remain) {
 
 	var $radios = $('input:radio[name=bm]');
     $radios.filter('[value=0]').prop('checked', true);
+	g_commit.b_mode='auto';
 
 	var $radios = $('input:radio[name=cm]');
     $radios.filter('[value=cm_auto]').prop('checked', true);
+	g_commit.c_mode='auto';
 
 	$('#id_job_commit_card_sn').html(cid);
 	$('#id_job_commit_acount_remain').html(remain);
@@ -307,6 +326,7 @@ function page_show_bm_set_kwh() {
 	$('#id_bm_set_kwh_page').show();
 	g_sys.page_id_curr = 'id_bm_set_kwh_page';
 	$('#id_keypad').show();
+	editid = 'id_bm_set_kwh';
 }
 
 // 显示按时间充电设置页面
@@ -314,6 +334,7 @@ function page_show_bm_set_time() {
 	$('#id_bm_set_time_page').show();
 	g_sys.page_id_curr = 'id_bm_set_time_page';
 	$('#id_keypad').show();
+	editid = 'id_bm_set_time';
 }
 
 // 显示按金额充电设置页面
@@ -321,6 +342,7 @@ function page_show_bm_set_money() {
 	$('#id_bm_set_money_page').show();
 	g_sys.page_id_curr = 'id_bm_set_money_page';
 	$('#id_keypad').show();
+	editid = 'id_bm_set_money';
 }
 
 // 计费方式确定

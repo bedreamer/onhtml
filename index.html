@@ -148,28 +148,28 @@
     </div> <!--job_working_page-->
     <div class="zeus page_frame job_preview_page" id="jobs_preview_page">
     	<div class="jobs_preview_title">作业预览</div>
-        <div class="jobs_preview_body" id="jobs_preview">777wertwertwertwretwertwert7</div>
+        <div class="jobs_preview_body" id="jobs_preview"></div>
         <div class="jobs_preview_toolbox"><a href="javascript:page_show_main_page('jobs_preview_page');"><div class="button">返回主页</div></a></div>
     </div> <!--jobs_preview-->
 </div>
 <!-- 按电量充电输入框 -->
 <div class="v_input_pages v_bm_kwh_param_page" id="id_bm_set_kwh_page">
 	<p>充电量配置<p>
-    <input id="id_bm_set_kwh" align="absmiddle" type="text" height="30px" width="200px" value="1.0" />KW.H
+    <input onclick="javasctipt:vk_focurs('id_bm_set_kwh')" id="id_bm_set_kwh" align="absmiddle" type="text" height="30px" width="200px" value="1.0" />KW.H
     <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_kwh_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_kwh_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按时间充电输入框 -->
 <div class="v_input_pages v_bm_time_param_page" id="id_bm_set_time_page">
 	<p>充电时间配置<p>
-    <input id="id_bm_set_time" align="absmiddle" type="text" height="30px" width="200px" value="5" />分钟
+    <input onclick="javasctipt:vk_focurs('id_bm_set_time')" id="id_bm_set_time" align="absmiddle" type="text" height="30px" width="200px" value="5" />分钟
     <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_time_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_time_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按金额充电输入框 -->
 <div class="v_input_pages v_bm_money_param_page" id="id_bm_set_money_page">
 	<p>充电金额配置<p>
-    <input id="id_bm_set_money" align="absmiddle" type="text" height="30px" width="200px" value="1.0" />元
+    <input onclick="javasctipt:vk_focurs('id_bm_set_money')" id="id_bm_set_money" align="absmiddle" type="text" height="30px" width="200px" value="1.0" />元
     <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_money_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_money_page');"><div class="button">取消</div></a>
 </div>
@@ -187,14 +187,14 @@
         </tr>
         <tr>
           <td>限流</td>
-          <td><input id="id_cm_set_lI" type="text" value="65.5" size="9" maxlength="9"/>
+          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lI')"  id="id_cm_set_lI" type="text" value="65.5" size="9" maxlength="9"/>
           A</td>
           <td>限压</td>
-          <td><input id="id_cm_set_lV" type="text" value="480.0" size="9" maxlength="9"/>
+          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lV')" id="id_cm_set_lV" type="text" value="480.0" size="9" maxlength="9"/>
           V</td>
         <tr>
           <td>授权</td>
-          <td colspan="3"><input id="id_cm_set_passwd" type="password" id="cm_set_auth_passwd" /></td>
+          <td colspan="3"><input onclick="javasctipt:vk_focurs('id_cm_set_passwd')" id="id_cm_set_passwd" type="password" id="cm_set_auth_passwd" /></td>
     </table>
     <br><br><br><a href="javascript:page_cm_set_ok('id_cm_set_page');"><div class="button">确定</div></a>
     <a href="javascript:page_cm_set_cancel('id_cm_set_page');"><div class="button">取消</div></a>
