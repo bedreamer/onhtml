@@ -174,30 +174,27 @@
     <a href="javascript:page_bm_set_cancel('id_bm_set_money_page');"><div class="button">取消</div></a>
 </div>
 <!-- 按手动充电输入框 -->
-<div class="v_input_pages v_bm_maual_param_page" id="id_cm_set_page">
+<div class="v_input_pages v_bm_maual_param_page" id="id_cm_set_page"><div>
 <a>手动充电配置<a>
     <table align="center">
         <tr>
-          <td><label><input type="radio" name="mc_mode" checked="true" value="BI"/>
+          <td colspan="2"><label><input type="radio" name="mc_mode" checked="true" value="BI"/>
           恒流</label></td>
-          <td>&nbsp;</td>
-          <td><label><input type="radio" name="mc_mode" value="BV"/>
+          <td colspan="2"><label><input type="radio" name="mc_mode" value="BV"/>
           恒压</label></td>
-          <td>&nbsp;</td>
         </tr>
         <tr>
           <td>限流</td>
-          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lI')"  id="id_cm_set_lI" type="text" value="65.5" size="9" maxlength="9"/>
-          A</td>
+          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lI')" id="id_cm_set_lI" type="text" size="9" maxlength="9"/>A</td>
           <td>限压</td>
-          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lV')" id="id_cm_set_lV" type="text" value="480.0" size="9" maxlength="9"/>
-          V</td>
+          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lV')" id="id_cm_set_lV" type="text" size="9" maxlength="9"/>V</td>
         <tr>
           <td>授权</td>
-          <td colspan="3"><input onclick="javasctipt:vk_focurs('id_cm_set_passwd')" id="id_cm_set_passwd" type="password" id="cm_set_auth_passwd" /></td>
-    </table>
+          <td colspan="3"><input onclick="javasctipt:vk_focurs('id_cm_set_passwd')" id="id_cm_set_passwd" type="password" /></td>
+        </tr>
+    </table></div><div>
     <br><br><br><a href="javascript:page_cm_set_ok('id_cm_set_page');"><div class="button">确定</div></a>
-    <a href="javascript:page_cm_set_cancel('id_cm_set_page');"><div class="button">取消</div></a>
+    <a href="javascript:page_cm_set_cancel('id_cm_set_page');"><div class="button">取消</div></a></div>
 </div>
 <!-- 虚拟键盘放置在浮动层，节省空间 -->
 <div class="v_keypad" id="id_keypad">

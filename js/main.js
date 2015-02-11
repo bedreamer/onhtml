@@ -3,7 +3,7 @@ var g_cfg = {
 	inited:true,  // 系统已经配置过了
 	query_proctol:'http://',
 	first_startup_url:'http://127.0.0.1:8080/first/',
-	ontom_host:'192.168.1.14:8081',
+	ontom_host:'127.0.0.1:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
@@ -326,6 +326,7 @@ function page_show_bm_set_kwh() {
 	$('#id_bm_set_kwh_page').show();
 	g_sys.page_id_curr = 'id_bm_set_kwh_page';
 	$('#id_keypad').show();
+	$('#id_keypad').css('top', '245px');
 	editid = 'id_bm_set_kwh';
 }
 
@@ -334,6 +335,7 @@ function page_show_bm_set_time() {
 	$('#id_bm_set_time_page').show();
 	g_sys.page_id_curr = 'id_bm_set_time_page';
 	$('#id_keypad').show();
+	$('#id_keypad').css('top', '245px');
 	editid = 'id_bm_set_time';
 }
 
@@ -342,6 +344,7 @@ function page_show_bm_set_money() {
 	$('#id_bm_set_money_page').show();
 	g_sys.page_id_curr = 'id_bm_set_money_page';
 	$('#id_keypad').show();
+	$('#id_keypad').css('top', '245px');
 	editid = 'id_bm_set_money';
 }
 
@@ -405,6 +408,7 @@ function page_show_cm_set() {
 	$('#id_cm_set_page').show();
 	g_sys.page_id_curr = 'id_cm_set_page';
 	$('#id_keypad').show();
+	$('#id_keypad').css('top', '270px');
 }
 
 // 作业创建取消
