@@ -42,7 +42,7 @@
         </table>
         </div>
         <div class="cls_main_toolbox">
-        <a href="javascript:page_show_jobs_preview('id_mainpage');"><div class="zeus main_tool_box" style="left:35px">作业<br>查询</div></a>
+        <a href="javascript:page_system_menu('id_mainpage');"><div class="zeus main_tool_box" style="left:35px">系统<br>查询</div></a>
         <a href="javascript:page_show_jobs_preview('id_mainpage');"><div class="zeus main_tool_box" style="left:165px">系统<br>操作</div></a>
         </div>
     </div><!--mainpage-->
@@ -146,6 +146,32 @@
         <a href="javascript:page_show_jobs_preview('id_job_working')"><div class="button">返回作业池</div></a>
     </div>
     </div> <!--job_working_page-->
+    <div class="zeus page_frame system_query_menu" id="id_system_query_page">
+    	<div>
+            <a href="javascript:page_show_jobs_preview('id_system_query_page')">
+            <div class="zeus main_tool_box" style="left:30px;top:30px;">作业<br>查询</div></a>
+            <a href="javascript:page_show_current_error('id_system_query_page')">
+            <div class="zeus main_tool_box" style="left:150px;top:30px;">当前<br>故障</div></a>
+            <a href="javascript:page_show_history_error('id_system_query_page')">
+            <div class="zeus main_tool_box" style="left:270px;top:30px;">历史<br>故障</div></a>
+            <a href="javascript:page_show_self_info('id_system_query_page')">
+            <div class="zeus main_tool_box" style="left:390px;top:30px;">本机<br>信息</div></a>
+        </div>
+        <div class="jobs_preview_toolbox"><a href="javascript:page_show_main_page('id_system_query_page');"><div class="button">返回主页</div></a></div>
+    </div> <!--系统查询目录页面-->
+    <div class="zeus page_frame current_error" id="id_current_error_page">
+    	<div id="current_error_panel" align="center" style="left:80px;top:80px"></div>
+        <div class="jobs_preview_toolbox">
+        <a href="javascript:page_show_main_page('id_current_error_page');"><div class="button">返回主页</div></a></div>
+    </div> <!--当前故障显示页面-->
+    <div class="zeus page_frame history_error" id="id_history_error_page">
+        <div class="jobs_preview_toolbox">
+        <a href="javascript:page_show_main_page('id_history_error_page');"><div class="button">返回主页</div></a></div>
+    </div> <!--历史故障显示页面-->
+    <div class="zeus page_frame self_info" id="id_self_info_page">
+        <div class="jobs_preview_toolbox">
+        <a href="javascript:page_show_main_page('id_self_info_page');"><div class="button">返回主页</div></a></div>
+    </div> <!--本机信息显示页面-->
     <div class="zeus page_frame job_preview_page" id="jobs_preview_page">
     	<div class="jobs_preview_title">作业预览</div>
         <div class="jobs_preview_body" id="jobs_preview"></div>

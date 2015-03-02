@@ -83,6 +83,10 @@ body{
 	display:none;
 }
 
+.current_error,.history_error,.self_info,.system_query_menu {
+	display:none;
+}
+
 .job_preview_page {
 	display:none;
 }

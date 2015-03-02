@@ -12,7 +12,9 @@ var g_cfg = {
 	// 作业创建接口
 	ontom_create_job:'/job/create.json',
 	// 作业中止接口
-	ontom_abort_job:'/job/abort.json'
+	ontom_abort_job:'/job/abort.json',
+	// 当前故障查询接口
+	ontom_current_error:'/system/error.json'
 };
 var g_sys = {
 	// 当前显示的页面ID
@@ -79,6 +81,7 @@ function js_init() {
 	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
 	g_cfg.ontom_create_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_create_job;
 	g_cfg.ontom_abort_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_abort_job;
+	g_cfg.ontom_current_error = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_current_error;
 	setTimeout(js_main_loop, 800);
 }
 
@@ -259,6 +262,65 @@ function page_show_main_page(from) {
 	$('#'+from).hide();
 	$('#id_mainpage').show();
 	g_sys.page_id_curr = 'id_mainpage';
+}
+
+// 显示系统查询目录
+function page_system_menu(from) {
+	$('#'+from).hide();
+	$('#id_system_query_page').show();
+	g_sys.page_id_curr = 'id_system_query_page';
+}
+
+// 显示当前故障
+function page_show_current_error(from) {
+	$('#'+from).hide();
+	$('#id_current_error_page').show();
+	g_sys.page_id_curr = 'id_current_error_page';
+
+	$('#current_error_panel').html('<br><br>没有故障');
+	function refresh_current_error_list() {
+		if ( g_sys.page_id_curr != 'id_current_error_page' ) return;
+		$.getJSON(g_cfg.ontom_current_error, '', function (data, status, xhr){
+				if ( status == 'success' ) {
+					$.each(data, function (index, d) {
+						if ( index != 'errors' ) return;
+						if ( d.length <= 0 ) {
+							$('#current_error_panel').html('<br><br>没有故障');
+							 return;
+						}
+
+						var codes='<table align="left"><tr><td>序号</td><td>代码</td><td>故障</td><td>时戳</td></tr>';
+						for ( var i = 0; i < d.length; i ++ ) {
+							codes = codes + "<tr>";
+							codes = codes + "<td>" + (i + 1).toString() + "</td>";
+							codes = codes + "<td>" + d[i].eid + "</td>";
+							codes = codes + "<td>" + d[i].estr + "</td>";
+							codes = codes + "<td>" + d[i].ebt + "</td>";
+							codes = codes + "</tr>";
+						}
+						codes = codes + "</table>";
+						$('#current_error_panel').html(codes);
+						});
+	
+				}
+		});
+		setTimeout(refresh_current_error_list, 1500);
+	}
+	refresh_current_error_list();
+}
+
+// 显示历史故障
+function page_show_history_error(from) {
+	$('#'+from).hide();
+	$('#id_history_error_page').show();
+	g_sys.page_id_curr = 'id_history_error_page';
+}
+
+// 显示本机信息
+function page_show_self_info(from) {
+	$('#'+from).hide();
+	$('#id_self_info_page').show();
+	g_sys.page_id_curr = 'id_self_info_page';
 }
 
 // 显示作业的详细信息
