@@ -100,6 +100,16 @@ body{
 	border-bottom:1px solid #FFF;
 }
 
+.current_error_box{
+	height:84%;
+	width:100%;
+	top:3%;
+	float:left;
+	font-size:24px;
+	position:absolute;
+	overflow:auto;
+}
+
 .cls_job_preview {
 	font-size:16px;
 }

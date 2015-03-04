@@ -3,7 +3,7 @@ var g_cfg = {
 	inited:true,  // 系统已经配置过了
 	query_proctol:'http://',
 	first_startup_url:'http://127.0.0.1:8080/first/',
-	ontom_host:'127.0.0.1:8081',
+	ontom_host:'192.168.1.85:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
@@ -289,9 +289,15 @@ function page_show_current_error(from) {
 							 return;
 						}
 
-						var codes='<table align="left"><tr><td>序号</td><td>代码</td><td>故障</td><td>时戳</td></tr>';
+						var codes='<table align="center">';
+						codes = codes + '<tr style=\"background-color:rgba(80,80,80,0.3)\">'
+						codes = codes + '<td>序号</td><td width=\"60px\">代码</td><td align=\"center\" width=\"380px\">故障</td><td align=\"center\">故障时间</td></tr>';
 						for ( var i = 0; i < d.length; i ++ ) {
-							codes = codes + "<tr>";
+							if ( i % 2 != 0 ) { 
+								codes = codes + "<tr style=\"background-color:rgba(80,80,80,0.3)\">";
+							} else {
+								codes = codes + "<tr style=\"background-color:rgba(200,200,200,0.3)\">";
+							}
 							codes = codes + "<td>" + (i + 1).toString() + "</td>";
 							codes = codes + "<td>" + d[i].eid + "</td>";
 							codes = codes + "<td>" + d[i].estr + "</td>";
