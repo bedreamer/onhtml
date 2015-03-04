@@ -3,7 +3,7 @@ var g_cfg = {
 	inited:true,  // 系统已经配置过了
 	query_proctol:'http://',
 	first_startup_url:'http://127.0.0.1:8080/first/',
-	history_per_page:12,
+	history_per_page:11,
 	ontom_host:'192.168.1.85:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
@@ -236,7 +236,6 @@ function page_show_jobs_preview(from) {
 							$('#jobs_preview').html("<b>没有充电作业!</b>");
 							 return;
 						}
-
 						var codes='';
 						for ( var i = 0; i < d.length; i ++ ) {
 							var left = 55 + (i % 5) * 120 + 15 * (i%5);
@@ -299,7 +298,7 @@ function page_show_current_error(from) {
 						}
 
 						var codes='<table align="center">';
-						codes = codes + '<tr style=\"background-color:rgba(80,80,80,0.3)\">'
+						codes = codes + '<tr style=\"background-color:rgba(60,60,60,0.3)\">'
 						codes = codes + '<td>序号</td><td width=\"60px\">代码</td><td align=\"center\" width=\"380px\">故障</td><td align=\"center\">故障时间</td></tr>';
 						for ( var i = 0; i < d.length; i ++ ) {
 							if ( i % 2 != 0 ) { 
@@ -351,11 +350,14 @@ function refresh_history_panel(start, nr) {
 					$('#id_historyt_error_panel').html('<br><br>没有历史故障');
 					 g_sys.history_last_page = 1;
 					 return;
-				}
+				} 
 				g_sys.history_last_page = 0;
+				if ( d.length < g_cfg.history_per_page ) {
+					g_sys.history_last_page = 1;
+				}
 
 				var codes='<table>';
-				codes = codes + '<tr style=\"background-color:rgba(80,80,80,0.3)\">'
+				codes = codes + '<tr style=\"background-color:rgba(60,60,60,0.3)\">'
 				codes = codes + '<td>序号</td><td>故障代码</td>';
 				codes = codes + '<td align=\"center\" width=\"240px\">故障内容</td>';
 				codes = codes + '<td align=\"center\">故障时间</td>';
