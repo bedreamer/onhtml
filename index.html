@@ -18,7 +18,9 @@
 <div class="title_body" id="id_title_body">直流充电桩监控&nbsp;&nbsp;</div>
  <div class="mainbody">
 	<div class="mainpage", id="id_mainpage">
-        <div class="zues cls_auto">充电请刷卡<div class="cls_stat_grid_img" align="center";></div></div>
+        <div class="zues cls_auto">
+        	<a>充电请刷卡</a>
+        	<div class="cls_stat_grid_img" align="center";></div></div>
         <div class="cls_status">
         <table style="font-size:27px; text-align:right" align="center">
             <tr>
@@ -165,8 +167,12 @@
         <a href="javascript:page_show_main_page('id_current_error_page');"><div class="button">返回主页</div></a></div>
     </div> <!--当前故障显示页面-->
     <div class="zeus page_frame history_error" id="id_history_error_page">
-        <div class="jobs_preview_toolbox">
-        <a href="javascript:page_show_main_page('id_history_error_page');"><div class="button">返回主页</div></a></div>
+    	<div class="history_error_box" id="id_historyt_error_panel" align="center"></div>
+        <div class="jobs_preview_toolbox history_preview_toolbox" align="center">
+        	<a href="javascript:page_show_main_page('id_history_error_page');"><div class="button">返回主页</div></a>
+            <a href="javascript:show_pre_page_history();"><div class="button">上一页</div></a>
+            <a href="javascript:show_next_page_history();"><div class="button">下一页</div></a>
+        </div>
     </div> <!--历史故障显示页面-->
     <div class="zeus page_frame self_info" id="id_self_info_page">
         <div class="jobs_preview_toolbox">

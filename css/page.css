@@ -100,14 +100,18 @@ body{
 	border-bottom:1px solid #FFF;
 }
 
-.current_error_box{
+.current_error_box,.history_error_box{
 	height:84%;
 	width:100%;
 	top:3%;
 	float:left;
-	font-size:24px;
+	font-size:26px;
 	position:absolute;
 	overflow:auto;
+}
+
+.history_error_box{
+	font-size:16px;
 }
 
 .cls_job_preview {

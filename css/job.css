@@ -55,4 +55,9 @@
 	float:left;
 	position:absolute;
 	overflow:hidden;
+	//background-color:#F00;
+}
+
+.history_preview_toolbox{
+	left:25%;
 }
