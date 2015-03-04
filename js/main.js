@@ -4,7 +4,7 @@ var g_cfg = {
 	query_proctol:'http://',
 	first_startup_url:'http://127.0.0.1:8080/first/',
 	history_per_page:11,
-	ontom_host:'192.168.1.85:8081',
+	ontom_host:'127.0.0.1:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
