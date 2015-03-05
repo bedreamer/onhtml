@@ -274,6 +274,10 @@ function page_show_jobs_preview(from) {
 	refresh_jobs_list();
 }
 
+// 显示作业详细信息
+function page_show_jobs_detail(from) {
+}
+
 // 显示主页
 function page_show_main_page(from) {
 	$('#'+from).hide();
