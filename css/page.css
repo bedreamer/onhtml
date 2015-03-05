@@ -83,7 +83,7 @@ body{
 	display:none;
 }
 
-.current_error,.history_error,.self_info,.system_query_menu {
+.system_operate_menu,.current_error,.history_error,.self_info,.system_query_menu,.module_detail {
 	display:none;
 }
 
@@ -100,7 +100,7 @@ body{
 	border-bottom:1px solid #FFF;
 }
 
-.current_error_box,.history_error_box{
+.current_error_box,.history_error_box,.module_detail_box {
 	height:84%;
 	width:100%;
 	top:3%;
@@ -112,6 +112,10 @@ body{
 
 .history_error_box{
 	font-size:16px;
+}
+
+.module_detail_box {
+	font-size:10px;
 }
 
 .cls_job_preview {

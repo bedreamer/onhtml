@@ -19,7 +19,9 @@ var g_cfg = {
 	// 当前故障查询接口
 	ontom_current_error:'/system/error.json',
 	// 历史故障查询接口
-	ontom_history_error:'/system/history.json'
+	ontom_history_error:'/system/history.json',
+	// 模块信息查询接口
+	ontom_module_detail:'/system/modules.json'
 };
 var g_sys = {
 	// 当前显示的页面ID
@@ -62,7 +64,9 @@ var g_sys = {
 	history_last_page:0,
 	
 	// 当前故障显示页
-	current_error_page:0
+	current_error_page:0,
+	// 当前模块信息显示页
+	current_module_detail_page:0
 };
 // 作业提交参数
 var g_commit = {
@@ -96,6 +100,7 @@ function js_init() {
 	g_cfg.ontom_abort_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_abort_job;
 	g_cfg.ontom_current_error = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_current_error;
 	g_cfg.ontom_history_error = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_history_error;
+	g_cfg.ontom_module_detail = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_module_detail;
 	setTimeout(js_main_loop, 800);
 }
 
@@ -234,36 +239,35 @@ function page_show_jobs_preview(from) {
 	function refresh_jobs_list() {
 		if ( g_sys.page_id_curr != 'jobs_preview_page' ) return;
 		$.getJSON(g_cfg.ontom_query_job, '', function (data, status, xhr){
-				if ( status == 'success' ) {
-					$.each(data, function (index, d) {
-						if ( index != 'jobs' ) return;
-						if ( d.length <= 0 ) {
-							$('#jobs_preview').html("<b>没有充电作业!</b>");
-							 return;
-						}
-						var codes='';
-						for ( var i = 0; i < d.length; i ++ ) {
-							var left = 55 + (i % 5) * 120 + 15 * (i%5);
-							var top = 120 * Math.floor(i/5) + 15 + 15 * Math.floor(i/5);
-							codes = codes + 
-							"<a href=\"javascript:page_show_job_detail('jobs_preview_page','";
-							codes = codes + d[i].id + "');\">";
-							codes = codes +"<div align=\"center\" class=\"job_preview_box\"";
-							codes = codes +" style=\"left:" + left + "px";
-							codes = codes +";top:" + top + "px\" ";
-							codes = codes + "id=\"id_jobpreview_"+i + "\">";
-							codes = codes + "<table align=\"center\" class=\"job_preview_box_table\">";
-							codes = codes + "<tr><td>状态</td><td>" + d[i].status + "</td></tr>";
-							codes = codes + "<tr><td>端口</td><td>" + d[i].port + "枪</td></tr>";
-							codes = codes + "<tr><td>连接</td><td>" + d[i].gun_stat + "</td></tr>";		
-							codes = codes + "<tr><td>JID:</td><td>" + d[i].id  + "</td></tr>";											
-							codes = codes + "<tr><td>CID:</td><td>" + d[i].cid + "</td></tr>";											
-							codes = codes + "</table></div></a>";
-						}
-						$('#jobs_preview').html(codes);
-						});
-	
-				}
+			if ( status == 'success' ) {
+				$.each(data, function (index, d) {
+					if ( index != 'jobs' ) return;
+					if ( d.length <= 0 ) {
+						$('#jobs_preview').html("<b>没有充电作业!</b>");
+						 return;
+					}
+					var codes='';
+					for ( var i = 0; i < d.length; i ++ ) {
+						var left = 55 + (i % 5) * 120 + 15 * (i%5);
+						var top = 120 * Math.floor(i/5) + 15 + 15 * Math.floor(i/5);
+						codes = codes + 
+						"<a href=\"javascript:page_show_job_detail('jobs_preview_page','";
+						codes = codes + d[i].id + "');\">";
+						codes = codes +"<div align=\"center\" class=\"job_preview_box\"";
+						codes = codes +" style=\"left:" + left + "px";
+						codes = codes +";top:" + top + "px\" ";
+						codes = codes + "id=\"id_jobpreview_"+i + "\">";
+						codes = codes + "<table align=\"center\" class=\"job_preview_box_table\">";
+						codes = codes + "<tr><td>状态</td><td>" + d[i].status + "</td></tr>";
+						codes = codes + "<tr><td>端口</td><td>" + d[i].port + "枪</td></tr>";
+						codes = codes + "<tr><td>连接</td><td>" + d[i].gun_stat + "</td></tr>";		
+						codes = codes + "<tr><td>JID:</td><td>" + d[i].id  + "</td></tr>";											
+						codes = codes + "<tr><td>CID:</td><td>" + d[i].cid + "</td></tr>";											
+						codes = codes + "</table></div></a>";
+					}
+					$('#jobs_preview').html(codes);
+				});
+			}
 		});
 		setTimeout(refresh_jobs_list, g_cfg.query_period);
 	}
@@ -284,47 +288,118 @@ function page_system_menu(from) {
 	g_sys.page_id_curr = 'id_system_query_page';
 }
 
+function page_system_operate_menu(from) {
+	$('#'+from).hide();
+	$('#id_system_operate_page').show();
+	g_sys.page_id_curr = 'id_system_operate_page';
+}
+
+// 刷新模块详细信息
+function refresh_module_detail(once) {
+	if ( g_sys.page_id_curr != 'id_module_detail_page' ) return;
+	$.getJSON(g_cfg.ontom_module_detail, '', function (data, status, xhr){
+		if ( status == 'success' ) {
+			$.each(data, function (index, d) {
+				if ( index != 'modules' ) return;
+				if ( d.length <= 0 ) {
+					$('#module_detail_panel').html('<br><br>无模块');
+					 return;
+				}
+
+				var codes='<table align="center">';
+				codes = codes + '<tr style=\"background-color:rgba(60,60,60,0.3)\">'
+				codes = codes + '<td>序号</td><td width=\"80px\">输出电压</td>';
+				codes = codes + '<td width=\"80px\">输出电流</td><td width=\"80px\">模块温度</td>';
+				codes = codes + '<td width=\"160px\">模块编号</td><td width=\"100px\">模块状态</td></tr>';
+				while (　g_sys.current_error_page * g_cfg.current_err_per_page > d.length &&
+						 g_sys.current_error_page > 0 ) {
+					g_sys.current_error_page = g_sys.current_error_page - 1;
+				}
+
+				for ( var i = 0; i < d.length; i ++) {
+					if ( i % 2 != 0 ) { 
+						codes = codes + "<tr style=\"background-color:rgba(80,80,80,0.3)\">";
+					} else {
+						codes = codes + "<tr style=\"background-color:rgba(200,200,200,0.3)\">";
+					}
+					codes = codes + "<td>" + (i + 1).toString() + "</td>";
+					codes = codes + "<td>" + d[i].V + "</td>";
+					codes = codes + "<td>" + d[i].I + "</td>";
+					codes = codes + "<td>" + d[i].T + "</td>";
+					codes = codes + "<td>" + d[i].N + "</td>";
+					codes = codes + "<td>" + d[i].S + "/"  + d[i].OF + "</td>";
+					codes = codes + "</tr>";
+				}
+				codes = codes + "</table>";
+				$('#module_detail_panel').html(codes);
+			});
+		}
+	});
+	if ( once != true ) {
+		setTimeout(refresh_module_detail, 3000);
+	}
+}
+
+// 显示前一页模块信息
+function show_pre_page_module_detail() {
+	refresh_module_detail(true);
+}
+
+// 显示下一页模块信息
+function show_next_page_module_detail() {
+	refresh_module_detail(true);
+}
+
+// 显示模块详细信息
+function show_module_detail_page(from) {
+	$('#'+from).hide();
+	$('#id_module_detail_page').show();
+	g_sys.page_id_curr = 'id_module_detail_page';
+	
+	refresh_module_detail(false);
+}
+
+// 刷新当前故障
 function refresh_current_error_list(once) {
 	if ( g_sys.page_id_curr != 'id_current_error_page' ) return;
 	$.getJSON(g_cfg.ontom_current_error, '', function (data, status, xhr){
-			if ( status == 'success' ) {
-				$.each(data, function (index, d) {
-					if ( index != 'errors' ) return;
-					if ( d.length <= 0 ) {
-						$('#current_error_panel').html('<br><br>没有故障');
-						 return;
-					}
+		if ( status == 'success' ) {
+			$.each(data, function (index, d) {
+				if ( index != 'errors' ) return;
+				if ( d.length <= 0 ) {
+					$('#current_error_panel').html('<br><br>没有故障');
+					 return;
+				}
 
-					var codes='<table align="center">';
-					codes = codes + '<tr style=\"background-color:rgba(60,60,60,0.3)\">'
-					codes = codes + '<td>序号</td><td width=\"60px\">代码</td>';
-					codes = codes + '<td align=\"center\" width=\"320px\">故障</td>';
-					codes = codes + '<td align=\"center\">故障时间</td></tr>';
-					while (　g_sys.current_error_page * g_cfg.current_err_per_page > d.length &&
-							 g_sys.current_error_page > 0 ) {
-						g_sys.current_error_page = g_sys.current_error_page - 1;
+				var codes='<table align="center">';
+				codes = codes + '<tr style=\"background-color:rgba(60,60,60,0.3)\">'
+				codes = codes + '<td>序号</td><td width=\"60px\">代码</td>';
+				codes = codes + '<td align=\"center\" width=\"320px\">故障</td>';
+				codes = codes + '<td align=\"center\">故障时间</td></tr>';
+				while (　g_sys.current_error_page * g_cfg.current_err_per_page > d.length &&
+						 g_sys.current_error_page > 0 ) {
+					g_sys.current_error_page = g_sys.current_error_page - 1;
+				}
+				var n = 0;
+				for ( var i = g_sys.current_error_page * g_cfg.current_err_per_page; 
+				i < d.length && n < g_cfg.current_err_per_page; i ++, n ++ ) {
+					if ( i % 2 != 0 ) { 
+						codes = codes + "<tr style=\"background-color:rgba(80,80,80,0.3)\">";
+					} else {
+						codes = codes + "<tr style=\"background-color:rgba(200,200,200,0.3)\">";
 					}
-					var n = 0;
-					for ( var i = g_sys.current_error_page * g_cfg.current_err_per_page; 
-					i < d.length && n < g_cfg.current_err_per_page; i ++, n ++ ) {
-						if ( i % 2 != 0 ) { 
-							codes = codes + "<tr style=\"background-color:rgba(80,80,80,0.3)\">";
-						} else {
-							codes = codes + "<tr style=\"background-color:rgba(200,200,200,0.3)\">";
-						}
-						codes = codes + "<td>" + (i + 1).toString() + "</td>";
-						codes = codes + "<td>" + d[i].eid + "</td>";
-						codes = codes + "<td>" + d[i].estr + "</td>";
-						codes = codes + "<td>&nbsp;" + d[i].ebt + "&nbsp;</td>";
-						codes = codes + "</tr>";
-					}
-					codes = codes + "</table>";
-					$('#current_error_panel').html(codes);
-					});
-
-			}
+					codes = codes + "<td>" + (i + 1).toString() + "</td>";
+					codes = codes + "<td>" + d[i].eid + "</td>";
+					codes = codes + "<td>" + d[i].estr + "</td>";
+					codes = codes + "<td>&nbsp;" + d[i].ebt + "&nbsp;</td>";
+					codes = codes + "</tr>";
+				}
+				codes = codes + "</table>";
+				$('#current_error_panel').html(codes);
+			});
+		}
 	});
-	if ( once == false ) {
+	if ( once != true ) {
 		setTimeout(refresh_current_error_list, 1500);
 	}
 }
