@@ -3,8 +3,10 @@ var g_cfg = {
 	inited:true,  // 系统已经配置过了
 	query_proctol:'http://',
 	first_startup_url:'http://127.0.0.1:8080/first/',
-	history_per_page:11,
-	ontom_host:'127.0.0.1:8081',
+	history_per_page:11, // 每页显示的历史故障条数
+	current_err_per_page:7, // 每页显示的当前故障条数
+	current_err_max_page:15, // 当前故障最多显示10页
+	ontom_host:'192.168.1.85:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
@@ -57,7 +59,10 @@ var g_sys = {
 	// 当前显示的历史页面号
 	history_page_num:0,
 	// 到了最后一页
-	history_last_page:0
+	history_last_page:0,
+	
+	// 当前故障显示页
+	current_error_page:0
 };
 // 作业提交参数
 var g_commit = {
@@ -279,6 +284,65 @@ function page_system_menu(from) {
 	g_sys.page_id_curr = 'id_system_query_page';
 }
 
+function refresh_current_error_list(once) {
+	if ( g_sys.page_id_curr != 'id_current_error_page' ) return;
+	$.getJSON(g_cfg.ontom_current_error, '', function (data, status, xhr){
+			if ( status == 'success' ) {
+				$.each(data, function (index, d) {
+					if ( index != 'errors' ) return;
+					if ( d.length <= 0 ) {
+						$('#current_error_panel').html('<br><br>没有故障');
+						 return;
+					}
+
+					var codes='<table align="center">';
+					codes = codes + '<tr style=\"background-color:rgba(60,60,60,0.3)\">'
+					codes = codes + '<td>序号</td><td width=\"60px\">代码</td>';
+					codes = codes + '<td align=\"center\" width=\"320px\">故障</td>';
+					codes = codes + '<td align=\"center\">故障时间</td></tr>';
+					while (　g_sys.current_error_page * g_cfg.current_err_per_page > d.length &&
+							 g_sys.current_error_page > 0 ) {
+						g_sys.current_error_page = g_sys.current_error_page - 1;
+					}
+					var n = 0;
+					for ( var i = g_sys.current_error_page * g_cfg.current_err_per_page; 
+					i < d.length && n < g_cfg.current_err_per_page; i ++, n ++ ) {
+						if ( i % 2 != 0 ) { 
+							codes = codes + "<tr style=\"background-color:rgba(80,80,80,0.3)\">";
+						} else {
+							codes = codes + "<tr style=\"background-color:rgba(200,200,200,0.3)\">";
+						}
+						codes = codes + "<td>" + (i + 1).toString() + "</td>";
+						codes = codes + "<td>" + d[i].eid + "</td>";
+						codes = codes + "<td>" + d[i].estr + "</td>";
+						codes = codes + "<td>&nbsp;" + d[i].ebt + "&nbsp;</td>";
+						codes = codes + "</tr>";
+					}
+					codes = codes + "</table>";
+					$('#current_error_panel').html(codes);
+					});
+
+			}
+	});
+	if ( once == false ) {
+		setTimeout(refresh_current_error_list, 1500);
+	}
+}
+
+// 显示前一页的故障信息
+function show_pre_page_error() {
+	if (　g_sys.current_error_page　> 0 )
+		g_sys.current_error_page = g_sys.current_error_page - 1;
+	refresh_current_error_list(true);
+}
+
+// 显示后一页的故障信息
+function show_next_page_error() {
+	if ( g_sys.current_error_page < g_cfg.current_err_max_page ) 
+		g_sys.current_error_page = g_sys.current_error_page + 1;
+	refresh_current_error_list(true);
+}
+
 // 显示当前故障
 function page_show_current_error(from) {
 	$('#'+from).hide();
@@ -286,41 +350,8 @@ function page_show_current_error(from) {
 	g_sys.page_id_curr = 'id_current_error_page';
 
 	$('#current_error_panel').html('<br><br>没有故障');
-	function refresh_current_error_list() {
-		if ( g_sys.page_id_curr != 'id_current_error_page' ) return;
-		$.getJSON(g_cfg.ontom_current_error, '', function (data, status, xhr){
-				if ( status == 'success' ) {
-					$.each(data, function (index, d) {
-						if ( index != 'errors' ) return;
-						if ( d.length <= 0 ) {
-							$('#current_error_panel').html('<br><br>没有故障');
-							 return;
-						}
 
-						var codes='<table align="center">';
-						codes = codes + '<tr style=\"background-color:rgba(60,60,60,0.3)\">'
-						codes = codes + '<td>序号</td><td width=\"60px\">代码</td><td align=\"center\" width=\"380px\">故障</td><td align=\"center\">故障时间</td></tr>';
-						for ( var i = 0; i < d.length; i ++ ) {
-							if ( i % 2 != 0 ) { 
-								codes = codes + "<tr style=\"background-color:rgba(80,80,80,0.3)\">";
-							} else {
-								codes = codes + "<tr style=\"background-color:rgba(200,200,200,0.3)\">";
-							}
-							codes = codes + "<td>" + (i + 1).toString() + "</td>";
-							codes = codes + "<td>" + d[i].eid + "</td>";
-							codes = codes + "<td>" + d[i].estr + "</td>";
-							codes = codes + "<td>" + d[i].ebt + "</td>";
-							codes = codes + "</tr>";
-						}
-						codes = codes + "</table>";
-						$('#current_error_panel').html(codes);
-						});
-	
-				}
-		});
-		setTimeout(refresh_current_error_list, 1500);
-	}
-	refresh_current_error_list();
+	refresh_current_error_list(false);
 }
 
 // 显示上一页历史故障
@@ -357,7 +388,7 @@ function refresh_history_panel(start, nr) {
 				}
 
 				var codes='<table>';
-				codes = codes + '<tr style=\"background-color:rgba(60,60,60,0.3)\">'
+				codes = codes + '<tr style=\"background-color:rgba(30,30,60,0.3)\">'
 				codes = codes + '<td>序号</td><td>故障代码</td>';
 				codes = codes + '<td align=\"center\" width=\"240px\">故障内容</td>';
 				codes = codes + '<td align=\"center\">故障时间</td>';
@@ -365,7 +396,7 @@ function refresh_history_panel(start, nr) {
 
 				for ( var i = 0; i < d.length; i ++ ) {
 					if ( i % 2 != 0 ) { 
-						codes = codes + "<tr style=\"background-color:rgba(80,80,80,0.3)\">";
+						codes = codes + "<tr style=\"background-color:rgba(150,150,150,0.3)\">";
 					} else {
 						codes = codes + "<tr style=\"background-color:rgba(200,200,200,0.3)\">";
 					}
@@ -388,7 +419,7 @@ function page_show_history_error(from) {
 	$('#'+from).hide();
 	$('#id_history_error_page').show();
 	g_sys.page_id_curr = 'id_history_error_page';
-
+	g_sys.history_page_num = 0;
 	refresh_history_panel(0, g_cfg.history_per_page);
 }
 
