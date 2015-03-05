@@ -87,6 +87,10 @@ body{
 	display:none;
 }
 
+.cls_operate_confirm_page{
+	display:none;
+}
+
 .job_preview_page {
 	display:none;
 }

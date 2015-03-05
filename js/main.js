@@ -424,6 +424,7 @@ function page_show_current_error(from) {
 	$('#id_current_error_page').show();
 	g_sys.page_id_curr = 'id_current_error_page';
 
+	g_sys.current_error_page = 0;
 	$('#current_error_panel').html('<br><br>没有故障');
 
 	refresh_current_error_list(false);
@@ -659,3 +660,40 @@ function page_show_cm_set() {
 function page_job_create_cancel(from) {
 	page_show_main_page(from);
 }
+
+// 清除历史故障
+function clean_history_error_show(from) {
+	$('#id_operate_confirm_page').show();
+	$('#id_confirm_notify_text').html('确认清除全部历史故障?');
+	g_sys.page_id_curr = 'id_operate_confirm_page';
+}
+
+// 清除操作功能
+function clean_history_error(sure) {
+	if ( sure != true ) {
+		$('#id_operate_confirm_page').hide();
+		$('#id_system_operate_page').show();
+		g_sys.page_id_curr = 'id_system_operate_page';
+	} else {
+		$.getJSON(g_cfg.ontom_history_error, 'clean=true', function (data, status, xhr){
+			if ( status == 'success' ) {
+				$.each(data, function (index, d) {
+					if ( index != 'history' ) return;
+					if ( d.length <= 0 ) {
+						$('#id_historyt_error_panel').html('错误的操作!');
+						 return;
+					}
+					if ( d[0].result == 'ok' ) {
+						$('#id_confirm_notify_text').html('历史故障清除成功!');
+						$('#id_operate_confirm_page').hide();
+						$('#id_system_operate_page').show();
+						g_sys.page_id_curr = 'id_system_operate_page';
+					} else {
+						$('#id_confirm_notify_text').html('历史故障清除失败!');
+					}
+				});
+			}
+		});
+	}
+}
+
