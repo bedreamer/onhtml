@@ -83,7 +83,7 @@ body{
 	display:none;
 }
 
-.system_operate_menu,.current_error,.history_error,.self_info,.system_query_menu,.module_detail {
+.system_operate_menu,.current_error,.history_error,.self_info,.system_query_menu,.module_detail,.modules_op_page {
 	display:none;
 }
 
@@ -112,6 +112,17 @@ body{
 	font-size:26px;
 	position:absolute;
 	overflow:auto;
+}
+
+.moudle_tool_box,.moudle_tool_box_onoff{
+	font-size:26px;
+}
+
+.moudle_tool_box_onoff {
+	width:100%;
+	border-bottom-right-radius:8px;
+	border-bottom-left-radius:8px;
+	background-color:#070;
 }
 
 .history_error_box{
@@ -197,6 +208,12 @@ body{
 	-webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
     -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
     box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+}
+
+.moudle_tool_box {
+	height:80px;
+	width:120px;
+	background-color:rgba(0, 0, 0, 0.2);
 }
 
 .job_working_toolbox {

@@ -701,3 +701,67 @@ function clean_history_error(sure) {
 	}
 }
 
+function do_module_op_refresh(p) {
+	if ( g_sys.page_id_curr != 'id_modules_op_page' ) return;
+	$.getJSON(g_cfg.ontom_module_detail, p, function (data, status, xhr){
+		if ( status == 'success' ) {
+			$.each(data, function (index, d) {
+				if ( index != 'modules' ) return;
+				if ( d.length <= 0 ) {
+					$('#id_modules_op_page_panel').html('<br><br>无模块');
+					 return;
+				}
+				var codes = '';
+				var x = 0, y = 0;
+				for ( var i = 0; i < d.length; i ++) {
+					if ( d[i].OF == '已开机' ) {
+						codes = codes + '<a href=\"javascript:module_op_refresh(\'OFF\',\'' + i + '\')\">';
+					} else {
+						codes = codes + '<a href=\"javascript:module_op_refresh(\'ON\',\'' + i + '\')\">';
+					}
+					codes = codes + "<div class=\"zeus main_tool_box moudle_tool_box\" style=\"";
+					codes = codes + "top:" + (20 + 90 * y) + "px;left:" + (150 * x + 22) + "px;"
+/*					codes = codes + "<td>" + d[i].I + "</td>";
+					codes = codes + "<td>" + d[i].T + "</td>";
+					codes = codes + "<td>" + d[i].N + "</td>";
+					codes = codes + "<td>" + d[i].S + "/"  + d[i].OF + "</td>";
+					codes = codes + "</tr>";
+					
+	*/				if ( d[i].S != '正常' ) {
+						codes = codes + "background-color:#700;"
+					}
+					codes = codes + "\">" + (i + 1) + "# " + d[i].S ;
+					codes = codes + "<div class=\"moudle_tool_box_onoff\">";
+					codes = codes + d[i].OF + "</div>" + "</div></a>";
+					x ++;
+					if ( x == 5 ) {
+						x = 0;
+						y ++;
+					}
+				}
+				$('#id_modules_op_page_panel').html(codes);
+			});
+		}
+	});
+	setTimeout(do_module_op_refresh, 3000);
+}
+
+// 刷新模块操作页面
+function module_op_refresh(op, num) {
+	var p = '';
+	if ( g_sys.page_id_curr != 'id_modules_op_page' ) return;
+	
+	if ( (op == 'ON' || op == 'OFF') && num >= 0 ) {
+		p = 'op=' + op + '&sn=' + num;
+	}
+	do_module_op_refresh(p);
+}
+
+// 显示模块操作页面
+function module_op_page_show(from) {
+	$('#'+from).hide();
+	$('#id_modules_op_page').show();
+	g_sys.page_id_curr = 'id_modules_op_page';
+
+	module_op_refresh('N/A', -1);
+}
