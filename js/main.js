@@ -6,7 +6,7 @@ var g_cfg = {
 	history_per_page:11, // 每页显示的历史故障条数
 	current_err_per_page:7, // 每页显示的当前故障条数
 	current_err_max_page:15, // 当前故障最多显示10页
-	ontom_host:'192.168.1.85:8081',
+	ontom_host:'192.168.1.43:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
@@ -21,7 +21,9 @@ var g_cfg = {
 	// 历史故障查询接口
 	ontom_history_error:'/system/history.json',
 	// 模块信息查询接口
-	ontom_module_detail:'/system/modules.json'
+	ontom_module_detail:'/system/modules.json',
+	// 本机信息查询接口
+	ontom_about:'/system/about.json'
 };
 var g_sys = {
 	// 当前显示的页面ID
@@ -101,6 +103,7 @@ function js_init() {
 	g_cfg.ontom_current_error = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_current_error;
 	g_cfg.ontom_history_error = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_history_error;
 	g_cfg.ontom_module_detail = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_module_detail;
+	g_cfg.ontom_about = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_about;
 	setTimeout(js_main_loop, 800);
 }
 
@@ -508,6 +511,43 @@ function page_show_self_info(from) {
 	$('#'+from).hide();
 	$('#id_self_info_page').show();
 	g_sys.page_id_curr = 'id_self_info_page';
+	
+	$.getJSON(g_cfg.ontom_about, '', function (data, status, xhr){
+		if ( status == "success" ) {
+			var codes = '<table align=center class="self_info_t">';
+			if ( data.about.eth0 ) {
+				codes = codes + "<tr><td align=right>网口1:&nbsp;</td><td>&nbsp;" + data.about.eth0 + "&nbsp;&nbsp;</td><tr>";
+			}
+			if ( data.about.eth1 ) {
+				codes = codes + "<tr><td align=right>网口2:&nbsp;</td><td>&nbsp;" + data.about.eth1 + "&nbsp;&nbsp;</td><tr>";
+			}
+			if ( data.about.ver ) {
+				codes = codes + "<tr><td align=right>主版本:&nbsp;</td><td>&nbsp;" + data.about.ver + "&nbsp;&nbsp;</td><tr>";
+			}
+			if ( data.about.sys ) {
+				codes = codes + "<tr><td align=right>类型:&nbsp;</td><td>&nbsp;" + data.about.sys + "&nbsp;&nbsp;</td><tr>";
+			}
+			if ( data.about.gun_nr ) {
+				codes = codes + "<tr><td align=right>充电枪:&nbsp;</td><td>&nbsp;" + data.about.gun_nr + "&nbsp;&nbsp;</td><tr>";
+			}
+			if ( data.about.module_nr ) {
+				codes = codes + "<tr><td align=right>充电枪:&nbsp;</td><td>&nbsp;" + data.about.module_nr + "&nbsp;&nbsp;</td><tr>";
+			}
+			if ( data.about.section_nr ) {
+				codes = codes + "<tr><td align=right>系统母线:&nbsp;</td><td>&nbsp;" + data.about.section_nr + "&nbsp;&nbsp;</td><tr>";
+			}
+			if ( data.about.auth_stat ) {
+				codes = codes + "<tr><td align=right>授权状态:&nbsp;</td><td>&nbsp;" + data.about.auth_stat + "&nbsp;&nbsp;</td><tr>";
+			}
+			if ( data.about.auth_id ) {
+				codes = codes + "<tr><td align=right>授权码:&nbsp;</td><td>&nbsp;" + data.about.auth_id + "&nbsp;&nbsp;</td><tr>";
+			}
+				
+									
+			codes = codes + "</table>"
+			$('#id_self_info_page_panel').html(codes);
+		}
+	});
 }
 
 // 显示作业的详细信息
@@ -743,7 +783,7 @@ function do_module_op_refresh(p) {
 			});
 		}
 	});
-	setTimeout(do_module_op_refresh, 3000);
+	setTimeout(do_module_op_refresh, 2000);
 }
 
 // 刷新模块操作页面

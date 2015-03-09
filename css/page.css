@@ -104,7 +104,7 @@ body{
 	border-bottom:1px solid #FFF;
 }
 
-.current_error_box,.history_error_box,.module_detail_box {
+.current_error_box,.history_error_box,.module_detail_box,.self_info_page_panel {
 	height:84%;
 	width:100%;
 	top:3%;
@@ -125,8 +125,12 @@ body{
 	background-color:#070;
 }
 
-.history_error_box{
+.history_error_box {
 	font-size:16px;
+}
+
+.self_info_page_panel {
+	line-height:22px;
 }
 
 .module_detail_box {
@@ -466,4 +470,25 @@ body{
 
 .TABLE_LIST td{
 	text-align:left;
+}
+
+.notify_info {
+	background: #070;
+	left:600px;
+	top:400px;
+}
+
+.notify_errors {
+	background: #700;
+}
+
+.notify_info, .notify_errors {
+	position:absolute;
+	font-size:16px;
+	line-height:18px;
+	font-weight:bold;
+	height:20px;
+	width:25px;
+	border-radius:10px;
+	text-align:center;
 }

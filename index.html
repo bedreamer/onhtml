@@ -217,8 +217,12 @@
         </div>
     </div> <!--历史故障显示页面-->
     <div class="zeus page_frame self_info" id="id_self_info_page">
-        <div class="jobs_preview_toolbox">
-        <a href="javascript:page_show_main_page('id_self_info_page');"><div class="button">返回主页</div></a></div>
+    	<div class="self_info_page_panel" id="id_self_info_page_panel" align="center"></div>
+        <div class="jobs_preview_toolbox self_info_toolbox">
+        	<a href="javascript:page_show_main_page('id_self_info_page');"><div class="button">返回主页</div></a>
+            <a href="javascript:page_system_menu('id_self_info_page');">
+            	<div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        </div>
     </div> <!--本机信息显示页面-->
     <div class="zeus page_frame modules_op_page" id="id_modules_op_page">
     	<div class="modules_op_page_panel" id="id_modules_op_page_panel"></div>
@@ -307,6 +311,9 @@
 	<td><a href="javascript:vk_pushed('del');" class="button blue">C</a></td>
     </tr></table>
 </div>
+<!--
+<div class="notify_info" id="id_notify_info">3</div> <!--信息提示
+<div class="notify_errors" id="id_notify_errors">14</div> <!--故障提示-->
 <div style="position:absolute; float:left; top:96%; left:2%; font-size:16px;">
 Copyright © 2014 杭州奥能电源设备股份有限公司版权所有
 </div>
