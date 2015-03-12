@@ -6,7 +6,7 @@ var g_cfg = {
 	history_per_page:11, // 每页显示的历史故障条数
 	current_err_per_page:7, // 每页显示的当前故障条数
 	current_err_max_page:15, // 当前故障最多显示10页
-	ontom_host:'192.168.1.43:8081',
+	ontom_host:'192.168.1.42:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
@@ -68,7 +68,10 @@ var g_sys = {
 	// 当前故障显示页
 	current_error_page:0,
 	// 当前模块信息显示页
-	current_module_detail_page:0
+	current_module_detail_page:0,
+	
+	// 获取/system/query.json连续失败的次数
+	error_query_nr:0
 };
 // 作业提交参数
 var g_commit = {
@@ -95,7 +98,7 @@ var g_commit = {
 };
 
 // JS 初始化调用
-function js_init() {
+function js_init(re_new) {
 	g_cfg.ontom_query = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query;
 	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
 	g_cfg.ontom_create_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_create_job;
@@ -111,6 +114,7 @@ function js_init() {
 function js_main_loop() {
 	$.getJSON(g_cfg.ontom_query, '', function (data, status, xhr){
 		if ( status == "success" ) {
+			g_sys.error_query_nr = 0;
 			if ( data.doreset == true ) {
 				page_show_main_page(g_sys.page_id_curr);
 			}
@@ -166,6 +170,20 @@ function js_main_loop() {
 					card_sn_valid(data.card_sn, data.card_remain);
 				}
 			}
+		}
+	}).fail(function (){
+		g_sys.error_query_nr ++;
+		if ( g_sys.error_query_nr >= 1 ) {
+			var default_host = '127.0.0.1:8081';
+			g_cfg.ontom_query = g_cfg.ontom_query.replace(g_cfg.ontom_host, default_host);
+			g_cfg.ontom_query_job = g_cfg.ontom_query_job.replace(g_cfg.ontom_host, default_host);
+			g_cfg.ontom_create_job = g_cfg.ontom_create_job.replace(g_cfg.ontom_host, default_host);
+			g_cfg.ontom_abort_job = g_cfg.ontom_abort_job.replace(g_cfg.ontom_host, default_host);
+			g_cfg.ontom_current_error = g_cfg.ontom_current_error.replace(g_cfg.ontom_host, default_host);
+			g_cfg.ontom_history_error = g_cfg.ontom_history_error.replace(g_cfg.ontom_host, default_host);
+			g_cfg.ontom_module_detail = g_cfg.ontom_module_detail.replace(g_cfg.ontom_host, default_host);
+			g_cfg.ontom_about = g_cfg.ontom_about.replace(g_cfg.ontom_host, default_host);
+			g_cfg.ontom_host = '127.0.0.1:8081';
 		}
 	});
 	setTimeout(js_main_loop, g_cfg.query_period);

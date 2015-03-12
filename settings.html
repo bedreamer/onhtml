@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>直流充电桩设置页面</title>
+<link href="css/twoColLiqLtHdr.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/settings.js"></script>
+</head>
+<body onload="javascript:setting_main_loop()" oncontextmenu="return false" ondragstart="return false" onselectstart ="return false" onselect="document.selection.empty()" oncopy="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()">
+<div class="header">
+	<div class="header_logo_areo">
+    	<img src="imgs/only.png" width="100%" height="100%" />
+    </div>
+    <div class="header_title_text">
+    	<a><div class="header_titile_text_panel" id="id_title">
+        直流充电桩设置页面
+        </div></a>
+    </div>
+</div><!--头-->
+<div class="left">
+	<div class="left_panel">
+    	<a href="#"><li id="id_li_welcom" class="left_li_tab left_li_welcom">欢迎使用</li></a>
+        <a href="#"><li id="id_li_system" class="left_li_tab left_li_system">系统</li></a>
+        <a href="#"><li id="id_li_comm" class="left_li_tab left_li_comm">通信</li></a>
+        <a href="#"><li id="id_li_charger" class="left_li_tab left_li_charger">充电机</li></a>
+        <a href="#"><li id="id_li_about" class="left_li_tab left_li_about">关于&amp;版权</li></a>
+    </div>
+</div><!--左边框-->
+<div class="content" id="id_content">
+	<div class="content_panel">
+    	<div class="cls_content_welcom" id="id_content_welcom">
+            <div style="position:absolute;left:20px;">
+                <img style="float:left;margin:30px;" src="imgs/zhuang.png" width="108" height="192"/><p><br>&nbsp;&nbsp;&nbsp;&nbsp;直流充电桩主要用于对电动汽车进行快速充电。该产品安装在户外，防水，防尘设计，防护等级IP54。本产品将充电接口、人机交互界面、通信、计费等部分集成为一个整体，采用模块化设计，具有安装调试方便、运行维护简单等特点，与充电机配合使用，是电动汽车户外直流快速充电的理想选择。<br>&nbsp;&nbsp;&nbsp;&nbsp;感谢您选择奥能电源设备股份有限公司的充电桩产品！</p>
+            </div>
+        </div> <!--欢迎页面-->
+    	<div class="cls_content_panel cls_content_system" id="id_content_system">
+        	<div class="option first_option">
+            	<div class="option_name">系统选型</div>
+                <div class="option_input_panel">
+              		<a href="#"><div class="option_radio option_radio_head">&nbsp;一体式&nbsp;</div></a>
+                    <a href="#"><div class="option_radio option_radio_tail">&nbsp;分体式&nbsp;</div></a>
+                </div>
+            </div>
+            <div class="option">
+            	<div class="option_name">母线段数</div>
+                <div class="option_input_panel">
+                	<a href="#"><div class="option_radio option_radio_tail">&nbsp;一段&nbsp;</div></a>
+                    <a href="#"><div class="option_radio option_radio_head">&nbsp;两段&nbsp;</div></a>
+                </div>
+            </div>
+            <div class="option">
+            	<div class="option_name">采样盒个数</div>
+                <div class="option_input_panel">
+                    <a href="#"><div class="option_radio option_radio_head">&nbsp;一个&nbsp;</div></a>
+                    <a href="#"><div class="option_radio option_radio_tail">&nbsp;两个&nbsp;</div></a>
+                </div>
+            </div>
+            <div class="option">
+            	<div class="option_name">充电枪个数</div>
+                <div class="option_input_panel">
+                    <a href="#"><div class="option_radio option_radio_tail">&nbsp;四把&nbsp;</div></a>
+                    <a href="#"><div class="option_radio option_radio_head">&nbsp;两把&nbsp;</div></a>
+                </div>
+            </div>
+            <div class="option">
+            	<div class="option_name">绝缘告警(KΩ)</div>
+                <div class="option_input_panel">
+                	<input class="cls_input_box" type="text" value="999.9" width="30px" />
+                </div>
+            </div>
+            <div class="option">
+            	<div class="option_name">母线过压(V)</div>
+                <div class="option_input_panel">
+                	<input class="cls_input_box" type="text" value="999.9" width="30px" />
+                </div>
+            </div>
+            <div class="option">
+            	<div class="option_name">母线欠压(V)</div>
+                <div class="option_input_panel">
+                	<input class="cls_input_box" type="text" value="999.9" width="30px" />
+                </div>
+            </div>
+        </div> <!--系统设置页面-->
+    	<div class="cls_content_panel cls_content_comm" id="id_content_comm">
+            <div class="option">选项2</div>
+            <div class="option">选项3</div>
+            <div class="option">选项4</div>
+            <div class="option">选项5</div>
+        </div> <!--通信设置页面-->
+    	<div class="cls_content_panel cls_content_charger" id="id_content_charger">
+            <div class="option">选项3</div>
+            <div class="option">选项4</div>
+            <div class="option">选项5</div>
+        </div> <!--充电机设置页面-->
+    	<div class="cls_content_about" id="id_content_about">
+        </div> <!--关于页面-->
+    </div>
+</div><!--主体-->
+<div class="right" id="id_right">
+	<div class="right_panel">
+    <a href="#"><div class="buttons">7</div></a>
+    <a href="#"><div class="buttons">8</div></a>
+    <a href="#"><div class="buttons">9</div></a>
+    <a href="#"><div class="buttons">4</div></a>
+    <a href="#"><div class="buttons">5</div></a>
+    <a href="#"><div class="buttons">6</div></a>
+    <a href="#"><div class="buttons">1</div></a>
+    <a href="#"><div class="buttons">2</div></a>
+    <a href="#"><div class="buttons">3</div></a>
+    <a href="#"><div class="buttons">0</div></a>
+    <a href="#"><div class="buttons">.</div></a>
+    <a href="#"><div class="buttons rbutton">C</div></a>
+    <a href="#"><div class="buttons bbutton cbutton">保存</div></a>
+    <a href="#"><div class="buttons cbutton">还原</div></a>
+    </div>
+</div><!--右边框-->
+</body>
+</html>
