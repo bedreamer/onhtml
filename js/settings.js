@@ -15,35 +15,55 @@ function setting_main_loop() {
 				for ( var i = 0; i < d.length; i ++ ) {
 					var html = '';
 					if ( d[i].type == 'radio' ) {
-						if ( i == 0 ) {
-							html = "<div class=\"option first_option\">";
-						} else {
-							html = "<div class=\"option\">";
-						}
+						html = "<div class=\"option\">";
             			html = html + "<div class=\"option_name\">" + d[i].name + "</div>";
                 		html = html + "<div class=\"option_input_panel\">";
-						if ( d[i].default_value == d[i].rv_1_value ) {
+						if ( d[i].current_value == d[i].rv_1_value ) {
 							var id_first = "id_r_first_" + i.toString();
 							var id_second = "id_r_second_" + i.toString();
 							html = html + "<a href=\"javascript:on_radio_click('" + id_first;
-							html = html + "');\"><div id=\"" + id_first;
+							html = html + "','" + d[i].key + "','" + d[i].rv_1_value + "');\"><div id=\"" + id_first;
 							html = html + "\" class=\"option_radio option_radio_head\">&nbsp;" + d[i].rv_1_name + "&nbsp;</div></a>";
 							html = html + "<a href=\"javascript:on_radio_click('" + id_second;
-							html = html + "');\"><div id=\"" + id_second;
+							html = html + "','" + d[i].key + "','" + d[i].rv_2_value +  "');\"><div id=\"" + id_second;
 							html = html + "\" class=\"option_radio option_radio_tail\">&nbsp;" + d[i].rv_2_name + "&nbsp;</div></a>";
-						} else if ( d[i].default_value == d[i].rv_2_value ) {
+						} else if ( d[i].current_value == d[i].rv_2_value ) {
 							var id_first = "id_r_first_" + i.toString();
 							var id_second = "id_r_second_" + i.toString();
 							html = html + "<a href=\"javascript:on_radio_click('" + id_first;
-							html = html + "');\"><div id=\"" + id_first;
+							html = html + "','" + d[i].key + "','" + d[i].rv_2_value +  "');\"><div id=\"" + id_first;
 							html = html + "\" class=\"option_radio option_radio_head\">&nbsp;" + d[i].rv_2_name + "&nbsp;</div></a>";
 							html = html + "<a href=\"javascript:on_radio_click('" + id_second;
-							html = html + "');\"><div id=\"" + id_second;
+							html = html + "','" + d[i].key + "','" + d[i].rv_1_value +  "');\"><div id=\"" + id_second;
 							html = html + "\" class=\"option_radio option_radio_tail\">&nbsp;" + d[i].rv_1_name + "&nbsp;</div></a>";
 						} else ;
                 		html = html + "</div></div>";
 					} else if ( d[i].type == 'text' ) {
-					} else ;
+						html = "<div class=\"option\">";
+            			html = html + "<div class=\"option_name\">" + d[i].name + "</div>";
+                		html = html + "<div class=\"option_input_panel\">";
+						if ( d[i].rv_1_name == 'ip' ) {
+							html = html + "<input class=\"cls_input_box cls_input_ip\" type=\"text\""
+						} else {
+                			html = html + "<input class=\"cls_input_box\" type=\"text\"";
+						}
+						html = html + " value=\"" + d[i].current_value;
+                		html = html + "\" width=\"" + d[i].rv_1_value + "\" /></div>";
+            			html = html + "</div>";
+					} else if ( d[i].type == 'options' ) {
+						var jstr = d[i].rv_1_name;
+						jstr = jstr.replace(/@/g, '"');
+						jstr = jstr.replace(/#/g, '{');
+						jstr = jstr.replace(/%/g, '}');
+						var option = eval(jstr);
+						html = "<div class=\"option\">";
+						html = html + "<div class=\"option_name\">" + d[i].name + "</div>";
+						html = html + "<div class=\"option_input_panel\"><select class=\"select_options\">";
+						for ( var j = 0; j < option.length; j ++ ) {
+							html = html + "<option value=\"" + option[j].v + "\">" + option[j].n + "</option>";
+						}
+						html = html + "</select></div></div>";
+					} else;
 					
 					if ( d[i].cat == 'system' ) {
 						codes_system = codes_system + html;
@@ -61,17 +81,18 @@ function setting_main_loop() {
 	});
 }
 
-function on_radio_click(idd) {
+function on_radio_click(idd, key, value) {
 	var newid_f = '#' + idd;
+	var newid_s = '';
 	if ( idd.indexOf('id_r_first_') >= 0 ) {
-		var newid_s = '#' + idd.replace('id_r_first_', 'id_r_second_');
-		$( newid_f ).css('background-color','rgb(0,144,255)');
-		$( newid_s ).css('background-color','#555');
+		newid_s = '#' + idd.replace('id_r_first_', 'id_r_second_');
 	} else if ( idd.indexOf('id_r_second_') >= 0 ){
-		var newid_s = '#' + idd.replace('id_r_second_', 'id_r_first_');
-		$( newid_f ).css('background-color','rgb(0,144,255)');
-		$( newid_s ).css('background-color','#555');
+		newid_s = '#' + idd.replace('id_r_second_', 'id_r_first_');
 	} else ;
+	$( newid_f ).css('background-color','rgb(0,144,255)');
+	$( newid_s ).css('background-color','#555');
+	$( newid_f ).css('color','#FFF');
+	$( newid_s ).css('color','#AAA');
 }
 
 $(function(){
