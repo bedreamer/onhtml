@@ -1,8 +1,10 @@
 ﻿// JavaScript Document
 // 前一次选中的列表ID 
 var pre_li_id = 'id_li_welcom';
-var li_unselect_color = 'rgba(105,105,105,0.5)'
-var li_selected_color = 'rgba(0,144,255,0.5)'
+var li_unselect_color = 'rgba(105,105,105,0.5)';
+var li_selected_color = 'rgba(0,144,255,0.5)';
+var query_str = '';
+var edit_id = 'N/A';
 
 function setting_main_loop() {
 	$.getJSON('http://192.168.1.57:8081/system/config.json', '', function (data, status, xhr) {
@@ -42,10 +44,14 @@ function setting_main_loop() {
 						html = "<div class=\"option\">";
             			html = html + "<div class=\"option_name\">" + d[i].name + "</div>";
                 		html = html + "<div class=\"option_input_panel\">";
+						html = html + "<input id=\"id_text_" + i + "\" "; 
+						html = html + "onfocus=\"javascript:on_text_focus('id_text_" + i + "');\" "; 
+						html = html + "onchange=\"javascript:on_text_changed('id_text_" + i + "','" + d[i].key + "');\" "; 
+						html = html + "onblur=\"javascript:on_text_blur('id_text_" + i + "','" + d[i].key + "');\" "; 
 						if ( d[i].rv_1_name == 'ip' ) {
-							html = html + "<input class=\"cls_input_box cls_input_ip\" type=\"text\""
+							html = html + "class=\"cls_input_box cls_input_ip\" type=\"text\""
 						} else {
-                			html = html + "<input class=\"cls_input_box\" type=\"text\"";
+							html = html + "class=\"cls_input_box\" type=\"text\"";
 						}
 						html = html + " value=\"" + d[i].current_value;
                 		html = html + "\" width=\"" + d[i].rv_1_value + "\" /></div>";
@@ -58,9 +64,14 @@ function setting_main_loop() {
 						var option = eval(jstr);
 						html = "<div class=\"option\">";
 						html = html + "<div class=\"option_name\">" + d[i].name + "</div>";
-						html = html + "<div class=\"option_input_panel\"><select class=\"select_options\">";
+						html = html + "<div class=\"option_input_panel\"><select class=\"select_options\" id=\"id_select_";
+						html = html + i + "\" onchange=javascript:on_option_changed('id_select_" + i + "','" + d[i].key + "')>";
 						for ( var j = 0; j < option.length; j ++ ) {
-							html = html + "<option value=\"" + option[j].v + "\">" + option[j].n + "</option>";
+							if ( option.v == d[i].current_value ) {
+								html=html+ "<option selected=\"selected\" value=\"" + option[j].v + "\">" + option[j].n + "</option>";
+							} else {
+								html = html + "<option value=\"" + option[j].v + "\">" + option[j].n + "</option>";
+							}
 						}
 						html = html + "</select></div></div>";
 					} else;
@@ -81,6 +92,19 @@ function setting_main_loop() {
 	});
 }
 
+function refresh_query_str(key, value) {
+	
+	if ( value == '' ) return;
+	
+	if ( query_str.indexOf(key) >= 0 ) {
+		var reg = new RegExp(key + "=[^;]\+");
+		var nestr = key + "=" + value;
+		query_str = query_str.replace(reg, nestr);
+	} else {
+		query_str = query_str +  key + "=" + value + ";";
+	}
+}
+
 function on_radio_click(idd, key, value) {
 	var newid_f = '#' + idd;
 	var newid_s = '';
@@ -93,7 +117,23 @@ function on_radio_click(idd, key, value) {
 	$( newid_s ).css('background-color','#555');
 	$( newid_f ).css('color','#FFF');
 	$( newid_s ).css('color','#AAA');
+	
+	refresh_query_str(key, value);
 }
+
+function on_option_changed(idd, key) {
+	refresh_query_str(key, $('#' + idd).val());
+}
+
+function on_text_changed(idd, key ) {
+	refresh_query_str(key, $('#' + idd).val());
+	edit_id = 'N/A';
+}
+
+function on_text_blur(idd, key ) {
+	refresh_query_str(key, $('#' + idd).val());
+}
+
 
 $(function(){
 	$('#id_li_welcom').click(function(){
@@ -126,7 +166,6 @@ $(function(){
 		}
 	})
 });
-
 
 $(function(){
 	$('#id_li_system').click(function(){
@@ -175,3 +214,27 @@ $(function(){
 		}
 	})
 });
+
+function on_text_focus(id) {
+	edit_id = id;
+}
+
+function key_push(key) {
+	if ( key == 'r' ) {
+		setting_main_loop();
+	} else if ( key == 's' ) {
+		if ( query_str.length > 0 ) {
+			$.getJSON('http://192.168.1.57:8081/system/save.json', 's='+query_str);
+			query_str = '';
+		}
+	} else {
+		if ( edit_id == 'N/A' ) return;
+		$('#' + edit_id ).focus();
+		if ( key == 'c' ) {
+			$('#' + edit_id ).val('');
+		} else {
+			var v = $('#' + edit_id ).val();
+			$('#' + edit_id ).val( v.toString() + key );
+		}
+	}
+}
