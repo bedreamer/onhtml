@@ -32,12 +32,12 @@ function setting_main_loop() {
 						} else if ( d[i].current_value == d[i].rv_2_value ) {
 							var id_first = "id_r_first_" + i.toString();
 							var id_second = "id_r_second_" + i.toString();
-							html = html + "<a href=\"javascript:on_radio_click('" + id_first;
-							html = html + "','" + d[i].key + "','" + d[i].rv_2_value +  "');\"><div id=\"" + id_first;
-							html = html + "\" class=\"option_radio option_radio_head\">&nbsp;" + d[i].rv_2_name + "&nbsp;</div></a>";
 							html = html + "<a href=\"javascript:on_radio_click('" + id_second;
 							html = html + "','" + d[i].key + "','" + d[i].rv_1_value +  "');\"><div id=\"" + id_second;
 							html = html + "\" class=\"option_radio option_radio_tail\">&nbsp;" + d[i].rv_1_name + "&nbsp;</div></a>";
+							html = html + "<a href=\"javascript:on_radio_click('" + id_first;
+							html = html + "','" + d[i].key + "','" + d[i].rv_2_value +  "');\"><div id=\"" + id_first;
+							html = html + "\" class=\"option_radio option_radio_head\">&nbsp;" + d[i].rv_2_name + "&nbsp;</div></a>";
 						} else ;
                 		html = html + "</div></div>";
 					} else if ( d[i].type == 'text' ) {
