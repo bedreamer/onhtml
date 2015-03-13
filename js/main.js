@@ -6,7 +6,7 @@ var g_cfg = {
 	history_per_page:11, // 每页显示的历史故障条数
 	current_err_per_page:7, // 每页显示的当前故障条数
 	current_err_max_page:15, // 当前故障最多显示10页
-	ontom_host:'192.168.1.42:8081',
+	ontom_host:'192.168.1.57:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
