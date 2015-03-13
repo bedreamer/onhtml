@@ -7,7 +7,7 @@ var query_str = '';
 var edit_id = 'N/A';
 
 function setting_main_loop() {
-	$.getJSON('http://192.168.1.57:8081/system/config.json', '', function (data, status, xhr) {
+	$.getJSON('http://127.0.1.1:8081/system/config.json', '', function (data, status, xhr) {
 		if ( status == 'success' ) {
 			$.each(data, function (index, d) {
 				if ( index != 'configs' ) return;
@@ -224,7 +224,7 @@ function key_push(key) {
 		setting_main_loop();
 	} else if ( key == 's' ) {
 		if ( query_str.length > 0 ) {
-			$.getJSON('http://192.168.1.57:8081/system/save.json', 's='+query_str);
+			$.getJSON('http://127.0.0.1:8081/system/save.json', 's='+query_str);
 			query_str = '';
 		}
 	} else {
