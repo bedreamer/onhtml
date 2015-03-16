@@ -549,7 +549,7 @@ function page_show_self_info(from) {
 				codes = codes + "<tr><td align=right>充电枪:&nbsp;</td><td>&nbsp;" + data.about.gun_nr + "&nbsp;&nbsp;</td><tr>";
 			}
 			if ( data.about.module_nr ) {
-				codes = codes + "<tr><td align=right>充电枪:&nbsp;</td><td>&nbsp;" + data.about.module_nr + "&nbsp;&nbsp;</td><tr>";
+				codes = codes + "<tr><td align=right>充电模块:&nbsp;</td><td>&nbsp;" + data.about.module_nr + "&nbsp;&nbsp;</td><tr>";
 			}
 			if ( data.about.section_nr ) {
 				codes = codes + "<tr><td align=right>系统母线:&nbsp;</td><td>&nbsp;" + data.about.section_nr + "&nbsp;&nbsp;</td><tr>";
