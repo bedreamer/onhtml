@@ -219,14 +219,36 @@ function on_text_focus(id) {
 	edit_id = id;
 }
 
+var t = 0;
+function refresh_notify_text() {
+	var str;
+	var tips = ['.', '..', '...', '....', '.....'];
+	
+	if ( t > 4 ) {
+		t = 0;
+	}
+
+	str = '正在保存' + tips[ t ];
+	t ++;
+
+	$('#id_content_text').html(str);
+	setTimeout(refresh_notify_text, 300);
+}
+
 function key_push(key) {
 	if ( key == 'r' ) {
 		setting_main_loop();
 	} else if ( key == 's' ) {
+		$('#id_select_box').show();
+	} else if ( key == 'S' ) {
+		t = 0;
 		if ( query_str.length > 0 ) {
+			setTimeout(refresh_notify_text, 10);
 			$.getJSON('http://127.0.0.1:8081/system/save.json', 's='+query_str);
 			query_str = '';
 		}
+	} else if ( key == 'C' ) {
+		$('#id_select_box').hide();
 	} else {
 		if ( edit_id == 'N/A' ) return;
 		$('#' + edit_id ).focus();

@@ -113,6 +113,10 @@ a, div{
 	display:none;
 }
 
+.cls_content_about {
+	overflow:hidden;
+}
+
 .cls_content_panel {
 	position:absolute;
 	color:#C39;
@@ -266,6 +270,11 @@ a, div{
 	-webkit-box-shadow: 2px 2px 2px rgba(0,0,0, .29), inset 2px 2px 2px rgba(0,0,0, .84);
 }
 
+.buttons:active {  
+    position: relative;  
+    top: 3px;  
+}
+
 .rbutton {
 	background-color:#e77;
 }
@@ -277,4 +286,64 @@ a, div{
 
 .cbutton {
 	width:100px;
+}
+
+.select_box {
+	position:absolute;
+	float:left;
+	left:8%;
+	top:15%;
+	height:70%;
+	width:84%;
+	border-radius:8px;
+	background-color:#009FFF;
+	background-image:url(../imgs/save.png);
+	background-size:150px 150px;
+	background-position:255px 85px;
+	background-repeat:no-repeat;
+	display:none;
+}
+
+.select_box_title {
+	position:absolute;
+	height:40px;
+	width:100%;
+	top:26px;
+	background-color:#FFF;
+	color:#000;
+	font-size:24px;
+	line-height:40px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.select_box_content {
+	position:absolute;
+	height:100px;
+	width:100%;
+	text-align:center;
+	top:150px;
+	font-size:24px;
+}
+
+.button_panel {
+	position:absolute;
+	left:5px;
+	top:250px;
+}
+
+.Ebuttons,.Sbuttons,.Cbuttons {
+	width:200px;
+	font-size:24px;
+	line-height:60px;
+	height:60px;
+}
+
+.Ebuttons {
+}
+
+.Sbuttons {
+}
+
+.Cbuttons {
 }
