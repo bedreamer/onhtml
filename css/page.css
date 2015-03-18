@@ -168,6 +168,18 @@ body{
 	top:20%;
 	line-height:normal;
 	background-color:rgba(255, 255, 255, 0.1);
+	background-image:url(../imgs/statgrid.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+
+.abc_detail {
+	position:absolute;
+	left:15px;
+	top:100px;
+	height:120px;
+	font-size:16px;
+	line-height:16px;
 }
 
 .cls_stat_grid_img {
@@ -212,6 +224,11 @@ body{
 	-webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
     -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
     box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+}
+
+.main_tool_box:active {
+	position:relative;
+	top: -3px;
 }
 
 .moudle_tool_box {
@@ -313,71 +330,6 @@ body{
 
 .v_bm_maual_param_page {
 	display:none;
-}
-
-.processbar_border{
-	width:606px;
-	height:30px;
-	background-color:#69E20c;
-	border-style: solid;
-	border-width: thin;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    border-radius: 16px;
-}
-
-.processbar{
-	position:relative;
-	float:left;
-	top:3px;
-	left:3px;
-	height:24px;
-	width:50px;
-	background-color:#222;
-    -webkit-border-radius: 16px;
-    -moz-border-radius: 16px;
-    border-radius: 16px;
-	
-	-webkit-background-size: 30px 30px;
-	-moz-background-size: 30px 30px;
-	background-size: 30px 30px;
-	background-image: -webkit-gradient(linear, left top, right bottom,
-	color-stop(.25, rgba(255, 255, 255, .65)), color-stop(.25, transparent),
-	color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .15)),
-	color-stop(.75, rgba(255, 255, 255, .65)), color-stop(.75, transparent),
-	to(transparent));
-	background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-	transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-	transparent 75%, transparent);
-	background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-	transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-	transparent 75%, transparent);
-	background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-	transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-	transparent 75%, transparent);
-	background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-	transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-	transparent 75%, transparent);
-	background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-	transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
-	transparent 75%, transparent);
-	
-/*	-webkit-animation: animate-stripes 10s linear infinite;
-	-moz-animation: animate-stripes 10s linear infinite;
-*/
-}
-
-@-webkit-keyframes animate-stripes {
-0% {background-position: 0 0;} 100% {background-position: 600px 0;}
-}
-
-.processbar_data{
-	font-size:26px;
-	font-weight:bold;
-	color:#C3F;
-	position:absolute;
-	float:left;
-	left:50%;
 }
 
 .button {

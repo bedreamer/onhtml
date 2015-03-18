@@ -6,7 +6,7 @@ var g_cfg = {
 	history_per_page:11, // 每页显示的历史故障条数
 	current_err_per_page:7, // 每页显示的当前故障条数
 	current_err_max_page:15, // 当前故障最多显示10页
-	ontom_host:'192.168.1.57:8081',
+	ontom_host:'192.168.1.35:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
@@ -99,6 +99,12 @@ var g_commit = {
 
 // JS 初始化调用
 function js_init(re_new) {
+	var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+	if ( isWin ) {
+		//alert('Fuck windows!!!');
+	} else {
+		g_cfg.ontom_host = '127.0.0.1:8081';
+	}
 	g_cfg.ontom_query = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query;
 	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
 	g_cfg.ontom_create_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_create_job;
@@ -112,13 +118,14 @@ function js_init(re_new) {
 
 // 定时执行
 function js_main_loop() {
+
 	$.getJSON(g_cfg.ontom_query, '', function (data, status, xhr){
 		if ( status == "success" ) {
 			g_sys.error_query_nr = 0;
 			if ( data.doreset == true ) {
 				page_show_main_page(g_sys.page_id_curr);
 			}
-			if ( data.version == 'V1.0' ) {
+			if ( data.version ) {
 				switch ( data.system_status ) {
 				case 'N/A':
 					$('#id_mainpage_sys_status').css('color', '#FF0');
@@ -157,6 +164,10 @@ function js_main_loop() {
 				$('#id_mainpage_bus0_institude').html(data.bus0_institude);
 				$('#id_mainpage_bus0_voltage').html(data.bus0_V);
 				$('#id_mainpage_bus0_current').html(data.bus0_I);
+				$('#id_a_volatage').html(data.Va);
+				$('#id_b_volatage').html(data.Vb);
+				$('#id_c_volatage').html(data.Vc);
+
 				if ( data.query_period > 0 ) {
 					g_cfg.query_period = data.query_period;
 				}
@@ -282,8 +293,8 @@ function page_show_jobs_preview(from) {
 						codes = codes + "<tr><td>状态</td><td>" + d[i].status + "</td></tr>";
 						codes = codes + "<tr><td>端口</td><td>" + d[i].port + "枪</td></tr>";
 						codes = codes + "<tr><td>连接</td><td>" + d[i].gun_stat + "</td></tr>";		
-						codes = codes + "<tr><td>JID:</td><td>" + d[i].id  + "</td></tr>";											
-						codes = codes + "<tr><td>CID:</td><td>" + d[i].cid + "</td></tr>";											
+						codes = codes + "<tr><td>序号</td><td>" + d[i].id  + "</td></tr>";											
+						codes = codes + "<tr><td>卡号</td><td>" + d[i].cid + "</td></tr>";											
 						codes = codes + "</table></div></a>";
 					}
 					$('#jobs_preview').html(codes);

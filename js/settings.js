@@ -5,9 +5,16 @@ var li_unselect_color = 'rgba(105,105,105,0.5)';
 var li_selected_color = 'rgba(0,144,255,0.5)';
 var query_str = '';
 var edit_id = 'N/A';
+var ip='192.168.1.35';
 
 function setting_main_loop() {
-	$.getJSON('http://127.0.1.1:8081/system/config.json', '', function (data, status, xhr) {
+	var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+	if ( isWin ) {
+		//alert('Fuck windows!!!');
+	} else {
+		ip = '127.0.0.1';
+	}
+	$.getJSON('http://' + ip + ':8081/system/config.json', '', function (data, status, xhr) {
 		if ( status == 'success' ) {
 			$.each(data, function (index, d) {
 				if ( index != 'configs' ) return;
@@ -67,7 +74,7 @@ function setting_main_loop() {
 						html = html + "<div class=\"option_input_panel\"><select class=\"select_options\" id=\"id_select_";
 						html = html + i + "\" onchange=javascript:on_option_changed('id_select_" + i + "','" + d[i].key + "')>";
 						for ( var j = 0; j < option.length; j ++ ) {
-							if ( option.v == d[i].current_value ) {
+							if ( option[j].v == d[i].current_value ) {
 								html=html+ "<option selected=\"selected\" value=\"" + option[j].v + "\">" + option[j].n + "</option>";
 							} else {
 								html = html + "<option value=\"" + option[j].v + "\">" + option[j].n + "</option>";
@@ -244,7 +251,7 @@ function key_push(key) {
 		t = 0;
 		if ( query_str.length > 0 ) {
 			setTimeout(refresh_notify_text, 10);
-			$.getJSON('http://127.0.0.1:8081/system/save.json', 's='+query_str);
+			$.getJSON('http://' + ip + ':8081/system/save.json', 's='+query_str);
 			query_str = '';
 		}
 	} else if ( key == 'C' ) {
