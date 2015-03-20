@@ -30,7 +30,7 @@
         <div class="cls_status">
         <table style="font-size:27px; text-align:right" align="center">
             <tr>
-            	<td>&nbsp;</td><td><img width="35px" height="35px" src="imgs/settings.png"/>&nbsp;<img width="35px" height="35px" src="imgs/info.png"/></td>
+            	<td>&nbsp;</td><td>&nbsp;</td>
             </tr>
             <tr>
             	<td>系统状态:</td><td id="id_mainpage_sys_status">N/A</td>
@@ -152,6 +152,7 @@
 	<div class="job_working_toolbox" id="job_working_toolbox_id">
         <a href="javascript:page_show_main_page('id_job_working');"><div class="button">返回主页</div></a>
         <a href="javascript:page_show_jobs_preview('id_job_working')"><div class="button">返回作业池</div></a>
+        <a id="id_job_op_href" href="#"><div id="id_job_op_btn" class="button">无操作</div></a>
         <a href="javascript:page_show_jobs_detail('id_job_working')"><div class="button">作业明细</div></a>
     </div>
     </div> <!--作业显示页面-->
@@ -280,9 +281,9 @@
         </tr>
         <tr>
           <td>限流</td>
-          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lI')" id="id_cm_set_lI" type="text" size="9" maxlength="9"/>A</td>
+          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lI')" id="id_cm_set_lI" type="text" size="9" maxlength="9" value="21"/>A</td>
           <td>限压</td>
-          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lV')" id="id_cm_set_lV" type="text" size="9" maxlength="9"/>V</td>
+          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lV')" id="id_cm_set_lV" type="text" size="9" maxlength="9" value="533.8"/>V</td>
         <tr>
           <td>授权</td>
           <td colspan="3"><input onclick="javasctipt:vk_focurs('id_cm_set_passwd')" id="id_cm_set_passwd" type="password" /></td>
