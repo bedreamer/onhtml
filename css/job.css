@@ -5,7 +5,7 @@
 .job_preview_box {
 	position:absolute;
 	height:120px;
-	width:120px;
+	width:130px;
 	font-size:16px;
 	background-color:rgba(255, 255, 255, 0.2);
 	-webkit-border-radius: 8px;
@@ -64,4 +64,20 @@
 
 .self_info_toolbox {
 	left:30%;
+}
+
+.job_preview_box_stat1 {
+	background-color:#070;
+}
+
+.job_preview_box_stat2 {
+	background-color:#770;
+}
+
+.job_preview_box_stat3 {
+	background-color:#077;
+}
+
+.job_preview_box_stat4 {
+	background-color:#777;
 }

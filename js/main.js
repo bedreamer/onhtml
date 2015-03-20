@@ -16,6 +16,10 @@ var g_cfg = {
 	ontom_create_job:'/job/create.json',
 	// 作业中止接口
 	ontom_abort_job:'/job/abort.json',
+	// 作业暂停接口
+	ontom_pause_job:'/job/manpause.json',
+	// 作业恢复接口
+	ontom_resume_job:'/job/resume.json',
 	// 当前故障查询接口
 	ontom_current_error:'/system/error.json',
 	// 历史故障查询接口
@@ -109,6 +113,8 @@ function js_init(re_new) {
 	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
 	g_cfg.ontom_create_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_create_job;
 	g_cfg.ontom_abort_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_abort_job;
+	g_cfg.ontom_pause_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_pause_job;
+	g_cfg.ontom_resume_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_resume_job;
 	g_cfg.ontom_current_error = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_current_error;
 	g_cfg.ontom_history_error = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_history_error;
 	g_cfg.ontom_module_detail = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_module_detail;
@@ -285,13 +291,29 @@ function page_show_jobs_preview(from) {
 						codes = codes + 
 						"<a href=\"javascript:page_show_job_detail('jobs_preview_page','";
 						codes = codes + d[i].id + "');\">";
-						codes = codes +"<div align=\"center\" class=\"job_preview_box\"";
+						codes = codes +"<div align=\"center\" class=\"job_preview_box ";
+						switch ( d[i].status ) {
+							case '在充':
+								codes = codes + " job_preview_box_stat1\"";
+							break;
+							case '就绪':
+							case '因故暂停':
+							case '人工暂停':
+								codes = codes + " job_preview_box_stat2\"";
+							break;
+							case '等待':
+								codes = codes + " job_preview_box_stat3\"";
+							break;
+							default:
+								codes = codes + " job_preview_box_stat4\"";
+							break;
+						}						
 						codes = codes +" style=\"left:" + left + "px";
 						codes = codes +";top:" + top + "px\" ";
 						codes = codes + "id=\"id_jobpreview_"+i + "\">";
 						codes = codes + "<table align=\"center\" class=\"job_preview_box_table\">";
 						codes = codes + "<tr><td>状态</td><td>" + d[i].status + "</td></tr>";
-						codes = codes + "<tr><td>端口</td><td>" + d[i].port + "枪</td></tr>";
+						codes = codes + "<tr><td>端口</td><td>" + d[i].port + "</td></tr>";
 						codes = codes + "<tr><td>连接</td><td>" + d[i].gun_stat + "</td></tr>";		
 						codes = codes + "<tr><td>序号</td><td>" + d[i].id  + "</td></tr>";											
 						codes = codes + "<tr><td>卡号</td><td>" + d[i].cid + "</td></tr>";											
@@ -579,6 +601,20 @@ function page_show_self_info(from) {
 	});
 }
 
+function job_resume(jid) {
+	$.getJSON(g_cfg.ontom_resume_job, 'id='+jid, function (data, status, xhr){
+		if ( status == 'success' ) {
+		}
+	});
+}
+
+function job_pause(jid) {
+	$.getJSON(g_cfg.ontom_pause_job, 'id='+jid, function (data, status, xhr){
+		if ( status == 'success' ) {
+		}
+	});
+}
+
 // 显示作业的详细信息
 function page_show_job_detail(from, job) {
 	$('#'+from).hide();
@@ -609,9 +645,17 @@ function page_show_job_detail(from, job) {
 						$('#id_job_working_institude_status').html('正常');
 						$('#id_job_working_gun_status').html(d[i].gun_stat);
 						$('#id_job_working_job_status').html(d[i].status);
+						if ( d[i].status == '人工暂停' ) {
+							$('#id_job_op_btn').html("恢复充电");
+							$('#id_job_op_href').attr("href","javascript:job_resume('" + d[i].id + "')"); 
+						} else {
+							$('#id_job_op_btn').html("暂停充电");
+							$('#id_job_op_href').attr("href","javascript:job_pause('" + d[i].id + "')"); 
+						}
 					}
 					});
 				if ( ok == 0 ) {
+					$('#id_job_op_href').attr('href','#'); 
 					$('#id_job_working_jid').html('<a color="#F00">无效ID</a>');
 				}
 			}
