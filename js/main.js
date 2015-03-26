@@ -6,7 +6,8 @@ var g_cfg = {
 	history_per_page:11, // 每页显示的历史故障条数
 	current_err_per_page:7, // 每页显示的当前故障条数
 	current_err_max_page:15, // 当前故障最多显示10页
-	ontom_host:'192.168.1.35:8081',
+//	ontom_host:'192.168.1.123:8081',
+	ontom_host:'127.0.0.1:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
@@ -75,7 +76,12 @@ var g_sys = {
 	current_module_detail_page:0,
 	
 	// 获取/system/query.json连续失败的次数
-	error_query_nr:0
+	error_query_nr:0,
+	
+	// 当前卡片余额
+	card_money_remain:0,
+	// 当前卡片密码
+	card_passwd:''
 };
 // 作业提交参数
 var g_commit = {
@@ -184,7 +190,7 @@ function js_main_loop() {
 				g_sys.gun3_work_status = data.gun3_work_status;
 
 				if ( data.card_sn != 'N/A' ) {
-					card_sn_valid(data.card_sn, data.card_remain);
+					card_sn_valid(data.card_sn, data.card_remain, data.card_passwd);
 				}
 			}
 		}
@@ -206,14 +212,48 @@ function js_main_loop() {
 	setTimeout(js_main_loop, g_cfg.query_period);
 }
 
+// 显示密码验证页面并进行验证
+function show_card_passwd_input_page(sn, remain, passwd) {
+	g_sys.card_passwd = '';
+	$('#id_card_passwd').val('');
+	$('#id_card_passwd_input_page').show();
+	g_sys.page_id_curr = 'id_card_passwd_input_page';
+	$('#id_passwd_card_sn').html(sn);
+	$('#id_card_passwd_notify').html("&nbsp;");
+	$('#id_keypad').show();
+	$('#id_keypad').css('top', '245px');
+	editid = 'id_card_passwd';
+	g_sys.card_money_remain = remain;
+	g_sys.card_passwd = passwd;
+}
+
+// 显示作业创建页面
+function do_show_job_create_page() {
+	//alert($('#id_card_passwd').val() + ':' + g_sys.card_passwd);
+	if ( $('#id_card_passwd').val() == g_sys.card_passwd && g_sys.card_passwd != '' ) {
+		$('#id_mainpage').hide();
+		$('#id_keypad').hide();
+		$('#id_card_passwd_notify').html("&nbsp;");
+		page_show_job_create(
+			'id_card_passwd_input_page', 
+			$('#id_passwd_card_sn').html(), 
+			g_sys.card_money_remain);
+	} else {
+		$('#id_card_passwd_notify').html("密码输入错误!");
+	}
+}
+
 // 处理刷卡事件
-function card_sn_valid(sn, remain) {
+function card_sn_valid(sn, remain, passwd) {
 	// 创建作业
 	if ( g_sys.page_id_curr == 'id_mainpage' ) { // 创建充电作业
-		page_show_job_create('id_mainpage', sn, remain);
+		show_card_passwd_input_page(sn, remain, passwd);
+		//page_show_job_create('id_mainpage', sn, remain);
 	} else if (g_sys.page_id_curr=='id_job_create') { // 提交作业
-		function do_job_commit(sn) {
+		function do_job_commit(sn, remain, passwd) {
 			var pa = 't=' + Date.parse(new Date()).toString();
+			pa = pa + '&remain=' + remain;
+			pa = pa + '&passwd=' + passwd;
 			pa = pa + '&cid=' + sn;
 			pa = pa + '&gun=' + $("input[name='gun']:checked").val();
 			if ( g_commit.b_mode == 'kwh' ) {
@@ -247,8 +287,12 @@ function card_sn_valid(sn, remain) {
 				}
 			});
 		}
-		do_job_commit(sn);
+		do_job_commit(sn, remain, passwd);
 	} else if (g_sys.page_id_curr=='id_job_working') { // 终止充电作业
+		if ( sn != $('#id_job_working_cid').html() ) {
+			alert('// 无效的卡片');
+			return;
+		}
 		var pa = 'id=' + $('#id_job_working_jid').html();
 		$.getJSON(g_cfg.ontom_abort_job, pa, function (data, status, xhr) {
 		if ( status == 'success' ) {
@@ -336,6 +380,7 @@ function page_show_jobs_detail(from) {
 function page_show_main_page(from) {
 	$('#'+from).hide();
 	$('#id_mainpage').show();
+	$('#id_keypad').hide();
 	g_sys.page_id_curr = 'id_mainpage';
 }
 

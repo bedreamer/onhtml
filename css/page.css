@@ -316,6 +316,10 @@ body{
     border-radius: 16px;
 }
 
+.v_card_passwd_input_pages{
+	display:none;
+}
+
 .v_bm_kwh_param_page {
 	display:none;
 }
