@@ -6,8 +6,8 @@ var g_cfg = {
 	history_per_page:11, // 每页显示的历史故障条数
 	current_err_per_page:7, // 每页显示的当前故障条数
 	current_err_max_page:15, // 当前故障最多显示10页
-//	ontom_host:'192.168.1.123:8081',
-	ontom_host:'127.0.0.1:8081',
+	ontom_host:'192.168.1.123:8081',
+//	ontom_host:'127.0.0.1:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
 	query_period:800,
@@ -64,6 +64,8 @@ var g_sys = {
 	job_wait_count:0,
 	// 执行祖业数量
 	job_working_count:0,
+	// 当前显示的作业ID
+	job_id_curr:'N/A',
 	
 	// 当前显示的历史页面号
 	history_page_num:0,
@@ -130,8 +132,7 @@ function js_init(re_new) {
 
 // 定时执行
 function js_main_loop() {
-
-	$.getJSON(g_cfg.ontom_query, '', function (data, status, xhr){
+	$.getJSON(g_cfg.ontom_query, 'p=' + g_sys.page_id_curr + '&j=' + g_sys.job_id_curr, function (data, status, xhr){
 		if ( status == "success" ) {
 			g_sys.error_query_nr = 0;
 			if ( data.doreset == true ) {
@@ -216,6 +217,7 @@ function js_main_loop() {
 function show_card_passwd_input_page(sn, remain, passwd) {
 	g_sys.card_passwd = '';
 	$('#id_card_passwd').val('');
+	value = ''; // 清空按键缓冲区
 	$('#id_card_passwd_input_page').show();
 	g_sys.page_id_curr = 'id_card_passwd_input_page';
 	$('#id_passwd_card_sn').html(sn);
@@ -290,7 +292,7 @@ function card_sn_valid(sn, remain, passwd) {
 		do_job_commit(sn, remain, passwd);
 	} else if (g_sys.page_id_curr=='id_job_working') { // 终止充电作业
 		if ( sn != $('#id_job_working_cid').html() ) {
-			alert('// 无效的卡片');
+			alert('无效的卡片');
 			return;
 		}
 		var pa = 'id=' + $('#id_job_working_jid').html();
@@ -316,6 +318,7 @@ function page_show_jobs_preview(from) {
 	$('#'+from).hide();
 	$('#jobs_preview_page').show();
 	g_sys.page_id_curr = 'jobs_preview_page';
+	g_sys.job_id_curr = 'N/A';
 
 	$('#jobs_preview').html("<b>没有充电作业!</b>");
 	function refresh_jobs_list() {
@@ -382,6 +385,7 @@ function page_show_main_page(from) {
 	$('#id_mainpage').show();
 	$('#id_keypad').hide();
 	g_sys.page_id_curr = 'id_mainpage';
+	g_sys.job_id_curr = 'N/A';
 }
 
 // 显示系统查询目录
@@ -677,6 +681,7 @@ function page_show_job_detail(from, job) {
 						 $('#id_job_working_jid').html('<a color="#F00">无效ID</a>');
 						 return;
 					}
+					g_sys.job_id_curr = job;
 					for ( var i = 0; i < d.length; i ++ ) {
 						if ( d[i].id != job ) continue;
 						ok = 1;

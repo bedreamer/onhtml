@@ -369,6 +369,14 @@ body{
     top: 3px;  
 }
 
+.back_gray {
+	background-color:rgba(80,80,80,0.3);
+}
+
+.back_dark {
+	background-color:rgba(200,200,200,0.3);
+}
+
 .green {
     color: #3e5706;
  
