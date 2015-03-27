@@ -6,7 +6,7 @@ var g_cfg = {
 	history_per_page:11, // 每页显示的历史故障条数
 	current_err_per_page:7, // 每页显示的当前故障条数
 	current_err_max_page:15, // 当前故障最多显示10页
-	ontom_host:'192.168.1.123:8081',
+	ontom_host:'192.168.1.85:8081',
 //	ontom_host:'127.0.0.1:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
@@ -83,7 +83,10 @@ var g_sys = {
 	// 当前卡片余额
 	card_money_remain:0,
 	// 当前卡片密码
-	card_passwd:''
+	card_passwd:'',
+	
+	// 背景图片名称
+	back_img_name:'1D2D.png'
 };
 // 作业提交参数
 var g_commit = {
@@ -180,6 +183,29 @@ function js_main_loop() {
 				$('#id_a_volatage').html(data.Va);
 				$('#id_b_volatage').html(data.Vb);
 				$('#id_c_volatage').html(data.Vc);
+				
+				var img = '';
+				if ( data.gun0 == '未连接' ) {
+					img = '1D';
+				} else if ( data.gun0 == "已连接" ) {
+					img = '1J';
+				} else if ( data.gun0 == "在充" ) {
+					img = '1C';
+				}
+
+				if ( data.gun1 == '未连接' ) {
+					img = img + '2D.png';
+				} else if ( data.gun1 == "已连接" ) {
+					img = img + '2J.png';
+				} else if ( data.gun1 == "在充" ) {
+					img = img + '2C.png';
+				}
+
+				if ( img != g_sys.back_img_name ) {
+					g_sys.back_img_name = img;
+					img = 'url(imgs/' + img + ')';
+					$('#id_system_preview').css('background-image', img);
+				}
 
 				if ( data.query_period > 0 ) {
 					g_cfg.query_period = data.query_period;
