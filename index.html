@@ -30,9 +30,6 @@
         <div class="cls_status">
         <table style="font-size:27px; text-align:right" align="center">
             <tr>
-            	<td>&nbsp;</td><td>&nbsp;</td>
-            </tr>
-            <tr>
             	<td>系统状态:</td><td id="id_mainpage_sys_status">N/A</td>
             </tr>
             <tr>
@@ -302,6 +299,49 @@
     <div>
         <a href="javascript:do_show_job_create_page();"><div class="button">确定</div></a>
         <a href="javascript:page_show_main_page('id_card_passwd_input_page');"><div class="button">取消</div></a></div>
+    </div>
+</div>
+<div class="zeus page_frame v_job_billing_detail" id="id_job_billing_detail">
+    <div>
+    	<table width="96%" align="center" class="job_create_table">
+          <caption>
+            交易详情
+          </caption>
+          <tr>
+            <td scope="col" class="back_gray">交易流水号</td>
+            <td scope="col" id="id_billing_bid" class="back_gray">B099921312312312</td>
+            <td scope="col" class="back_dark">卡片序号</td>
+            <td scope="col" id="id_billing_cid" class="back_dark">ON20122236989</td>
+          </tr>
+          <tr>
+            <td class="back_dark">作业ID</td>
+            <td id="id_billing_jid" class="back_dark">J2015023454</td>
+            <td class="back_gray">消费金额</td>
+            <td id="id_billing_cost" class="back_gray">682.6 V</td>
+          </tr>
+          <tr>
+            <td class="back_gray">消耗电量</td>
+            <td id="id_billing_kwh" class="back_gray">13.6 KW.H</td>
+            <td class="back_dark">账户余额</td>
+            <td id="id_billing_remain" class="back_dark">569.56 元</td>
+          </tr>
+          <tr>
+            <td class="back_dark">起始时刻</td>
+            <td id="id_billing_btime" class="back_dark">2015/03/28 12:56</td>
+            <td class="back_gray">结束时刻</td>
+            <td id="id_billing_etime" class="back_gray">2015/03/28 12:59</td>
+          </tr>
+          <tr>
+            <td class="back_gray">充电时长</td>
+            <td id="id_billing_long" class="back_gray">3.0 分钟</td>
+            <td class="back_dark">&nbsp;</td>
+            <td class="back_dark">&nbsp;</td>
+          </tr>
+        </table>
+    </div>
+    <div class="jobs_preview_toolbox self_info_toolbox">
+        <a href="javascript:void();"><div class="button">打印交易账单</div></a>
+        <a href="javascript:do_job_done();"><div class="button">完成</div></a></div>
     </div>
 </div>
 <!-- 虚拟键盘放置在浮动层，节省空间 -->

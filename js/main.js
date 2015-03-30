@@ -6,7 +6,7 @@ var g_cfg = {
 	history_per_page:11, // 每页显示的历史故障条数
 	current_err_per_page:7, // 每页显示的当前故障条数
 	current_err_max_page:15, // 当前故障最多显示10页
-	ontom_host:'192.168.1.85:8081',
+	ontom_host:'192.168.1.93:8081',
 //	ontom_host:'127.0.0.1:8081',
 	ontom_query:'/system/query.json',
 	// 查询周期, 根据传来的数据动态调整
@@ -317,21 +317,14 @@ function card_sn_valid(sn, remain, passwd) {
 		}
 		do_job_commit(sn, remain, passwd);
 	} else if (g_sys.page_id_curr=='id_job_working') { // 终止充电作业
+		if ( $('#id_job_working_cid').html() == 'N/A' ) return;
 		if ( sn != $('#id_job_working_cid').html() ) {
 			alert('无效的卡片');
 			return;
 		}
-		var pa = 'id=' + $('#id_job_working_jid').html();
-		$.getJSON(g_cfg.ontom_abort_job, pa, function (data, status, xhr) {
-		if ( status == 'success' ) {
-			if ( data.status == "REJECTED" ) {
-				alert('无效的作业');
-			} else {
-				page_show_main_page('id_job_working');
-			}
-			return;	
-		}
-		});
+		
+		do_show_job_billing('id_job_working', $('#id_job_working_cid').html());
+
 	} else { // 无效刷卡
 	}
 }
@@ -953,4 +946,28 @@ function module_op_page_show(from) {
 	g_sys.page_id_curr = 'id_modules_op_page';
 
 	module_op_refresh('N/A', -1);
+}
+
+// 显示作业账单
+function do_show_job_billing(from, jid) {
+	$('#'+from).hide();
+	$('#id_job_billing_detail').show();
+	g_sys.page_id_curr = 'id_job_billing_detail';
+
+}
+
+// 作业完成
+function do_job_done() {
+	var jid = $('#id_job_working_jid').html();
+	var pa = 'id=' + jid;
+	$.getJSON(g_cfg.ontom_abort_job, pa, function (data, status, xhr) {
+	if ( status == 'success' ) {
+		if ( data.status == "REJECTED" ) {
+			//alert('无效的作业');
+		} else {
+		}
+		return;	
+	}
+	});
+	page_show_main_page('id_job_billing_detail');
 }

@@ -73,6 +73,7 @@ body{
 
 .mainpage {
 	display:block;
+	//display:none;
 }
 
 .job_create {
@@ -83,7 +84,7 @@ body{
 	display:none;
 }
 
-.system_operate_menu,.current_error,.history_error,.self_info,.system_query_menu,.module_detail,.modules_op_page {
+.system_operate_menu,.current_error,.history_error,.self_info,.system_query_menu,.module_detail,.modules_op_page,.v_job_billing_detail {
 	display:none;
 }
 

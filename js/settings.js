@@ -5,7 +5,8 @@ var li_unselect_color = 'rgba(105,105,105,0.5)';
 var li_selected_color = 'rgba(0,144,255,0.5)';
 var query_str = '';
 var edit_id = 'N/A';
-var ip='192.168.1.85';
+//var ip='127.0.0.1';
+var ip='192.168.1.93';
 
 function setting_main_loop() {
 	var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
