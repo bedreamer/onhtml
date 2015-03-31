@@ -31,15 +31,17 @@ function jiaozhun_proc() {
 		$.getJSON('http://192.168.1.200:8081/system/jiaozhun.json', p, function(data, status, xhr){
 			if ( status != 'success' ) return;
 			if ( jiaozhun[cur].n == 'V1' ) {
+				$('#id_param').html($('#id_param').html()+'/'+data.V1 + 'V');
 				if ( data.V1 >= jiaozhun[cur].p - 2 &&  data.V1 <= jiaozhun[cur].p + 2 ) {
 				} else {
 				}
 			} else if ( jiaozhun[cur].n == 'V2' ) {
+				$('#id_param').html($('#id_param').html()+'/'+data.V1 + 'V');
 				if ( data.V2 >= jiaozhun[cur].p - 2 &&  data.V2 <= jiaozhun[cur].p + 2 ) {
 				} else {
 				}
 			}
-			
+
 			if ( data.SCS == 'ERR' || data.CCS == 'ERR' ) {
 				$('#id_status').html('通信故障');
 			} else {
@@ -59,7 +61,7 @@ $(function(){
 			cur = 0;
 			done = false;
 			$('#id_btn_start').html('停止校准');
-			setTimeout(jiaozhun_proc, 1500);
+			setTimeout(jiaozhun_proc, 50);
 		} else {
 			started = false;
 			cur = 0;
