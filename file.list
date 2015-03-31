@@ -1,8 +1,10 @@
 index.html
 settings.html
+jiaozhun.html
 js/vkey.js
 js/main.js
 js/settings.js
+js/jiaozhun.js
 js/jquery-1.11.2.min.js
 css/page.css
 css/job.css

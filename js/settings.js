@@ -227,6 +227,10 @@ function on_text_focus(id) {
 	edit_id = id;
 }
 
+function return_main_page() {
+	window.location.href = 'http://127.0.0.1:8080/'
+}
+
 var t = 0;
 function refresh_notify_text() {
 	var str;
@@ -241,6 +245,7 @@ function refresh_notify_text() {
 
 	$('#id_content_text').html(str);
 	setTimeout(refresh_notify_text, 300);
+	setTimeout(return_main_page, 1500);
 }
 
 function key_push(key) {
