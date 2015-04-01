@@ -208,6 +208,15 @@ function js_main_loop() {
 					img = 'url(imgs/' + img + ')';
 					$('#id_system_preview').css('background-image', img);
 				}
+				
+				$('#id_dcrd_zt').html(data.zdcrd);
+				$('#id_dc_kg').html(data.zdctrip);
+				$('#id_dc1_kg').html(data.dc1trip);
+				$('#id_dc2_kg').html(data.dc2trip);
+				$('#id_ac_kg').html(data.actrip);
+				$('#id_ac_zt').html(data.aczt);
+				$('#id_halt_zt').html(data.halt);
+				$('#id_flq_zt').html(data.flq);
 
 				if ( data.query_period > 0 ) {
 					g_cfg.query_period = data.query_period;
@@ -752,6 +761,13 @@ function page_show_job_create(from, cid, remain) {
 
 	$('#id_job_commit_card_sn').html(cid);
 	$('#id_job_commit_acount_remain').html(remain);
+}
+
+// 显示开关状态页面
+function page_show_kgzt(from) {
+	$('#'+from).hide();
+	$('#id_kgzt_page').show();
+	g_sys.page_id_curr = 'id_kgzt_page';
 }
 
 // 显示按电量充电设置页面

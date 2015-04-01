@@ -163,8 +163,10 @@
             <div class="zeus main_tool_box" style="left:270px;top:30px;">当前<br>故障</div></a>
             <a href="javascript:page_show_history_error('id_system_query_page')">
             <div class="zeus main_tool_box" style="left:390px;top:30px;">历史<br>故障</div></a>
+            <a href="javascript:page_show_kgzt('id_system_query_page')">
+            <div class="zeus main_tool_box" style="left:510px;top:30px;">开关<br>状态</div></a>
             <a href="javascript:page_show_self_info('id_system_query_page')">
-            <div class="zeus main_tool_box" style="left:510px;top:30px;">本机<br>信息</div></a>
+            <div class="zeus main_tool_box" style="left:630px;top:30px;">本机<br>信息</div></a>
         </div>
         <div class="jobs_preview_toolbox">
         	<a href="javascript:page_show_main_page('id_system_query_page');"><div class="button">返回主页</div></a>
@@ -218,6 +220,30 @@
             	<div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
         </div>
     </div> <!--本机信息显示页面-->
+    <div class="zeus page_frame kgzt_info" id="id_kgzt_page">
+    	<div class="kgzt_page_panel" id="id_kgzt_page_panel" align="center">
+        	<table class="job_create_table">
+            	<caption>系统开关状态</caption>
+            	<tr>
+                	<td>直流总输出熔断器</td><td id="id_dc_zt">N/A</td><td>直流总输出开关量</td><td id="id_dc_kg">N/A</td>
+                </tr>
+                <tr>
+                	<td>直流1路输出开关量</td><td id="id_dc1_kg">N/A</td><td>直流2路输出开关量</td><td id="id_dc2_kg">N/A</td>
+                </tr>
+                <tr>
+                	<td>交流输入开关量</td><td id="id_ac_kg">N/A</td><td>交流输入状态量</td><td id="id_ac_zt">N/A</td>
+                </tr>
+                <tr>
+                	<td>急停状态</td><td id="id_halt_zt">N/A</td><td>防雷器状态</td><td id="id_flq_zt">N/A</td>
+                </tr>
+            </table>
+        </div>
+        <div class="jobs_preview_toolbox self_info_toolbox">
+        	<a href="javascript:page_show_main_page('id_kgzt_page');"><div class="button">返回主页</div></a>
+            <a href="javascript:page_system_menu('id_kgzt_page');">
+            	<div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        </div>
+    </div> <!--开关状态显示页面-->
     <div class="zeus page_frame modules_op_page" id="id_modules_op_page">
     	<div class="modules_op_page_panel" id="id_modules_op_page_panel"></div>
         <div class="jobs_preview_toolbox history_preview_toolbox">
