@@ -105,6 +105,11 @@ body{
 	border-bottom:1px solid #FFF;
 }
 
+.show_jiaozhun {
+	font-size:27px;
+	line-height:normal;
+}
+
 .current_error_box,.history_error_box,.module_detail_box,.self_info_page_panel {
 	height:84%;
 	width:100%;

@@ -1,4 +1,4 @@
-#!/bin/sh
+﻿#!/bin/sh
 FILELIST=file.list
 
 if [ $# -lt 1 ]; then

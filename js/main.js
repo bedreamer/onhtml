@@ -119,6 +119,8 @@ function js_init(re_new) {
 		//alert('Fuck windows!!!');
 	} else {
 		g_cfg.ontom_host = '127.0.0.1:8081';
+		var host = document.location.host;
+		g_cfg.ontom_host = host.replace('8080', '8081');
 	}
 	g_cfg.ontom_query = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query;
 	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
