@@ -118,10 +118,10 @@ function js_init(re_new) {
 	if ( isWin ) {
 		//alert('Fuck windows!!!');
 	} else {
-		g_cfg.ontom_host = '127.0.0.1:8081';
-		var host = document.location.host;
-		g_cfg.ontom_host = host.replace('8080', '8081');
 	}
+	g_cfg.ontom_host = '127.0.0.1:8081';
+	var host = document.location.host;
+	g_cfg.ontom_host = host.replace('8080', '8081');
 	g_cfg.ontom_query = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query;
 	g_cfg.ontom_query_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_query_job;
 	g_cfg.ontom_create_job = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_create_job;
@@ -180,32 +180,45 @@ function js_main_loop() {
 				$('#id_mainpage_sys_status').html(data.system_status);
 				$('#id_mainpage_chargers_status').html(data.charger_status);
 				$('#id_mainpage_bus0_institude').html(data.bus0_institude);
-				$('#id_mainpage_bus0_voltage').html(data.bus0_V);
-				$('#id_mainpage_bus0_current').html(data.bus0_I);
 				$('#id_a_volatage').html(data.Va);
 				$('#id_b_volatage').html(data.Vb);
 				$('#id_c_volatage').html(data.Vc);
-				
+
 				var img = '';
-				if ( data.gun0 == '未连接' ) {
-					img = '1D';
-				} else if ( data.gun0 == "已连接" ) {
-					img = '1J';
-				} else if ( data.gun0 == "在充" ) {
-					img = '1C';
-				}
-
+				var vol = data.bus0_V, I = data.bus0_I;
 				if ( data.gun1 == '未连接' ) {
-					img = img + '2D.png';
+					img = img + '2D';
 				} else if ( data.gun1 == "已连接" ) {
-					img = img + '2J.png';
+					img = img + '2J';
+					vol = data.bus1_V;
+					I = data.bus1_I;
 				} else if ( data.gun1 == "在充" ) {
-					img = img + '2C.png';
+					img = img + '2C';
+					vol = data.bus1_V;
+					I = data.bus1_I;
 				}
 
+				if ( data.gun0 == '未连接' ) {
+					img = '1D' + img;
+				} else if ( data.gun0 == "已连接" ) {
+					img = '1J' + img;					
+					vol = data.bus0_V;
+					I = data.bus0_I;
+				} else if ( data.gun0 == "在充" ) {
+					img = '1C' + img;
+					vol = data.bus0_V;
+					I = data.bus0_I;
+				}
+
+				$('#id_mainpage_bus0_voltage').html(vol);
+				$('#id_mainpage_bus0_current').html(I);
+
+				if ( img.length == 0 ) {
+					img = '1D2D'
+				}
 				if ( img != g_sys.back_img_name ) {
 					g_sys.back_img_name = img;
-					img = 'url(imgs/' + img + ')';
+					img = 'url(imgs/' + img + '.png)';
 					$('#id_system_preview').css('background-image', img);
 				}
 				
@@ -247,7 +260,7 @@ function js_main_loop() {
 			g_cfg.ontom_host = '127.0.0.1:8081';
 		}
 	});
-	setTimeout(js_main_loop, g_cfg.query_period);
+	setTimeout(js_main_loop, 400);
 }
 
 // 显示密码验证页面并进行验证
@@ -334,7 +347,7 @@ function card_sn_valid(sn, remain, passwd) {
 			return;
 		}
 		
-		do_show_job_billing('id_job_working', $('#id_job_working_cid').html());
+		do_show_job_billing('id_job_working', $('#id_job_working_jid').html());
 
 	} else { // 无效刷卡
 	}
@@ -971,7 +984,35 @@ function do_show_job_billing(from, jid) {
 	$('#'+from).hide();
 	$('#id_job_billing_detail').show();
 	g_sys.page_id_curr = 'id_job_billing_detail';
-
+	
+	$('#id_billing_jid').html(jid);
+	function refresh_job_detail() {
+		if ( g_sys.page_id_curr != 'id_job_billing_detail' ) return;
+		$.getJSON(g_cfg.ontom_query_job, '', function (data, status, xhr){
+			if ( status == 'success' ) {
+				var ok = 0;
+				$.each(data, function (index, d) {
+					if ( index != 'jobs' ) return;
+					if ( d.length <= 0 ) {
+						 $('#id_job_working_jid').html('<a color="#F00">无效ID</a>');
+						 return;
+					}
+					g_sys.job_id_curr = 'N/A';
+					for ( var i = 0; i < d.length; i ++ ) {
+						if ( d[i].id != jid ) continue;
+						ok = 1;
+						$('#id_billing_jid').html(d[i].id);
+						$('#id_billing_cid').html(d[i].cid);
+						$('#id_billing_remain').html(d[i].cremain);
+						$('#id_billing_cost').html(d[i].money);
+						$('#id_billing_kwh').html(d[i].kwh);
+						$('#id_billing_long').html(d[i].time);
+					}
+				});
+			}
+		});
+	}
+	refresh_job_detail();
 }
 
 // 作业完成

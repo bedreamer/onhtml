@@ -9,13 +9,11 @@ var edit_id = 'N/A';
 var ip='192.168.1.93';
 
 function setting_main_loop() {
-	var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
-	if ( isWin ) {
-		//alert('Fuck windows!!!');
-	} else {
-		ip = '127.0.0.1';
-	}
-	$.getJSON('http://' + ip + ':8081/system/config.json', '', function (data, status, xhr) {
+	var host = document.location.host;
+	host = host.replace('8080', '8081');
+	ip = host;
+
+	$.getJSON('http://' + ip + '/system/config.json', '', function (data, status, xhr) {
 		if ( status == 'success' ) {
 			$.each(data, function (index, d) {
 				if ( index != 'configs' ) return;
@@ -228,7 +226,7 @@ function on_text_focus(id) {
 }
 
 function return_main_page() {
-	window.location.href = 'http://127.0.0.1:8080/'
+	window.location.href = '/index.html'
 }
 
 var t = 0;
@@ -257,7 +255,7 @@ function key_push(key) {
 		t = 0;
 		if ( query_str.length > 0 ) {
 			setTimeout(refresh_notify_text, 10);
-			$.getJSON('http://' + ip + ':8081/system/save.json', 's='+query_str);
+			$.getJSON('http://' + ip + '/system/save.json', 's='+query_str);
 			query_str = '';
 		}
 	} else if ( key == 'C' ) {
