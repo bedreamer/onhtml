@@ -8,6 +8,7 @@ function vk_focurs(id)
 	if ( id != editid && id != null  ) {
 		value = document.getElementById(id).value;
 		editid = id;
+		value = "";
 	}
 	editid = id;
 	//document.getElementById('id_keypad').style.display = 'block';

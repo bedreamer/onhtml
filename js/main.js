@@ -28,7 +28,9 @@ var g_cfg = {
 	// 模块信息查询接口
 	ontom_module_detail:'/system/modules.json',
 	// 本机信息查询接口
-	ontom_about:'/system/about.json'
+	ontom_about:'/system/about.json',
+	// 操作认证接口
+	ontom_auth:'/system/auth.json'
 };
 var g_sys = {
 	// 当前显示的页面ID
@@ -132,6 +134,7 @@ function js_init(re_new) {
 	g_cfg.ontom_history_error = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_history_error;
 	g_cfg.ontom_module_detail = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_module_detail;
 	g_cfg.ontom_about = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_about;
+	g_cfg.ontom_auth = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_auth;
 	setTimeout(js_main_loop, 800);
 }
 
@@ -275,6 +278,7 @@ function show_card_passwd_input_page(sn, remain, passwd) {
 	$('#id_keypad').show();
 	$('#id_keypad').css('top', '245px');
 	editid = 'id_card_passwd';
+	value = "";
 	g_sys.card_money_remain = remain;
 	g_sys.card_passwd = passwd;
 }
@@ -793,6 +797,7 @@ function page_show_bm_set_kwh() {
 	$('#id_keypad').show();
 	$('#id_keypad').css('top', '245px');
 	editid = 'id_bm_set_kwh';
+	value = "";
 }
 
 // 显示按时间充电设置页面
@@ -802,6 +807,7 @@ function page_show_bm_set_time() {
 	$('#id_keypad').show();
 	$('#id_keypad').css('top', '245px');
 	editid = 'id_bm_set_time';
+	value = "";
 }
 
 // 显示按金额充电设置页面
@@ -811,6 +817,7 @@ function page_show_bm_set_money() {
 	$('#id_keypad').show();
 	$('#id_keypad').css('top', '245px');
 	editid = 'id_bm_set_money';
+	value = "";
 }
 
 // 计费方式确定
@@ -1032,4 +1039,58 @@ function do_job_done() {
 	}
 	});
 	page_show_main_page('id_job_billing_detail');
+}
+
+// 操作认证
+function do_op_auth_cancel(to) {
+	$('#'+to).show();
+	g_sys.page_id_curr = to;
+	$('#id_feed_passwd_input_page').hide();
+	$('#id_keypad').hide();
+	editid = '';
+	value = "";
+}
+
+// 操作认证
+function do_op_auth_query(from, to, kind) {
+	var jid = $('#id_job_working_jid').html();
+	var pa = 'k=' + kind + '&p=' + $('#id_feed_passwd').val();
+	value = "";
+
+	if ( $('#id_feed_passwd').val().length <= 0 ) {
+		$('#id_feed_passwd_notify').html('请输入正确的密码!');
+		return;
+	}
+	$('#id_feed_passwd_notify').html('&nbsp;');
+	$.getJSON(g_cfg.ontom_auth, pa, function (data, status, xhr) {
+	if ( status == 'success' ) {
+		if ( data.status == "REJECTED" ) {
+			//alert('无效的作业');
+			$('#id_feed_passwd_notify').html('认证失败');
+		} else if ( data.status == "CONFIRMED" ) {
+			$('#'+from).hide();
+			$('#'+to).show();
+			g_sys.page_id_curr = to;
+			$('#id_feed_passwd_input_page').hide();
+			$('#id_keypad').hide();
+			editid = '';
+		} else {
+		}
+		return;	
+	}
+	});
+}
+
+// 操作授权页面
+function do_op_auth(from, to, kind) {
+	$('#id_feed_passwd_notify').html('&nbsp;');
+	$('#id_feed_passwd_input_page').show();
+	g_sys.page_id_curr = 'id_feed_passwd_input_page';
+	$('#id_keypad').show();
+	$('#id_keypad').css('top', '235px');
+	editid = 'id_feed_passwd';
+	value = "";
+	$('#id_feed_passwd').val("");
+	$('#id_auth_cancel').attr("href", "javascript:do_op_auth_cancel('" + from + "')" );
+	$('#id_auth_ok').attr("href", "javascript:do_op_auth_query('" + from + "','" + to + "','" + kind +  "')" );
 }

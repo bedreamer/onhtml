@@ -47,8 +47,8 @@
         </table>
         </div>
         <div class="cls_main_toolbox">
-        <a href="javascript:page_system_menu('id_mainpage');"><div class="zeus main_tool_box" style="left:35px">系统<br>查询</div></a>
-        <a href="javascript:page_system_operate_menu('id_mainpage');"><div class="zeus main_tool_box locked" style="left:165px">系统<br>操作</div></a>
+        <a href="javascript:page_system_menu('id_mainpage');"><div class="zeus main_tool_box" style="left:35px">信息<br>查询</div></a>
+        <a href="javascript:do_op_auth('id_mainpage', 'id_system_operate_page', 's');"><div class="zeus main_tool_box locked" style="left:165px">管理<br>操作</div></a>
         </div>
     </div><!--mainpage-->
     <div class="zues page_frame job_create", id="id_job_create">
@@ -156,17 +156,11 @@
     <div class="zeus page_frame system_query_menu" id="id_system_query_page">
     	<div>
             <a href="javascript:page_show_jobs_preview('id_system_query_page')">
-            <div class="zeus main_tool_box" style="left:30px;top:30px;">作业<br>查询</div></a>
-            <a href="javascript:show_module_detail_page('id_system_query_page')">
-            <div class="zeus main_tool_box locked" style="left:150px;top:30px;">模块<br>信息</div></a>
+            <div class="zeus main_tool_box" style="left:40px;top:60px;height:200px;width:200px">作业查询</div></a>
             <a href="javascript:page_show_current_error('id_system_query_page')">
-            <div class="zeus main_tool_box" style="left:270px;top:30px;">当前<br>故障</div></a>
-            <a href="javascript:page_show_history_error('id_system_query_page')">
-            <div class="zeus main_tool_box locked" style="left:390px;top:30px;">历史<br>故障</div></a>
-            <a href="javascript:page_show_kgzt('id_system_query_page')">
-            <div class="zeus main_tool_box locked" style="left:510px;top:30px;">开关<br>状态</div></a>
+            <div class="zeus main_tool_box" style="left:280px;top:60px;height:200px;width:200px">当前故障</div></a>
             <a href="javascript:page_show_self_info('id_system_query_page')">
-            <div class="zeus main_tool_box" style="left:630px;top:30px;">本机<br>信息</div></a>
+            <div class="zeus main_tool_box" style="left:520px;top:60px;height:200px;width:200px">本机信息</div></a>
         </div>
         <div class="jobs_preview_toolbox">
         	<a href="javascript:page_show_main_page('id_system_query_page');"><div class="button">返回主页</div></a>
@@ -175,11 +169,17 @@
     <div class="zeus page_frame system_operate_menu" id="id_system_operate_page">
     	<div>
             <a href="settings.html">
-            <div class="zeus main_tool_box locked"  style="left:30px;top:30px;">参数<br>配置</div></a>
+            <div class="zeus main_tool_box"  style="left:30px;top:30px;">参数<br>配置</div></a>
             <a href="javascript:module_op_page_show('id_system_operate_page')">
             <div class="zeus main_tool_box"  style="left:150px;top:30px;">模块<br>操作</div></a>
             <a href="javascript:clean_history_error_show('id_system_operate_page')">
             <div class="zeus main_tool_box" style="left:270px;top:30px;">历史<br>清除</div></a>
+            <a href="javascript:show_module_detail_page('id_system_operate_page')">
+            <div class="zeus main_tool_box" style="left:390px;top:30px;">模块<br>信息</div></a>
+            <a href="javascript:page_show_history_error('id_system_operate_page')">
+            <div class="zeus main_tool_box" style="left:510px;top:30px;">历史<br>故障</div></a>
+            <a href="javascript:page_show_kgzt('id_system_operate_page')">
+            <div class="zeus main_tool_box" style="left:630px;top:30px;">开关<br>状态</div></a>
         </div>
         <div class="jobs_preview_toolbox">
         	<a href="javascript:page_show_main_page('id_system_operate_page');"><div class="button">返回主页</div></a>
@@ -191,7 +191,7 @@
         	<a href="javascript:page_show_main_page('id_module_detail_page');"><div class="button">返回主页</div></a>
             <a href="javascript:show_pre_page_module_detail();"><div class="button">上一页</div></a>
             <a href="javascript:show_next_page_module_detail();"><div class="button">下一页</div></a>
-            <a href="javascript:page_system_menu('id_module_detail_page');"><div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+            <a href="javascript:page_system_operate_menu('id_module_detail_page');"><div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
         </div>
     </div> <!--模块信息显示页面-->
     <div class="zeus page_frame current_error" id="id_current_error_page">
@@ -209,7 +209,7 @@
         	<a href="javascript:page_show_main_page('id_history_error_page');"><div class="button">返回主页</div></a>
             <a href="javascript:show_pre_page_history();"><div class="button">上一页</div></a>
             <a href="javascript:show_next_page_history();"><div class="button">下一页</div></a>
-            <a href="javascript:page_system_menu('id_history_error_page');"><div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+            <a href="javascript:page_system_operate_menu('id_history_error_page');"><div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
         </div>
     </div> <!--历史故障显示页面-->
     <div class="zeus page_frame self_info" id="id_self_info_page">
@@ -240,7 +240,7 @@
         </div>
         <div class="jobs_preview_toolbox self_info_toolbox">
         	<a href="javascript:page_show_main_page('id_kgzt_page');"><div class="button">返回主页</div></a>
-            <a href="javascript:page_system_menu('id_kgzt_page');">
+            <a href="javascript:page_system_operate_menu('id_kgzt_page');">
             	<div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
         </div>
     </div> <!--开关状态显示页面-->
@@ -325,6 +325,15 @@
     <div>
         <a href="javascript:do_show_job_create_page();"><div class="button">确定</div></a>
         <a href="javascript:page_show_main_page('id_card_passwd_input_page');"><div class="button">取消</div></a></div>
+    </div>
+</div>
+<div class="v_input_pages v_feed_passwd_input_pages" id="id_feed_passwd_input_page">
+	<div><p>动&nbsp;作&nbsp;授&nbsp;权</p></div>
+    <div>密钥： <input type="password" id="id_feed_passwd" style="font-size:24px; text-align:center" height="32px" maxlength="6" /></div>
+    <div><a id="id_feed_passwd_notify" style="font-size:16px">&nbsp;</a></div><br><br><br>
+    <div>
+        <a id="id_auth_ok"     href="#"><div class="button">确定</div></a>
+        <a id="id_auth_cancel" href="#"><div class="button">取消</div></a></div>
     </div>
 </div>
 <div class="zeus page_frame v_job_billing_detail" id="id_job_billing_detail">
