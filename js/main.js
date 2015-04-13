@@ -730,14 +730,17 @@ function page_show_job_detail(from, job) {
 						ok = 1;
 						$('#id_job_working_jid').html(d[i].id);
 						$('#id_job_working_cid').html(d[i].cid);
-						$('#id_job_working_I').html(d[i].CI);
-						$('#id_job_working_V').html(d[i].CV);
+						$('#id_job_working_IV').html(d[i].CI + '/' + d[i].CV);
 						$('#id_job_working_yichongdianliang').html(d[i].ycdl);
-						$('#id_job_working_remain_money').html(d[i].cremain);
+						//$('#id_job_working_remain_money').html(d[i].cremain);
 						$('#id_job_working_sys_status').html('正常');
 						$('#id_job_working_institude_status').html('正常');
 						$('#id_job_working_gun_status').html(d[i].gun_stat);
 						$('#id_job_working_job_status').html(d[i].status);
+						$('#id_job_working_kwh_used').html(d[i].used_kwh + '度');
+						$('#id_job_working_time_used').html(d[i].used_time + '分钟');
+						$('#id_job_working_money_used').html(d[i].used_money + '元');
+						$('#id_job_working_kwh_price').html(d[i].kwh_price + '元/度')
 						if ( d[i].status == '人工暂停' ) {
 							$('#id_job_op_btn').html("恢复充电");
 							$('#id_job_op_href').attr("href","javascript:job_resume('" + d[i].id + "')"); 

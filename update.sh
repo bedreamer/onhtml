@@ -8,7 +8,7 @@ if [ $# -lt 1 ]; then
 fi
 
 printf "fetching file.list...."
-tftp -g -r $FILELIST /tmp/$FILELIST >/dev/null 2>&1
+tftp -g -r $FILELIST /tmp/$FILELIST $1 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	echo "          [ DONE]"
 else

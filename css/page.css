@@ -201,7 +201,7 @@ body{
 }
 
 .cls_status {
-	height:50%;
+	height:40%;
 	width:38%;
 	left:60%;
 	top:20%;
@@ -210,11 +210,12 @@ body{
 }
 
 .cls_main_toolbox {
-	height:23%;
+	height:24%;
 	width:38%;
 	left:60%;
-	top:71%;
+	top:70%;
 	font-size:16px;
+	//background-color:rgba(255, 255, 255, 0.1);
 }
 
 .main_tool_box {
@@ -232,9 +233,13 @@ body{
     box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
 }
 
+.locked {
+	background-image:url(../imgs/locked.png);
+}
+
 .main_tool_box:active {
 	position:relative;
-	top: -3px;
+	top: 9px;
 }
 
 .moudle_tool_box {

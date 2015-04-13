@@ -128,7 +128,7 @@ function ceshi_proc() {
 			cur = 0;
 			done = true;
 			$('#id_param').html('完成');
-			$.getJSON('http://' + host + '/system/jiaozhun.json', 'op=V1&p=4000', function(data, status, xhr){});
+			$.getJSON('http://' + host + '/system/jiaozhun.json', 'op=done&p=4000', function(data, status, xhr){});
 			return;
 		}	
 		$.getJSON('http://' + host + '/system/jiaozhun.json', p, function(data, status, xhr){
@@ -192,7 +192,7 @@ function do_result_save() {
 
 			$.getJSON('http://' + host + '/system/save.json', 's=work_mode=normal;', function(data, status, xhr){
 			});
-			window.location = 'http://' + document.location.host; + '/index.html'
+			window.location = 'http://' + document.location.host + '/index.html'
 		}
 	});
 }
