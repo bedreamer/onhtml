@@ -8,7 +8,7 @@ if [ $# -lt 1 ]; then
 fi
 
 printf "fetching file.list...."
-tftp -g -r $FILELIST /tmp/$FILELIST $1 >/dev/null 2>&1
+tftp -g -r $FILELIST -l /tmp/$FILELIST $1 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	echo "          [ DONE]"
 else
@@ -17,7 +17,7 @@ fi
 
 for f in `cat /tmp/$FILELIST`; do
 	printf "get $f from $1"
-	tftp -g -r $f $1 >/dev/null 2>&1
+	tftp -g -r $f -l $f $1 >/dev/null 2>&1
 	if [ $? -eq 0 ]; then
 		echo "          [ DONE]"
 	else
