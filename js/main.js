@@ -1087,7 +1087,7 @@ function do_op_auth(from, to, kind) {
 	$('#id_feed_passwd_input_page').show();
 	g_sys.page_id_curr = 'id_feed_passwd_input_page';
 	$('#id_keypad').show();
-	$('#id_keypad').css('top', '235px');
+	$('#id_keypad').css('top', '245px');
 	editid = 'id_feed_passwd';
 	value = "";
 	$('#id_feed_passwd').val("");

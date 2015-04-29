@@ -1,4 +1,5 @@
 ﻿// JavaScript Document
+/*
 var jiaozhun=[
 	{n:'V1',p:4000},
 	{n:'V1',p:4500},
@@ -13,6 +14,23 @@ var jiaozhun=[
 	{n:'V2',p:4500},
 	{n:'V2',p:4000},
 	{n:'done',p:4000}
+];
+*/
+var jiaozhun=[
+	{n:'V1',p:4000},
+	{n:'V1',p:3500},
+	{n:'V1',p:3000},
+	{n:'V1',p:2500},
+	{n:'I', p:250},
+	{n:'V1',p:2000},
+	/*
+	{n:'V2',p:2000},
+	{n:'V2',p:2500},
+	{n:'V2',p:3000},
+	{n:'V2',p:3500},
+	{n:'V2',p:4000},
+	*/
+	{n:'done',p:2000}
 ];
 var ceshidian=[
 	{n:'CV1',p:4250},
@@ -35,12 +53,15 @@ var cur = 0;
 var done = false;
 var confirm = 0;
 var saved = false;
+var jingdu = 5;
 
 function jiaozhun_proc() {
 	if ( jiaozhun[cur].n == 'V1' ) {
 		$('#id_name').html('一段母线及电池1电压');
 	} else if ( jiaozhun[cur].n == 'V2' ) {
 		$('#id_name').html('二段母线及电池2电压');
+	} else if ( jiaozhun[cur].n == 'I' ) {
+		$('#id_name').html('电池电流');
 	}
 	$('#id_param').html(jiaozhun[cur].p/10 + 'V');
 	$('#id_ps').html( '第' + (cur * 10 + confirm + 1) + '项 / 共' + (jiaozhun.length * 10 - 10 )+ '项' );
@@ -60,8 +81,8 @@ function jiaozhun_proc() {
 			if ( status != 'success' ) return;
 			if ( jiaozhun[cur].n == 'V1' ) {
 				$('#id_param').html($('#id_param').html()+'/'+data.V1 + 'V');
-				if ( data.V1 >= (jiaozhun[cur].p/10 - (jiaozhun[cur].p/10)*5/1000) &&
-					 data.V1 <= (jiaozhun[cur].p/10 + (jiaozhun[cur].p/10)*5/1000) ) {
+				if ( data.V1 >= (jiaozhun[cur].p/10 - (jiaozhun[cur].p/10)*jingdu/1000) &&
+					 data.V1 <= (jiaozhun[cur].p/10 + (jiaozhun[cur].p/10)*jingdu/1000) ) {
 					confirm ++;
 				} else {
 					confirm = 0;
@@ -71,8 +92,19 @@ function jiaozhun_proc() {
 				}
 			} else if ( jiaozhun[cur].n == 'V2' ) {
 				$('#id_param').html($('#id_param').html()+'/'+data.V1 + 'V');
-				if ( data.V2 >= (jiaozhun[cur].p/10 - (jiaozhun[cur].p/10)*5/1000) &&  
-					 data.V2 <= (jiaozhun[cur].p/10 + (jiaozhun[cur].p/10)*5/1000) ) {
+				if ( data.V2 >= (jiaozhun[cur].p/10 - (jiaozhun[cur].p/10)*jingdu/1000) &&  
+					 data.V2 <= (jiaozhun[cur].p/10 + (jiaozhun[cur].p/10)*jingdu/1000) ) {
+					confirm ++;
+				} else {
+					confirm = 0;
+				}
+				if ( confirm >= 10 ) {
+					cur ++;
+				}
+			} else if ( jiaozhun[cur].n == 'I' ) {
+				$('#id_param').html($('#id_param').html()+'/'+data.V1 + 'I');
+				if ( data.V2 >= (jiaozhun[cur].p/10 - (jiaozhun[cur].p/10)*jingdu/1000) &&  
+					 data.V2 <= (jiaozhun[cur].p/10 + (jiaozhun[cur].p/10)*jingdu/1000) ) {
 					confirm ++;
 				} else {
 					confirm = 0;
@@ -81,6 +113,7 @@ function jiaozhun_proc() {
 					cur ++;
 				}
 			}
+
 
 			if ( data.SCS == 'ERR' || data.CCS == 'ERR' ) {
 				$('#id_status').html('通信故障');
@@ -93,6 +126,20 @@ function jiaozhun_proc() {
 		setTimeout(jiaozhun_proc, 1000);
 	}
 }
+
+$(function(){
+	$('#id_jingdu_sub').click(function(){
+		jingdu ++;
+		$('#id_jingdu').html(jingdu + "/1000");
+	})
+});
+
+$(function(){
+	$('#id_jingdu_add').click(function(){
+		jingdu --;
+		$('#id_jingdu').html(jingdu + "/1000");
+	})
+});
 
 $(function(){
 	$('#id_start').click(function(){
