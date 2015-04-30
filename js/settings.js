@@ -271,3 +271,19 @@ function key_push(key) {
 		}
 	}
 }
+
+// 检查更新
+$(function(){
+	$('#update').click(function(){
+		setTimeout(refresh_notify_text, 10);
+		$.getJSON('http://' + ip + '/system/update.json');
+	})
+});
+
+// 导出日志 
+$(function(){
+	$('#export').click(function(){
+		setTimeout(refresh_notify_text, 10);
+		$.getJSON('http://' + ip + '/system/export.json');
+	})
+});
