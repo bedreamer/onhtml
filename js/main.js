@@ -186,6 +186,7 @@ function js_main_loop() {
 				$('#id_a_volatage').html(data.Va);
 				$('#id_b_volatage').html(data.Vb);
 				$('#id_c_volatage').html(data.Vc);
+				$('#id_version').html(data.version);
 
 				var img = '';
 				var vol = data.bus0_V, I = data.bus0_I;

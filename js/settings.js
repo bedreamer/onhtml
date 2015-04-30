@@ -276,7 +276,7 @@ function key_push(key) {
 $(function(){
 	$('#update').click(function(){
 		setTimeout(refresh_notify_text, 10);
-		$.getJSON('http://' + ip + '/system/update.json');
+		$.getJSON('http://' + ip + '/system/update.json', '', '');
 	})
 });
 
@@ -284,6 +284,6 @@ $(function(){
 $(function(){
 	$('#export').click(function(){
 		setTimeout(refresh_notify_text, 10);
-		$.getJSON('http://' + ip + '/system/export.json');
+		$.getJSON('http://' + ip + '/system/export.json', '', '');
 	})
 });
