@@ -139,7 +139,26 @@ body{
 }
 
 .module_detail_box {
-	font-size:10px;
+	font-size:16px;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 40px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(128, 128, 128, 0.9);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4);
 }
 
 .cls_job_preview {

@@ -155,12 +155,12 @@
     </div> <!--作业显示页面-->
     <div class="zeus page_frame system_query_menu" id="id_system_query_page">
     	<div>
-            <a href="javascript:page_show_jobs_preview('id_system_query_page')">
-            <div class="zeus main_tool_box" style="left:40px;top:60px;height:200px;width:200px">作业查询</div></a>
-            <a href="javascript:page_show_current_error('id_system_query_page')">
-            <div class="zeus main_tool_box" style="left:280px;top:60px;height:200px;width:200px">当前故障</div></a>
-            <a href="javascript:page_show_self_info('id_system_query_page')">
-            <div class="zeus main_tool_box" style="left:520px;top:60px;height:200px;width:200px">本机信息</div></a>
+            <button class="zeus main_tool_box" style="left:40px;top:60px;height:200px;width:200px" onclick="javascript:page_show_jobs_preview('id_system_query_page')">
+            <div>作业查询</div></button>
+            <button class="zeus main_tool_box" style="left:280px;top:60px;height:200px;width:200px" onclick="javascript:page_show_current_error('id_system_query_page')">
+            <div>当前故障</div></button>
+            <button class="zeus main_tool_box" style="left:520px;top:60px;height:200px;width:200px" onclick="javascript:page_show_self_info('id_system_query_page')">
+            <div>本机信息</div></button>
         </div>
         <div class="jobs_preview_toolbox">
         	<button onclick="javascript:page_show_main_page('id_system_query_page');">返回主页</button>
@@ -269,26 +269,26 @@
 
 <!-- 按电量充电输入框 -->
 <div class="v_input_pages v_bm_kwh_param_page" id="id_bm_set_kwh_page">
-	<p>充电量配置<p>
+	<a>充电量配置</a><br>
     <input onclick="javasctipt:vk_focurs('id_bm_set_kwh')" id="id_bm_set_kwh" align="absmiddle" type="text" height="30px" width="200px" value="1.0" />KW.H
-    <br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_kwh_page');"><div class="button">确定</div></button>
-    <button onclick="javascript:page_bm_set_cancel('id_bm_set_kwh_page');"><div class="button">取消</div></button>
+    <br><br><br><br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_kwh_page');">确定</button>
+    <button onclick="javascript:page_bm_set_cancel('id_bm_set_kwh_page');">取消</button>
 </div>
 
 <!-- 按时间充电输入框 -->
 <div class="v_input_pages v_bm_time_param_page" id="id_bm_set_time_page">
-	<p>充电时间配置<p>
+	<a>充电时间配置</a><br>
     <input onclick="javasctipt:vk_focurs('id_bm_set_time')" id="id_bm_set_time" align="absmiddle" type="text" height="30px" width="200px" value="5" />分钟
-    <br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_time_page');"><div class="button">确定</div></button>
-    <button onclick="javascript:page_bm_set_cancel('id_bm_set_time_page');"><div class="button">取消</div></button>
+    <br><br><br><br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_time_page');">确定</button>
+    <button onclick="javascript:page_bm_set_cancel('id_bm_set_time_page');">取消</button>
 </div>
 
 <!-- 按金额充电输入框 -->
 <div class="v_input_pages v_bm_money_param_page" id="id_bm_set_money_page">
-	<p>充电金额配置<p>
+	<a>充电金额配置</a><br>
     <input onclick="javasctipt:vk_focurs('id_bm_set_money')" id="id_bm_set_money" align="absmiddle" type="text" height="30px" width="200px" value="1.0" />元
-    <br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_money_page');"><div class="button">确定</div></button>
-    <button onclick="javascript:page_bm_set_cancel('id_bm_set_money_page');"><div class="button">取消</div></button>
+    <br><br><br><br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_money_page');">确定</button>
+    <button onclick="javascript:page_bm_set_cancel('id_bm_set_money_page');">取消</button>
 </div>
  
 <!-- 按手动充电输入框 -->

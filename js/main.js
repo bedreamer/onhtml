@@ -383,10 +383,7 @@ function page_show_jobs_preview(from) {
 					for ( var i = 0; i < d.length; i ++ ) {
 						var left = 55 + (i % 5) * 120 + 15 * (i%5);
 						var top = 120 * Math.floor(i/5) + 15 + 15 * Math.floor(i/5);
-						codes = codes + 
-						"<a href=\"javascript:page_show_job_detail('jobs_preview_page','";
-						codes = codes + d[i].id + "');\">";
-						codes = codes +"<div align=\"center\" class=\"job_preview_box ";
+						codes = codes + "<button class=\"job_preview_box ";
 						switch ( d[i].status ) {
 							case '在充':
 								codes = codes + " job_preview_box_stat1\"";
@@ -402,17 +399,20 @@ function page_show_jobs_preview(from) {
 							default:
 								codes = codes + " job_preview_box_stat4\"";
 							break;
-						}						
+						}	
 						codes = codes +" style=\"left:" + left + "px";
-						codes = codes +";top:" + top + "px\" ";
-						codes = codes + "id=\"id_jobpreview_"+i + "\">";
+						codes = codes +";top:" + top + "px\" ";						
+						codes = codes + "onclick=\"javascript:page_show_job_detail('jobs_preview_page','";
+						codes = codes + d[i].id + "'); \">";
+						codes = codes +"<div align=\"center\" ";
+						codes = codes + " id=\"id_jobpreview_"+i + "\">";
 						codes = codes + "<table align=\"center\" class=\"job_preview_box_table\">";
 						codes = codes + "<tr><td>状态</td><td>" + d[i].status + "</td></tr>";
 						codes = codes + "<tr><td>端口</td><td>" + d[i].port + "</td></tr>";
 						codes = codes + "<tr><td>连接</td><td>" + d[i].gun_stat + "</td></tr>";		
 						codes = codes + "<tr><td>序号</td><td>" + d[i].id  + "</td></tr>";											
 						codes = codes + "<tr><td>卡号</td><td>" + d[i].cid + "</td></tr>";											
-						codes = codes + "</table></div></a>";
+						codes = codes + "</table></div></button>";
 					}
 					$('#jobs_preview').html(codes);
 				});
@@ -796,7 +796,7 @@ function page_show_bm_set_kwh() {
 	$('#id_bm_set_kwh_page').show();
 	g_sys.page_id_curr = 'id_bm_set_kwh_page';
 	$('#id_keypad').show();
-	$('#id_keypad').css('top', '245px');
+	$('#id_keypad').css('top', '215px');
 	editid = 'id_bm_set_kwh';
 	value = "";
 }
@@ -806,7 +806,7 @@ function page_show_bm_set_time() {
 	$('#id_bm_set_time_page').show();
 	g_sys.page_id_curr = 'id_bm_set_time_page';
 	$('#id_keypad').show();
-	$('#id_keypad').css('top', '245px');
+	$('#id_keypad').css('top', '215px');
 	editid = 'id_bm_set_time';
 	value = "";
 }
@@ -816,7 +816,7 @@ function page_show_bm_set_money() {
 	$('#id_bm_set_money_page').show();
 	g_sys.page_id_curr = 'id_bm_set_money_page';
 	$('#id_keypad').show();
-	$('#id_keypad').css('top', '245px');
+	$('#id_keypad').css('top', '215px');
 	editid = 'id_bm_set_money';
 	value = "";
 }
