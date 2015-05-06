@@ -145,12 +145,22 @@
     <td class="back_dark">作业状态</td>
     <td id="id_job_working_job_status" class="back_dark">等待</td>
   </tr>
-</table></div>
+</table>
+		刷卡中止充电作业.
+	</div>
 	<div class="job_working_toolbox" id="job_working_toolbox_id">
         <button onclick="javascript:page_show_main_page('id_job_working');">&nbsp;返回主页&nbsp;</button>
         <button onclick="javascript:page_show_jobs_preview('id_job_working')">&nbsp;返回作业池&nbsp;</button>
         <button id="id_job_op_href"><div id="id_job_op_btn">&nbsp;无操作&nbsp;</div></button>
-        <button onclick="javascript:page_show_jobs_detail('id_job_working')">&nbsp;作业明细&nbsp;</button>
+        <select>
+            <option>作业详情</option>
+        	<option>
+        	<button onclick="javascript:page_show_jobs_detail('id_job_working')">&nbsp;作业明细&nbsp;</button>
+        	</option>
+            <option>
+        	<button onclick="javascript:page_show_jobs_detail('id_job_working')">&nbsp;电池信息&nbsp;</button>
+        	</option>
+        </select>
     </div>
     </div> <!--作业显示页面-->
     <div class="zeus page_frame system_query_menu" id="id_system_query_page">
@@ -170,7 +180,7 @@
     	<div>
             <a href="settings.html">
             <div class="zeus main_tool_box"  style="left:30px;top:30px;">参数<br>配置</div></a>
-            <button class="zeus main_tool_box"  style="left:150px;top:30px;" onclick="javascript:module_op_page_show('id_system_operate_page')">
+            <button class="zeus main_tool_box"  style="left:150px;top:30px;" onclick="javascript:module_op_page_show('id_system_ _page')">
             <div>模块<br>操作</div></button>
             <button class="zeus main_tool_box" style="left:270px;top:30px;" onclick="javascript:clean_history_error_show('id_system_operate_page')">
             <div>历史<br>清除</div></button>
