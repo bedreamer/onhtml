@@ -1,9 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 
-/*
-* {cursor: none;}
-*/
+/** {cursor: none;}*/
+
 /*去链接下划线*/
 a, div{
 	text-decoration:none;
@@ -219,12 +218,15 @@ body{
 }
 
 .main_tool_box {
+	color:#FFFBF0;
+	font-size:36px;
+	font-weight:bold;
 	position:absolute;
 	top:5px;
 	height:100px;
 	width:100px;
 	line-height:50px;
-	background-color:rgba(255, 255, 255, 0.2);
+	background-color:rgba(255, 255, 255, 0.1);
 	-webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -237,11 +239,12 @@ body{
 	background-image:url(../imgs/locked.png);
 }
 
+/*
 .main_tool_box:active {
 	position:relative;
 	top: 9px;
 }
-
+*/
 .moudle_tool_box {
 	height:80px;
 	width:120px;
@@ -314,10 +317,10 @@ body{
 	position:absolute;
 	align:center;
 	text-align:center;
-	left:15%;
-	width:70%;
+	left:2%;
+	width:96%;
 	top: 19.9%;
-	height: 70%;
+	height: 75%;
 	background-color:rgba(255,255,255,0.9);
 	background-image:url(../imgs/mainbackground.png);
 	border-style: solid;
@@ -470,4 +473,65 @@ body{
 	width:25px;
 	border-radius:10px;
 	text-align:center;
+}
+
+.keypad_panel {
+	top: 52%;
+	left: 15%;
+	width: 70%;
+	height: 33%;
+	/*background-color:rgba(0,191,255,1)*/
+}
+
+.key_button {
+	display: inline-block;
+    position: relative;
+	margin-top:5px;
+	margin-left:3px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 64px/64px Arial, sans-serif;
+	/*font-style:italic;*/
+	line-height:98px;
+	height:98px;
+	width:98px;
+
+    text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+
+ 
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+ 
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    /*-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);*/
+ 
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+	background-color:#19667d
+}
+
+.key_buttons {
+    position: relative;
+	padding:10px 30px;
+	width:80px;
+	height:80px;
+	//background-color:#009FFF;
+	font-size:36px;
+}
+
+.okcancelbtn {
+	font-size:36px;
+	font-weight:bold;
+	color:#000;
+}
+
+.okbtn {
+}
+
+.cancelbtn {
 }

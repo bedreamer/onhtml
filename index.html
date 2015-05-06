@@ -47,8 +47,8 @@
         </table>
         </div>
         <div class="cls_main_toolbox">
-        <a href="javascript:page_system_menu('id_mainpage');"><div class="zeus main_tool_box" style="left:35px">信息<br>查询</div></a>
-        <a href="javascript:do_op_auth('id_mainpage', 'id_system_operate_page', 's');"><div class="zeus main_tool_box locked" style="left:165px">管理<br>操作</div></a>
+        <button style="left:35px" type="button" class="main_tool_box" onclick="javascript:page_system_menu('id_mainpage');" >信息<br />查询</button>
+        <button style="left:165px" type="button" class="main_tool_box" onclick="javascript:do_op_auth('id_mainpage','id_system_operate_page','s');" >管理<br>操作</button>
         </div>
     </div><!--mainpage-->
     <div class="zues page_frame job_create", id="id_job_create">
@@ -107,7 +107,7 @@
     <td colspan="4" id="id_job_commit_preview">1# 枪, 10.1 kw.h,恒流,76A,560V</td>
   </tr>
   </table>
-  	<div align="center"><a>再次刷卡提交作业</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:page_job_create_cancel('id_job_create');"><div class="button">取消作业</div></a></div></div>
+  	<div align="center"><a>再次刷卡提交作业</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="javascript:page_job_create_cancel('id_job_create');">取消作业</button></div></div>
     </div>
     <!--job_create_page-->
     <div class="zues page_frame job_working", id="id_job_working"><div>
@@ -163,7 +163,7 @@
             <div class="zeus main_tool_box" style="left:520px;top:60px;height:200px;width:200px">本机信息</div></a>
         </div>
         <div class="jobs_preview_toolbox">
-        	<a href="javascript:page_show_main_page('id_system_query_page');"><div class="button">返回主页</div></a>
+        	<button onclick="javascript:page_show_main_page('id_system_query_page');">返回主页</button>
         </div>
     </div> <!--系统查询目录页面-->
     <div class="zeus page_frame system_operate_menu" id="id_system_operate_page">
@@ -278,6 +278,7 @@
     <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_kwh_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_kwh_page');"><div class="button">取消</div></a>
 </div>
+
 <!-- 按时间充电输入框 -->
 <div class="v_input_pages v_bm_time_param_page" id="id_bm_set_time_page">
 	<p>充电时间配置<p>
@@ -285,6 +286,7 @@
     <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_time_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_time_page');"><div class="button">取消</div></a>
 </div>
+
 <!-- 按金额充电输入框 -->
 <div class="v_input_pages v_bm_money_param_page" id="id_bm_set_money_page">
 	<p>充电金额配置<p>
@@ -292,9 +294,10 @@
     <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_money_page');"><div class="button">确定</div></a>
     <a href="javascript:page_bm_set_cancel('id_bm_set_money_page');"><div class="button">取消</div></a>
 </div>
+
 <!-- 按手动充电输入框 -->
 <div class="v_input_pages v_bm_maual_param_page" id="id_cm_set_page"><div>
-<a>手动充电配置<a>
+<a>手动充电配置</a>
     <table align="center">
         <tr>
           <td colspan="2"><label><input type="radio" name="mc_mode" checked="true" value="BI"/>
@@ -315,27 +318,27 @@
     <br><br><br><a href="javascript:page_cm_set_ok('id_cm_set_page');"><div class="button">确定</div></a>
     <a href="javascript:page_cm_set_cancel('id_cm_set_page');"><div class="button">取消</div></a></div>
 </div>
+
 <div class="v_input_pages v_card_passwd_input_pages" id="id_card_passwd_input_page">
-	<div><a>充电授权密码</a></div>
-    <div>
-    	卡片序列号： <a id="id_passwd_card_sn">N/A</a>
-    </div><br />
-    <div><input type="password" id="id_card_passwd" style="font-size:24px; text-align:center" height="32px" maxlength="6" /></div><br><br><br />
-    <div id="id_card_passwd_notify" style="font-size:16px"><br /><p>&nbsp;</p></div>
+	<div><a>充电授权密码</a><a id="id_passwd_card_sn">N/A</a></div>
+    <div><input type="password" id="id_card_passwd" style="font-size:24px;text-align:center;height:32px" maxlength="6" /></div><br><br><br />
+    <div id="id_card_passwd_notify" style="font-size:16px"><br /><p>&nbsp;</p></div><br><br><br><br><br>
     <div>
         <a href="javascript:do_show_job_create_page();"><div class="button">确定</div></a>
         <a href="javascript:page_show_main_page('id_card_passwd_input_page');"><div class="button">取消</div></a></div>
     </div>
 </div>
+
 <div class="v_input_pages v_feed_passwd_input_pages" id="id_feed_passwd_input_page">
-	<div><p>动&nbsp;作&nbsp;授&nbsp;权</p></div>
+	<div>动&nbsp;作&nbsp;授&nbsp;权</div>
     <div>密钥： <input type="password" id="id_feed_passwd" style="font-size:24px; text-align:center" height="32px" maxlength="6" /></div>
-    <div><a id="id_feed_passwd_notify" style="font-size:16px">&nbsp;</a></div><br><br><br>
+    <div><a id="id_feed_passwd_notify" style="font-size:16px">&nbsp;</a></div><br><br><br><br><br>
     <div>
-        <a id="id_auth_ok"     href="#"><div class="button">确定</div></a>
-        <a id="id_auth_cancel" href="#"><div class="button">取消</div></a></div>
+        <button type="button"><div id="id_auth_ok" class="okcancelbtn okbtn">&nbsp;确&nbsp;&nbsp;定&nbsp;</div></button>
+        <button type="button"><div id="id_auth_cancel" class="okcancelbtn cancelbtn">&nbsp;取&nbsp;&nbsp;消&nbsp;</div></button>
     </div>
 </div>
+
 <div class="zeus page_frame v_job_billing_detail" id="id_job_billing_detail">
     <div>
     	<table width="96%" align="center" class="job_create_table">
@@ -379,25 +382,21 @@
         <a href="javascript:do_job_done();"><div class="button">完成</div></a></div>
     </div>
 </div>
+
 <!-- 虚拟键盘放置在浮动层，节省空间 -->
-<div class="v_keypad" id="id_keypad">
-	<table >
-    <tr>
-	<td><a href="javascript:vk_pushed(0);" class="button blue">0</a></td>
-	<td><a href="javascript:vk_pushed(1);" class="button blue">1</a></td>
-	<td><a href="javascript:vk_pushed(2);" class="button blue">2</a></td>
-	<td><a href="javascript:vk_pushed(3);" class="button blue">3</a></td>
-	<td><a href="javascript:vk_pushed(4);" class="button blue">4</a></td>
-	<td><a href="javascript:vk_pushed(5);" class="button blue">5</a></td>
-    </tr>
-    </tr>
-	<td><a href="javascript:vk_pushed(6);" class="button blue">6</a></td>
-	<td><a href="javascript:vk_pushed(7);" class="button blue">7</a></td>
-	<td><a href="javascript:vk_pushed(8);" class="button blue">8</a></td>
-	<td><a href="javascript:vk_pushed(9);" class="button blue">9</a></td>
-	<td><a href="javascript:vk_pushed('dot');" class="button blue">&nbsp;.</a></td>
-	<td><a href="javascript:vk_pushed('del');" class="button blue">C</a></td>
-    </tr></table>
+<div class="v_keypad keypad_panel" id="id_keypad">
+	<button type="button" class="key_buttons" onclick="javascript:vk_pushed(0);">0</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed(1);">1</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed(2);">2</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed(3);">3</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed(4);">4</button>
+	<button type="button" class="key_buttons" onclick="javascript:vk_pushed(5);">5</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed(6);">6</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed(7);">7</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed(8);">8</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed(9);">9</button>
+	<button type="button" class="key_buttons" onclick="javascript:vk_pushed('dot');">.</button>
+    <button type="button" class="key_buttons" onclick="javascript:vk_pushed('del');">C</button>
 </div>
 <!--
 <div class="notify_info" id="id_notify_info">3</div> <!--信息提示

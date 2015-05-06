@@ -277,7 +277,7 @@ function show_card_passwd_input_page(sn, remain, passwd) {
 	$('#id_passwd_card_sn').html(sn);
 	$('#id_card_passwd_notify').html("&nbsp;");
 	$('#id_keypad').show();
-	$('#id_keypad').css('top', '245px');
+	$('#id_keypad').css('top', '215px');
 	editid = 'id_card_passwd';
 	value = "";
 	g_sys.card_money_remain = remain;
@@ -1088,10 +1088,10 @@ function do_op_auth(from, to, kind) {
 	$('#id_feed_passwd_input_page').show();
 	g_sys.page_id_curr = 'id_feed_passwd_input_page';
 	$('#id_keypad').show();
-	$('#id_keypad').css('top', '245px');
+	$('#id_keypad').css('top', '205px');
 	editid = 'id_feed_passwd';
 	value = "";
 	$('#id_feed_passwd').val("");
-	$('#id_auth_cancel').attr("href", "javascript:do_op_auth_cancel('" + from + "')" );
-	$('#id_auth_ok').attr("href", "javascript:do_op_auth_query('" + from + "','" + to + "','" + kind +  "')" );
+	$('#id_auth_cancel').attr("onclick", "javascript:do_op_auth_cancel('" + from + "')" );
+	$('#id_auth_ok').attr("onclick", "javascript:do_op_auth_query('" + from + "','" + to + "','" + kind +  "')" );
 }
