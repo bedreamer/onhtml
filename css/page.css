@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-/** {cursor: none;}*/
+* {cursor: none;}
 
 /*去链接下划线*/
 a, div{
@@ -351,6 +351,7 @@ body{
 }
 
 .v_bm_maual_param_page {
+	top:18%;
 	display:none;
 }
 

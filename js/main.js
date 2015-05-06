@@ -277,7 +277,7 @@ function show_card_passwd_input_page(sn, remain, passwd) {
 	$('#id_passwd_card_sn').html(sn);
 	$('#id_card_passwd_notify').html("&nbsp;");
 	$('#id_keypad').show();
-	$('#id_keypad').css('top', '215px');
+	$('#id_keypad').css('top', '205px');
 	editid = 'id_card_passwd';
 	value = "";
 	g_sys.card_money_remain = remain;
@@ -881,7 +881,7 @@ function page_show_cm_set() {
 	$('#id_cm_set_page').show();
 	g_sys.page_id_curr = 'id_cm_set_page';
 	$('#id_keypad').show();
-	$('#id_keypad').css('top', '270px');
+	$('#id_keypad').css('top', '215px');
 }
 
 // 作业创建取消

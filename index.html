@@ -147,10 +147,10 @@
   </tr>
 </table></div>
 	<div class="job_working_toolbox" id="job_working_toolbox_id">
-        <a href="javascript:page_show_main_page('id_job_working');"><div class="button">返回主页</div></a>
-        <a href="javascript:page_show_jobs_preview('id_job_working')"><div class="button">返回作业池</div></a>
-        <a id="id_job_op_href" href="#"><div id="id_job_op_btn" class="button">无操作</div></a>
-        <a href="javascript:page_show_jobs_detail('id_job_working')"><div class="button">作业明细</div></a>
+        <button onclick="javascript:page_show_main_page('id_job_working');">&nbsp;返回主页&nbsp;</button>
+        <button onclick="javascript:page_show_jobs_preview('id_job_working')">&nbsp;返回作业池&nbsp;</button>
+        <button id="id_job_op_href"><div id="id_job_op_btn">&nbsp;无操作&nbsp;</div></button>
+        <button onclick="javascript:page_show_jobs_detail('id_job_working')">&nbsp;作业明细&nbsp;</button>
     </div>
     </div> <!--作业显示页面-->
     <div class="zeus page_frame system_query_menu" id="id_system_query_page">
@@ -170,54 +170,53 @@
     	<div>
             <a href="settings.html">
             <div class="zeus main_tool_box"  style="left:30px;top:30px;">参数<br>配置</div></a>
-            <a href="javascript:module_op_page_show('id_system_operate_page')">
-            <div class="zeus main_tool_box"  style="left:150px;top:30px;">模块<br>操作</div></a>
-            <a href="javascript:clean_history_error_show('id_system_operate_page')">
-            <div class="zeus main_tool_box" style="left:270px;top:30px;">历史<br>清除</div></a>
-            <a href="javascript:show_module_detail_page('id_system_operate_page')">
-            <div class="zeus main_tool_box" style="left:390px;top:30px;">模块<br>信息</div></a>
-            <a href="javascript:page_show_history_error('id_system_operate_page')">
-            <div class="zeus main_tool_box" style="left:510px;top:30px;">历史<br>故障</div></a>
-            <a href="javascript:page_show_kgzt('id_system_operate_page')">
-            <div class="zeus main_tool_box" style="left:630px;top:30px;">开关<br>状态</div></a>
+            <button class="zeus main_tool_box"  style="left:150px;top:30px;" onclick="javascript:module_op_page_show('id_system_operate_page')">
+            <div>模块<br>操作</div></button>
+            <button class="zeus main_tool_box" style="left:270px;top:30px;" onclick="javascript:clean_history_error_show('id_system_operate_page')">
+            <div>历史<br>清除</div></button>
+            <button class="zeus main_tool_box" style="left:390px;top:30px;" onclick="javascript:show_module_detail_page('id_system_operate_page')">
+            <div>模块<br>信息</div></button>
+            <button class="zeus main_tool_box" style="left:510px;top:30px;" onclick="javascript:page_show_history_error('id_system_operate_page')">
+            <div>历史<br>故障</div></button>
+            <button class="zeus main_tool_box" style="left:630px;top:30px;" onclick="javascript:page_show_kgzt('id_system_operate_page')">
+            <div>开关<br>状态</div></button>
         </div>
         <div class="jobs_preview_toolbox">
-        	<a href="javascript:page_show_main_page('id_system_operate_page');"><div class="button">返回主页</div></a>
+        	<button onclick="javascript:page_show_main_page('id_system_operate_page');">返回主页</button>
         </div>
     </div> <!--系统操作目录页面-->
     <div class="zeus page_frame module_detail" id="id_module_detail_page">
     	<div class="module_detail_box" id="module_detail_panel" align="center"></div>
         <div class="jobs_preview_toolbox history_preview_toolbox">
-        	<a href="javascript:page_show_main_page('id_module_detail_page');"><div class="button">返回主页</div></a>
-            <a href="javascript:show_pre_page_module_detail();"><div class="button">上一页</div></a>
-            <a href="javascript:show_next_page_module_detail();"><div class="button">下一页</div></a>
-            <a href="javascript:page_system_operate_menu('id_module_detail_page');"><div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        	<button onclick="javascript:page_show_main_page('id_module_detail_page');">返回主页</button>
+            <button onclick="javascript:show_pre_page_module_detail();">上一页</button>
+            <button onclick="javascript:show_next_page_module_detail();">下一页</button>
+            <button onclick="javascript:page_system_operate_menu('id_module_detail_page');">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
         </div>
     </div> <!--模块信息显示页面-->
     <div class="zeus page_frame current_error" id="id_current_error_page">
     	<div class="current_error_box" id="current_error_panel" align="center"></div>
         <div class="jobs_preview_toolbox history_preview_toolbox">
-        	<a href="javascript:page_show_main_page('id_current_error_page');"><div class="button">返回主页</div></a>
-            <a href="javascript:show_pre_page_error();"><div class="button">上一页</div></a>
-            <a href="javascript:show_next_page_error();"><div class="button">下一页</div></a>
-            <a href="javascript:page_system_menu('id_current_error_page');"><div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        	<button onclick="javascript:page_show_main_page('id_current_error_page');">返回主页</button>
+            <button onclick="javascript:show_pre_page_error();">上一页</button>
+            <button onclick="javascript:show_next_page_error();">下一页</button>
+            <button onclick="javascript:page_system_menu('id_current_error_page');">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
         </div>
     </div> <!--当前故障显示页面-->
     <div class="zeus page_frame history_error" id="id_history_error_page">
     	<div class="history_error_box" id="id_historyt_error_panel" align="center"></div>
         <div class="jobs_preview_toolbox history_preview_toolbox" align="center">
-        	<a href="javascript:page_show_main_page('id_history_error_page');"><div class="button">返回主页</div></a>
-            <a href="javascript:show_pre_page_history();"><div class="button">上一页</div></a>
-            <a href="javascript:show_next_page_history();"><div class="button">下一页</div></a>
-            <a href="javascript:page_system_operate_menu('id_history_error_page');"><div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        	<button onclick="javascript:page_show_main_page('id_history_error_page');">返回主页</button>
+            <button onclick="javascript:show_pre_page_history();">上一页</button>
+            <button onclick="javascript:show_next_page_history();">下一页</button>
+            <button onclick="javascript:page_system_operate_menu('id_history_error_page');">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
         </div>
     </div> <!--历史故障显示页面-->
     <div class="zeus page_frame self_info" id="id_self_info_page">
     	<div class="self_info_page_panel" id="id_self_info_page_panel" align="center"></div>
         <div class="jobs_preview_toolbox self_info_toolbox">
-        	<a href="javascript:page_show_main_page('id_self_info_page');"><div class="button">返回主页</div></a>
-            <a href="javascript:page_system_menu('id_self_info_page');">
-            	<div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        	<button onclick="javascript:page_show_main_page('id_self_info_page');">返回主页</button>
+            <button onclick="javascript:page_system_menu('id_self_info_page');">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
         </div>
     </div> <!--本机信息显示页面-->
     <div class="zeus page_frame kgzt_info" id="id_kgzt_page">
@@ -239,99 +238,94 @@
             </table>
         </div>
         <div class="jobs_preview_toolbox self_info_toolbox">
-        	<a href="javascript:page_show_main_page('id_kgzt_page');"><div class="button">返回主页</div></a>
-            <a href="javascript:page_system_operate_menu('id_kgzt_page');">
-            	<div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        	<button onclick="javascript:page_show_main_page('id_kgzt_page');">返回主页</button>
+            <button onclick="javascript:page_system_operate_menu('id_kgzt_page');">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
         </div>
     </div> <!--开关状态显示页面-->
     <div class="zeus page_frame modules_op_page" id="id_modules_op_page">
     	<div class="modules_op_page_panel" id="id_modules_op_page_panel"></div>
         <div class="jobs_preview_toolbox history_preview_toolbox">
-        	<a href="javascript:page_show_main_page('id_modules_op_page');"><div class="button">返回主页</div></a>
-            <a href="javascript:show_pre_page_module_op();"><div class="button">上一页</div></a>
-            <a href="javascript:show_next_page_module_op();"><div class="button">下一页</div></a>
-            <a href="javascript:page_system_operate_menu('id_modules_op_page');">
-            	<div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        	<button onclick="javascript:page_show_main_page('id_modules_op_page');">返回主页</button>
+            <button onclick="javascript:show_pre_page_module_op();">上一页</button>
+            <button onclick="javascript:show_next_page_module_op();">下一页</button>
+            <button onclick="javascript:page_system_operate_menu('id_modules_op_page');">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
         </div>
     </div> <!--模块操作显示页面-->
     <div class="zeus page_frame job_preview_page" id="jobs_preview_page">
     	<div class="jobs_preview_title">作业预览</div>
         <div class="jobs_preview_body" id="jobs_preview"></div>
         <div class="jobs_preview_toolbox self_info_toolbox">
-        	<a href="javascript:page_show_main_page('jobs_preview_page');"><div class="button">返回主页</div></a>
-            <a href="javascript:page_system_menu('jobs_preview_page');">
-            	<div class="button">返&nbsp;&nbsp;&nbsp;&nbsp;回</div></a>
+        	<button onclick="javascript:page_show_main_page('jobs_preview_page');">返回主页</button>
+            <button onclick="javascript:page_system_menu('jobs_preview_page');">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
         </div>
     </div> <!--jobs_preview-->
 </div>
 
 <div class="v_input_pages cls_operate_confirm_page" id="id_operate_confirm_page">
 			<br><br><br><b><a><div id="id_confirm_notify_text">确认清除全部历史故障?</div></a></b><br><br><br>
-            <a href="javascript:clean_history_error(true);"><div class="button">&nbsp;确&nbsp;认&nbsp;</div></a>&nbsp;&nbsp;
-            <a href="javascript:clean_history_error(false);"><div class="button">&nbsp;取&nbsp;消&nbsp;</div></a>
+            <button onclick="javascript:clean_history_error(true);">&nbsp;确&nbsp;认&nbsp;</button>&nbsp;&nbsp;
+            <button onclick="javascript:clean_history_error(false);">&nbsp;取&nbsp;消&nbsp;</button>
 </div> <!--清除历史故障操作确认页面-->
 
 <!-- 按电量充电输入框 -->
 <div class="v_input_pages v_bm_kwh_param_page" id="id_bm_set_kwh_page">
 	<p>充电量配置<p>
     <input onclick="javasctipt:vk_focurs('id_bm_set_kwh')" id="id_bm_set_kwh" align="absmiddle" type="text" height="30px" width="200px" value="1.0" />KW.H
-    <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_kwh_page');"><div class="button">确定</div></a>
-    <a href="javascript:page_bm_set_cancel('id_bm_set_kwh_page');"><div class="button">取消</div></a>
+    <br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_kwh_page');"><div class="button">确定</div></button>
+    <button onclick="javascript:page_bm_set_cancel('id_bm_set_kwh_page');"><div class="button">取消</div></button>
 </div>
 
 <!-- 按时间充电输入框 -->
 <div class="v_input_pages v_bm_time_param_page" id="id_bm_set_time_page">
 	<p>充电时间配置<p>
     <input onclick="javasctipt:vk_focurs('id_bm_set_time')" id="id_bm_set_time" align="absmiddle" type="text" height="30px" width="200px" value="5" />分钟
-    <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_time_page');"><div class="button">确定</div></a>
-    <a href="javascript:page_bm_set_cancel('id_bm_set_time_page');"><div class="button">取消</div></a>
+    <br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_time_page');"><div class="button">确定</div></button>
+    <button onclick="javascript:page_bm_set_cancel('id_bm_set_time_page');"><div class="button">取消</div></button>
 </div>
 
 <!-- 按金额充电输入框 -->
 <div class="v_input_pages v_bm_money_param_page" id="id_bm_set_money_page">
 	<p>充电金额配置<p>
     <input onclick="javasctipt:vk_focurs('id_bm_set_money')" id="id_bm_set_money" align="absmiddle" type="text" height="30px" width="200px" value="1.0" />元
-    <br><br><br><br><a href="javascript:page_bm_set_ok('id_bm_set_money_page');"><div class="button">确定</div></a>
-    <a href="javascript:page_bm_set_cancel('id_bm_set_money_page');"><div class="button">取消</div></a>
+    <br><br><br><br><button onclick="javascript:page_bm_set_ok('id_bm_set_money_page');"><div class="button">确定</div></button>
+    <button onclick="javascript:page_bm_set_cancel('id_bm_set_money_page');"><div class="button">取消</div></button>
 </div>
-
+ 
 <!-- 按手动充电输入框 -->
-<div class="v_input_pages v_bm_maual_param_page" id="id_cm_set_page"><div>
+<div class="v_input_pages v_bm_maual_param_page" id="id_cm_set_page">
 <a>手动充电配置</a>
     <table align="center">
         <tr>
-          <td colspan="2"><label><input type="radio" name="mc_mode" checked="true" value="BI"/>
+          <td colspan="3"><label><input type="radio" name="mc_mode" checked="true" value="BI"/>
           恒流</label></td>
-          <td colspan="2"><label><input type="radio" name="mc_mode" value="BV"/>
+          <td colspan="3"><label><input type="radio" name="mc_mode" value="BV"/>
           恒压</label></td>
         </tr>
         <tr>
           <td>限流</td>
-          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lI')" id="id_cm_set_lI" type="text" size="9" maxlength="9" value="21"/>A</td>
+          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lI')" id="id_cm_set_lI" type="text" size="5" maxlength="5" value="21"/>A&nbsp;&nbsp;</td>
           <td>限压</td>
-          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lV')" id="id_cm_set_lV" type="text" size="9" maxlength="9" value="533.8"/>V</td>
-        <tr>
+          <td><input onclick="javasctipt:vk_focurs('id_cm_set_lV')" id="id_cm_set_lV" type="text" size="5" maxlength="5" value="533.8"/>V&nbsp;&nbsp;</td>
           <td>授权</td>
-          <td colspan="3"><input onclick="javasctipt:vk_focurs('id_cm_set_passwd')" id="id_cm_set_passwd" type="password" /></td>
-        </tr>
-    </table></div><div>
-    <br><br><br><a href="javascript:page_cm_set_ok('id_cm_set_page');"><div class="button">确定</div></a>
-    <a href="javascript:page_cm_set_cancel('id_cm_set_page');"><div class="button">取消</div></a></div>
+          <td><input size="7" maxlength="7" onclick="javasctipt:vk_focurs('id_cm_set_passwd')" id="id_cm_set_passwd" type="password" /></td>
+    </table>
+    <br><br><br><br><br><button onclick="javascript:page_cm_set_ok('id_cm_set_page');">&nbsp;确&nbsp;&nbsp;定&nbsp;</button>
+    <button onclick="javascript:page_cm_set_cancel('id_cm_set_page');">&nbsp;取&nbsp;&nbsp;消&nbsp;</button>
 </div>
 
 <div class="v_input_pages v_card_passwd_input_pages" id="id_card_passwd_input_page">
 	<div><a>充电授权密码</a><a id="id_passwd_card_sn">N/A</a></div>
-    <div><input type="password" id="id_card_passwd" style="font-size:24px;text-align:center;height:32px" maxlength="6" /></div><br><br><br />
+    <div><input type="password" id="id_card_passwd" style="font-size:36px; line-height:36px;text-align:center;height:32px" maxlength="6" /></div>
     <div id="id_card_passwd_notify" style="font-size:16px"><br /><p>&nbsp;</p></div><br><br><br><br><br>
     <div>
-        <a href="javascript:do_show_job_create_page();"><div class="button">确定</div></a>
-        <a href="javascript:page_show_main_page('id_card_passwd_input_page');"><div class="button">取消</div></a></div>
+        <button type="button" onclick="javascript:do_show_job_create_page();">确定</button>
+        <button type="button" onclick="javascript:page_show_main_page('id_card_passwd_input_page');">取消</button>
     </div>
 </div>
 
 <div class="v_input_pages v_feed_passwd_input_pages" id="id_feed_passwd_input_page">
 	<div>动&nbsp;作&nbsp;授&nbsp;权</div>
-    <div>密钥： <input type="password" id="id_feed_passwd" style="font-size:24px; text-align:center" height="32px" maxlength="6" /></div>
+    <div>密钥： <input type="password" id="id_feed_passwd" style="font-size:24px; text-align:center; height:32px" maxlength="6" /></div>
     <div><a id="id_feed_passwd_notify" style="font-size:16px">&nbsp;</a></div><br><br><br><br><br>
     <div>
         <button type="button"><div id="id_auth_ok" class="okcancelbtn okbtn">&nbsp;确&nbsp;&nbsp;定&nbsp;</div></button>
@@ -378,8 +372,8 @@
         </table>
     </div>
     <div class="jobs_preview_toolbox self_info_toolbox">
-        <a href="javascript:void();"><div class="button">打印交易账单</div></a>
-        <a href="javascript:do_job_done();"><div class="button">完成</div></a></div>
+        <button onclick="javascript:void();">打印交易账单</button>
+        <button onclick="javascript:do_job_done();">完成</button></div>
     </div>
 </div>
 
