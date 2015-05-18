@@ -1,5 +1,5 @@
 ﻿// JavaScript Document
-/*
+
 var jiaozhun=[
 	{n:'V1',p:4000},
 	{n:'V1',p:4500},
@@ -15,7 +15,7 @@ var jiaozhun=[
 	{n:'V2',p:4000},
 	{n:'done',p:4000}
 ];
-*/
+/*
 var jiaozhun=[
 	{n:'V1',p:4000},
 	{n:'V1',p:3500},
@@ -29,9 +29,10 @@ var jiaozhun=[
 	{n:'V2',p:3000},
 	{n:'V2',p:3500},
 	{n:'V2',p:4000},
-	*/
+
 	{n:'done',p:2000}
 ];
+	*/
 var ceshidian=[
 	{n:'CV1',p:4250},
 	{n:'CV1',p:4750},
