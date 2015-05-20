@@ -140,6 +140,10 @@ function js_init(re_new) {
 
 // 定时执行
 function js_main_loop() {
+	var currentdate=new Date().Format("yyyy-MM-dd");
+
+	$('#system_date_time').html(currentdate + ' ' + date.getHours() + ':' + date.getMinutes() );
+
 	$.getJSON(g_cfg.ontom_query, 'p=' + g_sys.page_id_curr + '&j=' + g_sys.job_id_curr, function (data, status, xhr){
 		if ( status == "success" ) {
 			g_sys.error_query_nr = 0;
