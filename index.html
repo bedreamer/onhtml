@@ -192,7 +192,7 @@
             <button class="zeus main_tool_box" style="left:510px;top:30px;" onclick="javascript:page_show_history_error('id_system_operate_page')">
             <div>历史<br>故障</div></button>
             <button class="zeus main_tool_box" style="left:630px;top:30px;" onclick="javascript:page_show_kgzt('id_system_operate_page')">
-            <div>开关<br>状态</div></button>
+            <div>遥测<br>遥信</div></button>
             <button class="zeus main_tool_box" style="left:30px;top:150px;" onclick=
 "javascript:page_show_hot_restart_confirm_page('id_system_operate_page')">
             <div>重新<br>启动</div></button>
@@ -238,7 +238,7 @@
     <div class="zeus page_frame kgzt_info" id="id_kgzt_page">
     	<div class="kgzt_page_panel" id="id_kgzt_page_panel" align="center">
         	<table width="96%" align="center"  class="job_create_table">
-            	<caption>系统开关状态</caption>
+            	<caption>系统遥测遥信</caption>
             	<tr>
                 	<td>直流总输出熔断器</td><td id="id_dcrd_zt">N/A</td><td>直流总输出开关量</td><td id="id_dc_kg">N/A</td>
                 </tr>
@@ -250,6 +250,12 @@
                 </tr>
                 <tr>
                 	<td>急停状态</td><td id="id_halt_zt">N/A</td><td>防雷器状态</td><td id="id_flq_zt">N/A</td>
+                </tr>
+                <tr>
+                	<td>电池1正对地</td><td id="id_bat1_ohm_P">N/A</td><td>电池1负对地</td><td id="id_bat1_ohm_N">N/A</td>
+                </tr>
+                <tr>
+                	<td>电池2正对地</td><td id="id_bat2_ohm_P">N/A</td><td>电池1负对地</td><td id="id_bat2_ohm_N">N/A</td>
                 </tr>
             </table>
         </div>
