@@ -246,7 +246,7 @@ function js_main_loop() {
 				$('#id_bat1_ohm_P').html(data.bat1_R_P);
 				$('#id_bat1_ohm_N').html(data.bat1_R_N);
 				$('#id_bat2_ohm_P').html(data.bat2_R_P);
-				$('#id_bat12_ohm_N').html(data.bat2_R_N);
+				$('#id_bat2_ohm_N').html(data.bat2_R_N);
 
 				if ( data.query_period > 0 ) {
 					g_cfg.query_period = data.query_period;
