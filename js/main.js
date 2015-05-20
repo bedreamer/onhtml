@@ -30,7 +30,9 @@ var g_cfg = {
 	// 本机信息查询接口
 	ontom_about:'/system/about.json',
 	// 操作认证接口
-	ontom_auth:'/system/auth.json'
+	ontom_auth:'/system/auth.json',
+	// 热重启
+	ontom_hot_restart:'/system/hotrestart.json'
 };
 var g_sys = {
 	// 当前显示的页面ID
@@ -135,6 +137,7 @@ function js_init(re_new) {
 	g_cfg.ontom_module_detail = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_module_detail;
 	g_cfg.ontom_about = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_about;
 	g_cfg.ontom_auth = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_auth;
+	g_cfg.ontom_hot_restart = g_cfg.query_proctol + g_cfg.ontom_host + g_cfg.ontom_hot_restart;
 	setTimeout(js_main_loop, 800);
 }
 
@@ -1100,3 +1103,29 @@ function do_op_auth(from, to, kind) {
 	$('#id_auth_cancel').attr("onclick", "javascript:do_op_auth_cancel('" + from + "')" );
 	$('#id_auth_ok').attr("onclick", "javascript:do_op_auth_query('" + from + "','" + to + "','" + kind +  "')" );
 }
+
+// 重启
+function page_show_hot_restart_confirm_page(from) {
+	$('#'+from).hide();
+	$('#id_hot_restart_confirm_page').show();
+	g_sys.page_id_curr = 'id_hot_restart_confirm_page';
+}
+
+function system_hot_restart(op) {
+	if ( op == true ) {
+		$.getJSON(g_cfg.ontom_hot_restart, '', function (data, status, xhr) {});
+	} else {
+		$('#id_hot_restart_confirm_page').hide();
+		$('#id_system_operate_page').show();
+		g_sys.page_id_curr = 'id_system_operate_page';
+	}
+}
+
+
+
+
+
+
+
+
+

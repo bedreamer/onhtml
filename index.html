@@ -193,6 +193,9 @@
             <div>历史<br>故障</div></button>
             <button class="zeus main_tool_box" style="left:630px;top:30px;" onclick="javascript:page_show_kgzt('id_system_operate_page')">
             <div>开关<br>状态</div></button>
+            <button class="zeus main_tool_box" style="left:30px;top:150px;" onclick=
+"javascript:page_show_hot_restart_confirm_page('id_system_operate_page')">
+            <div>重新<br>启动</div></button>
         </div>
         <div class="jobs_preview_toolbox">
         	<button onclick="javascript:page_show_main_page('id_system_operate_page');">返回主页</button>
@@ -279,6 +282,12 @@
             <button onclick="javascript:clean_history_error(true);">&nbsp;确&nbsp;认&nbsp;</button>&nbsp;&nbsp;
             <button onclick="javascript:clean_history_error(false);">&nbsp;取&nbsp;消&nbsp;</button>
 </div> <!--清除历史故障操作确认页面-->
+
+<div class="v_input_pages cls_operate_confirm_page" id="id_hot_restart_confirm_page">
+			<br><br><br><b><a><div id="id_confirm_notify_text">确认重新启动</div></a></b><br><br><br>
+            <button onclick="javascript:system_hot_restart(true);">&nbsp;确&nbsp;认&nbsp;</button>&nbsp;&nbsp;
+            <button onclick="javascript:system_hot_restart(false);">&nbsp;取&nbsp;消&nbsp;</button>
+</div> <!--确认重新启动-->
 
 <!-- 按电量充电输入框 -->
 <div class="v_input_pages v_bm_kwh_param_page" id="id_bm_set_kwh_page">
