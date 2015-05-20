@@ -140,7 +140,8 @@ function js_init(re_new) {
 
 // 定时执行
 function js_main_loop() {
-	var currentdate=new Date().Format("yyyy-MM-dd");
+	var date = new Date();
+	var currentdate = date.getFullYear() + '年' + (date.getMonth() + 1).toString() + '月' + date.getDate() + '日';
 
 	$('#system_date_time').html(currentdate + ' ' + date.getHours() + ':' + date.getMinutes() );
 
