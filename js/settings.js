@@ -255,11 +255,12 @@ function refresh_upgrade_notify_text() {
 		ut = 0;
 	}
 
-	str = '正在保存' + tips[ ut ];
+	str = '正在升级' + tips[ ut ];
 	ut ++;
 
 	$('#id_upgrade_text').html(str);
 	setTimeout(refresh_upgrade_notify_text, 300);
+	setTimeout(return_main_page, 60 * 1000);
 }
 
 function key_push(key) {
