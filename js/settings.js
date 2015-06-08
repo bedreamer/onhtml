@@ -256,7 +256,7 @@ function refresh_upgrade_notify_text() {
 		ut = 0;
 	}
 
-	if ( bt < 100 ) bt = bat + 1;
+	if ( bt < 100 ) bt = bt + 1;
 	
 	str = '正在升级' + tips[ ut ] + '(' + bt + '%)';
 	ut ++;
