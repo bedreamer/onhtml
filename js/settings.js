@@ -247,7 +247,7 @@ function refresh_notify_text() {
 }
 
 var ut = 0;
-var bt = 60;
+var bt = 0;
 function refresh_upgrade_notify_text() {
 	var str;
 	var tips = ['.', '..', '...', '....', '.....'];
@@ -256,14 +256,16 @@ function refresh_upgrade_notify_text() {
 		ut = 0;
 	}
 
-	if ( bt > 0 ) bt = bat -1;
+	if ( bt < 100 ) bt = bat + 1;
 	
-	str = '正在升级' + tips[ ut ] + bt;
+	str = '正在升级' + tips[ ut ] + '(' + bt + '%)';
 	ut ++;
 
 	$('#id_upgrade_text').html(str);
 	setTimeout(refresh_upgrade_notify_text, 300);
-	setTimeout(return_main_page, 60 * 1000);
+	if ( bat >= 100 ) {
+		setTimeout(return_main_page, 10);
+	}
 }
 
 function key_push(key) {
