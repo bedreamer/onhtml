@@ -263,7 +263,7 @@ function refresh_upgrade_notify_text() {
 
 	$('#id_upgrade_text').html(str);
 	setTimeout(refresh_upgrade_notify_text, 300);
-	if ( bat >= 100 ) {
+	if ( bt >= 100 ) {
 		setTimeout(return_main_page, 10);
 	}
 }
