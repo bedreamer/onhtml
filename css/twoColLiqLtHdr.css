@@ -128,7 +128,7 @@ a, div{
 	width:100%;
 }
 
-.cls_content_system,.cls_content_comm,.cls_content_charger,.cls_content_about {
+.cls_content_system,.cls_content_comm,.cls_content_charger,.cls_content_about, .upgrade_box  {
 	display:none;
 }
 
@@ -307,7 +307,7 @@ a, div{
 	width:100px;
 }
 
-.select_box {
+.select_box, .upgrade_box {
 	position:absolute;
 	float:left;
 	left:8%;

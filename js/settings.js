@@ -246,6 +246,22 @@ function refresh_notify_text() {
 	setTimeout(return_main_page, 1500);
 }
 
+var ut = 0;
+function refresh_upgrade_notify_text() {
+	var str;
+	var tips = ['.', '..', '...', '....', '.....'];
+
+	if ( ut > 4 ) {
+		ut = 0;
+	}
+
+	str = '正在保存' + tips[ ut ];
+	ut ++;
+
+	$('#id_upgrade_text').html(str);
+	setTimeout(refresh_upgrade_notify_text, 300);
+}
+
 function key_push(key) {
 	if ( key == 'r' ) {
 		setting_main_loop();
@@ -275,7 +291,8 @@ function key_push(key) {
 // 检查更新
 $(function(){
 	$('#update').click(function(){
-		setTimeout(refresh_notify_text, 10);
+		$('#id_upgrade_box').show();
+		setTimeout(refresh_upgrade_notify_text, 10);
 		$.getJSON('http://' + ip + '/system/update.json', '', '');
 	})
 });
