@@ -247,6 +247,7 @@ function refresh_notify_text() {
 }
 
 var ut = 0;
+vat bt = 60;
 function refresh_upgrade_notify_text() {
 	var str;
 	var tips = ['.', '..', '...', '....', '.....'];
@@ -255,7 +256,9 @@ function refresh_upgrade_notify_text() {
 		ut = 0;
 	}
 
-	str = '正在升级' + tips[ ut ];
+	if ( bt > 0 ) bt = bat -1;
+	
+	str = '正在升级' + tips[ ut ] + bt;
 	ut ++;
 
 	$('#id_upgrade_text').html(str);
