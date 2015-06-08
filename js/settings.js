@@ -247,7 +247,7 @@ function refresh_notify_text() {
 }
 
 var ut = 0;
-vat bt = 60;
+var bt = 60;
 function refresh_upgrade_notify_text() {
 	var str;
 	var tips = ['.', '..', '...', '....', '.....'];
