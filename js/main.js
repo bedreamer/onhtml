@@ -676,35 +676,17 @@ function page_show_self_info(from) {
 	$.getJSON(g_cfg.ontom_about, '', function (data, status, xhr){
 		if ( status == "success" ) {
 			var codes = '<table align=center class="self_info_t">';
-			if ( data.about.eth0 ) {
-				codes = codes + "<tr><td align=right>网口1:&nbsp;</td><td>&nbsp;" + data.about.eth0 + "&nbsp;&nbsp;</td><tr>";
-			}
-			if ( data.about.eth1 ) {
-				codes = codes + "<tr><td align=right>网口2:&nbsp;</td><td>&nbsp;" + data.about.eth1 + "&nbsp;&nbsp;</td><tr>";
-			}
-			if ( data.about.ver ) {
-				codes = codes + "<tr><td align=right>主版本:&nbsp;</td><td>&nbsp;" + data.about.ver + "&nbsp;&nbsp;</td><tr>";
-			}
-			if ( data.about.sys ) {
-				codes = codes + "<tr><td align=right>类型:&nbsp;</td><td>&nbsp;" + data.about.sys + "&nbsp;&nbsp;</td><tr>";
-			}
-			if ( data.about.gun_nr ) {
-				codes = codes + "<tr><td align=right>充电枪:&nbsp;</td><td>&nbsp;" + data.about.gun_nr + "&nbsp;&nbsp;</td><tr>";
-			}
-			if ( data.about.module_nr ) {
-				codes = codes + "<tr><td align=right>充电模块:&nbsp;</td><td>&nbsp;" + data.about.module_nr + "&nbsp;&nbsp;</td><tr>";
-			}
-			if ( data.about.section_nr ) {
-				codes = codes + "<tr><td align=right>系统母线:&nbsp;</td><td>&nbsp;" + data.about.section_nr + "&nbsp;&nbsp;</td><tr>";
-			}
-			if ( data.about.auth_stat ) {
-				codes = codes + "<tr><td align=right>授权状态:&nbsp;</td><td>&nbsp;" + data.about.auth_stat + "&nbsp;&nbsp;</td><tr>";
-			}
-			if ( data.about.auth_id ) {
-				codes = codes + "<tr><td align=right>授权码:&nbsp;</td><td>&nbsp;" + data.about.auth_id + "&nbsp;&nbsp;</td><tr>";
-			}
-				
-									
+			var r = 0;
+			for ( var i = 0; i < data.length; i ++ ) {
+				codes = codes + "<tr><td>" + data.about[i].k + "</td><td>" + data.about[i].v + "</td>"
+				if ( i + 1 >= data.length ) {
+					codes = codes + "<td>&nbsp;</td><td>&nbsp;</td><tr>"
+					break;
+				} else {
+					i ++;
+					codes = codes + "<td>" + data.about[i].k + "</td><td>" + data.about[i].v + "</td></tr>"
+				}
+			}	
 			codes = codes + "</table>"
 			$('#id_self_info_page_panel').html(codes);
 		}
