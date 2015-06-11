@@ -677,9 +677,9 @@ function page_show_self_info(from) {
 		if ( status == "success" ) {
 			var codes = '<table align=center class="self_info_t">';
 			var r = 0;
-			for ( var i = 0; i < data.length; i ++ ) {
+			for ( var i = 0; i < data.about.length; i ++ ) {
 				codes = codes + "<tr><td>" + data.about[i].k + "</td><td>" + data.about[i].v + "</td>"
-				if ( i + 1 >= data.length ) {
+				if ( i + 1 >= data.about.length ) {
 					codes = codes + "<td>&nbsp;</td><td>&nbsp;</td><tr>"
 					break;
 				} else {
