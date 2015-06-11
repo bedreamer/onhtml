@@ -667,12 +667,7 @@ function page_show_history_error(from) {
 	refresh_history_panel(0, g_cfg.history_per_page);
 }
 
-// 显示本机信息
-function page_show_self_info(from) {
-	$('#'+from).hide();
-	$('#id_self_info_page').show();
-	g_sys.page_id_curr = 'id_self_info_page';
-	
+function do_about_refresh_page() {
 	$.getJSON(g_cfg.ontom_about, '', function (data, status, xhr){
 		if ( status == "success" ) {
 			var codes = '<table align=center class="self_info_t">';
@@ -691,6 +686,17 @@ function page_show_self_info(from) {
 			$('#id_self_info_page_panel').html(codes);
 		}
 	});
+	if ( g_sys.page_id_curr =='id_self_info_page' ) {
+		setTimeout(do_about_refresh_page, 3000);
+	}
+}
+
+// 显示本机信息
+function page_show_self_info(from) {
+	$('#'+from).hide();
+	$('#id_self_info_page').show();
+	g_sys.page_id_curr = 'id_self_info_page';
+	setTimeout(do_about_refresh_page, 3000);
 }
 
 function job_resume(jid) {
